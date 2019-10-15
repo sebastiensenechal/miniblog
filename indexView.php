@@ -13,26 +13,29 @@
           <h2>Derniers billets</h2>
         </header>
 
-        <?php
-        while ($data = $posts->fetch())
-        {
-        ?>
-            <article class="news">
-                <h3>
-                    <?= htmlspecialchars($data['title']) ?>
-                    <em>le <?= $data['creation_date_fr'] ?></em>
-                </h3>
+        <section id="list-news">
+          <?php
+          while ($data = $posts->fetch())
+          {
+          ?>
+              <article class="news">
+                  <h3>
+                      <?= htmlspecialchars($data['title']) ?>
+                      <em>le <?= $data['creation_date_fr'] ?></em>
+                  </h3>
 
-                <p>
-                    <?= nl2br(htmlspecialchars($data['content'])) ?>
-                    <br />
-                    <em><a href="post.php?id=<?= $data['id'] ?>">Commentaires</a></em>
-                </p>
-            </article>
-        <?php
-        }
-        $posts->closeCursor();
-        ?>
+                  <p>
+                      <?= nl2br(htmlspecialchars($data['content'])) ?>
+                      <br />
+                      <em><a href="post.php?id=<?= $data['id'] ?>">Commentaires</a></em>
+                  </p>
+              </article>
+          <?php
+          }
+          $posts->closeCursor();
+          ?>
+
+        </section>
 
       </div>
     </body>
