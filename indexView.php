@@ -8,14 +8,16 @@
 
     <body>
       <div id="grid">
-        <h1>Mini blog</h1>
-        <h2>Derniers billets</h2>
+        <header>
+          <h1>Mini blog</h1>
+          <h2>Derniers billets</h2>
+        </header>
 
         <?php
         while ($data = $posts->fetch())
         {
         ?>
-            <div class="news">
+            <article class="news">
                 <h3>
                     <?= htmlspecialchars($data['title']) ?>
                     <em>le <?= $data['creation_date_fr'] ?></em>
@@ -26,7 +28,7 @@
                     <br />
                     <em><a href="post.php?id=<?= $data['id'] ?>">Commentaires</a></em>
                 </p>
-            </div>
+            </article>
         <?php
         }
         $posts->closeCursor();

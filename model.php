@@ -15,7 +15,7 @@ function getPosts()
 
 function getPost($postId)
 {
-  // Connexion à la base de données
+  // Connexion à la base de données - $db est un objet PDO
   $db = dbConnect();
 
   // Récupérer un post en fonction de son ID avec une requête préparé
@@ -30,7 +30,7 @@ function getPost($postId)
 
 function getComments($postId)
 {
-  // COnnexion à la base de données
+  // COnnexion à la base de données - $db est un objet PDO
   $db = dbConnect();
 
   // Récupère un commentaire associé à un ID avec une requête préparé

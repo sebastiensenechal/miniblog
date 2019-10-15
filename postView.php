@@ -8,11 +8,12 @@
 
     <body>
       <div id="grid">
-        <h1>Mini blog</h1>
-        <p><a href="index.php" title="Index des billets">Retour à la liste des billets</a></p>
+        <header>
+          <h1>Mini blog</h1>
+          <p><a href="index.php" title="Index des billets">Retour à la liste des billets</a></p>
+        </header>
 
-
-        <div class="news">
+        <article class="news">
             <h3>
                 <?= htmlspecialchars($post['title']) ?>
                 <em>le <?= $post['creation_date_fr'] ?></em>
@@ -21,7 +22,7 @@
             <p>
                 <?= nl2br(htmlspecialchars($post['content'])) ?>
             </p>
-        </div>
+        </article>
 
 
         <h2>Commentaires</h2>
