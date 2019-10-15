@@ -13,9 +13,9 @@ function getPosts()
 
 
 
-function getPost($postID)
+function getPost($postId)
 {
-  // Connexion à la base de données
+  // Connexion à la base de données - $db est un objet PDO
   $db = dbConnect();
 
   // Récupérer un post en fonction de son ID avec une requête préparé
@@ -30,11 +30,11 @@ function getPost($postID)
 
 function getComments($postId)
 {
-  // COnnexion à la base de données
+  // COnnexion à la base de données - $db est un objet PDO
   $db = dbConnect();
 
   // Récupère un commentaire associé à un ID avec une requête préparé
-  $coments = $db->prepare('SELECT id, author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM comments WHERE post_id = ? ORDER BY coment_date DESC');
+  $comments = $db->prepare('SELECT id, author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM comments WHERE post_id = ? ORDER BY comment_date DESC');
   $comments->execute(array($postId));
 
   return $comments;
@@ -45,7 +45,7 @@ function dbConnect()
 {
   try
   {
-    $db = new PDO('mysql:host=localhost;dbname=miniblog;charset=utf8', 'root', '');
+    $db = new PDO('mysql:host=localhost;dbname=miniblog;charset=utf8', 'root', 'root');
     return $db;
   }
   catch(Exception $e)
