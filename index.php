@@ -2,7 +2,7 @@
 // Le routeur : premier fichier appelé, c'est un "controleur frontal". Il appel le bon controleur chez "controller.php" en fonction d'un paramètre dans l'url.
 
 
-require('controller.php');
+require('controller/frontend.php');
 
 if (isset($_GET['action']))
 {

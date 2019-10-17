@@ -3,7 +3,7 @@
 // Il est utilisé par le routeur qui se charge d'appeler les bons controllers (fonctions).
 
 
-require('model.php');
+require('./model/frontend.php');
 
 
 // Affiche la liste des billets
@@ -11,7 +11,7 @@ function listPosts()
 {
   $posts = getPosts();
 
-  require('listPostsView.php');
+  require('./view/frontend/listPostsView.php');
 }
 
 
@@ -21,5 +21,5 @@ function post()
   $post = getPost($_GET['id']);
   $comments = getComments($_GET['id']);
 
-  require('postView.php');
+  require('./view/frontend/postView.php');
 }
