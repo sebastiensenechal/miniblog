@@ -1,42 +1,36 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <title>Mini blog</title>
-       <link href="style.css" rel="stylesheet" />
-    </head>
+<?php $title = 'Mon blog' ?>
 
-    <body>
-      <div id="grid">
-        <header>
-          <h1>Mini blog</h1>
-          <h2>Derniers billets</h2>
-        </header>
+<?php ob_start(); ?>
 
-        <section id="list-news">
-          <?php
-          while ($data = $posts->fetch())
-          {
-          ?>
-              <article class="news">
-                  <h3>
-                      <?= htmlspecialchars($data['title']) ?>
-                      <em>le <?= $data['creation_date_fr'] ?></em>
-                  </h3>
+<header>
+  <h1>Mini blog</h1>
+  <h2>Derniers billets</h2>
+</header>
 
-                  <p>
-                      <?= nl2br(htmlspecialchars($data['content'])) ?>
-                      <br />
-                      <em><a href="post.php?id=<?= $data['id'] ?>">Commentaires</a></em>
-                  </p>
-              </article>
-          <?php
-          }
-          $posts->closeCursor();
-          ?>
+<section id="list-news">
+  <?php
+  while ($data = $posts->fetch())
+  {
+  ?>
+      <article class="news">
+          <h3>
+              <?= htmlspecialchars($data['title']) ?>
+              <em>le <?= $data['creation_date_fr'] ?></em>
+          </h3>
 
-        </section>
+          <p>
+              <?= nl2br(htmlspecialchars($data['content'])) ?>
+              <br />
+              <em><a href="post.php?id=<?= $data['id'] ?>">Commentaires</a></em>
+          </p>
+      </article>
+  <?php
+  }
+  $posts->closeCursor();
+  ?>
 
-      </div>
-    </body>
-</html>
+</section>
+
+<?php $content = ob_get_clean() ?>
+
+<?php require('template.php') ?>

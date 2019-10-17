@@ -1,48 +1,42 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <title>Mini blog</title>
-       <link href="style.css" rel="stylesheet" />
-    </head>
+<?php $title = 'Mon blog | Billet' ?>
 
-    <body>
-      <div id="grid">
-        <header>
-          <h1>Mini blog</h1>
-          <p><a href="index.php" title="Index des billets">Retour à la liste des billets</a></p>
-        </header>
+<?php ob_start(); ?>
 
-        <div id="layout-post">
-          <section id="content-news">
+<header>
+  <h1>Mini blog</h1>
+  <p><a href="index.php" title="Index des billets">Retour à la liste des billets</a></p>
+</header>
 
-            <article class="news">
-                <h3>
-                    <?= htmlspecialchars($post['title']) ?>
-                    <em>le <?= $post['creation_date_fr'] ?></em>
-                </h3>
+<div id="layout-post">
+  <section id="content-news">
 
-                <p>
-                    <?= nl2br(htmlspecialchars($post['content'])) ?>
-                </p>
-            </article>
+    <article class="news">
+        <h3>
+            <?= htmlspecialchars($post['title']) ?>
+            <em>le <?= $post['creation_date_fr'] ?></em>
+        </h3>
+
+        <p>
+            <?= nl2br(htmlspecialchars($post['content'])) ?>
+        </p>
+    </article>
 
 
-            <h2>Commentaires</h2>
+    <h2>Commentaires</h2>
 
-            <?php
-            while ($comment = $comments->fetch())
-            {
-            ?>
-                <p><strong><?= htmlspecialchars($comment['author']) ?></strong> le <?= $comment['comment_date_fr'] ?></p>
-                <p><?= nl2br(htmlspecialchars($comment['comment'])) ?></p>
-            <?php
-            }
-            ?>
+    <?php
+    while ($comment = $comments->fetch())
+    {
+    ?>
+        <p><strong><?= htmlspecialchars($comment['author']) ?></strong> le <?= $comment['comment_date_fr'] ?></p>
+        <p><?= nl2br(htmlspecialchars($comment['comment'])) ?></p>
+    <?php
+    }
+    ?>
 
-          </section>
-        </div>
+  </section>
+</div>
 
-      </div>
-    </body>
-</html>
+<?php $content = ob_get_clean() ?>
+
+<?php require('template.php') ?>
