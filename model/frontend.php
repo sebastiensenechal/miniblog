@@ -41,6 +41,19 @@ function getComments($postId)
 }
 
 
+function postComment($postId, $author, $comment)
+{
+  // Connexion à la base de données - $db est un objet PDO
+  $db = dbConnect();
+
+  // Requête pour insérer les données dans la base
+  $comments = $db->prepare('INSERT INTO comments(post_id, author, comment, comment_date) VALUES(?, ?, ?, NOW())');
+  $affectedLines = $comments->execute(array($postId, $author, $comment)); // L'ID du commentaire et la date sont généré automatiquement
+
+  return $affectedLines;
+}
+
+
 function dbConnect()
 {
   try

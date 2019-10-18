@@ -19,20 +19,43 @@
         <p>
             <?= nl2br(htmlspecialchars($post['content'])) ?>
         </p>
+
+      <div id="post-comments">
+        <h2>Laissez un commentaire</h2>
+
+        <div id="comment-form">
+          <form action="index.php?action=addComment&amp;id=<?= $post['id'] ?>" method="post">
+            <fieldset>
+              <label for="author">* Auteur</label><br>
+              <input type="text" id="author" name="author" />
+            </fieldset>
+            <fieldset>
+              <label for="comment">* Commentaire</label><br>
+              <textarea id="comment" name="comment"></textarea>
+            </fieldset>
+            <fieldset>
+              <input type="submit" />
+            </fieldset>
+          </form>
+        </div>
+
+        <h2>Commentaires</h2>
+
+        <?php
+        while ($comment = $comments->fetch())
+        {
+        ?>
+          <div class="content-comment">
+            <p><strong><?= htmlspecialchars($comment['author']) ?></strong><br />
+            <span class="comment-date"><?= $comment['comment_date_fr'] ?></span></p>
+            <p><?= nl2br(htmlspecialchars($comment['comment'])) ?></p>
+          </div>
+        <?php
+        }
+        ?>
+
+      </div>
     </article>
-
-
-    <h2>Commentaires</h2>
-
-    <?php
-    while ($comment = $comments->fetch())
-    {
-    ?>
-        <p><strong><?= htmlspecialchars($comment['author']) ?></strong> le <?= $comment['comment_date_fr'] ?></p>
-        <p><?= nl2br(htmlspecialchars($comment['comment'])) ?></p>
-    <?php
-    }
-    ?>
 
   </section>
 </div>

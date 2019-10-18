@@ -23,3 +23,20 @@ function post()
 
   require('./view/frontend/postView.php');
 }
+
+
+// Ajout d'un commentaire dans la base
+function addComment($postId, $author, $comment)
+{
+  $affectedLines = postComment($postId, $author, $comment);
+
+  if ($affectedLines === false)
+  {
+    die('Impossible d\'ajouter le commentaire');
+  }
+  else
+  {
+    // Si pas d'erreur, on redirige le contributeur vers le post avec son commentaire 
+    header('Location: index.php?action=post&id=' . $postId);
+  }
+}
