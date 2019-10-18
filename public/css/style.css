@@ -1,13 +1,62 @@
 @charset "utf-8";
 
+/* ********************
+
+ Global
+
+ ******************** */
+*, *:before, *:after {
+    outline: none;
+    -webkit-box-sizing: inherit;
+       -moz-box-sizing: inherit;
+            box-sizing: inherit;
+    -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+}
+html {
+    width: 100vw;
+    height: auto;
+}
+
 body {
   margin: 0;
   padding: 0;
   width: 100vw;
   height:auto;
+  color: #4a4949;
+  font-size: 20px;
+  line-height: 30px;
+  scroll-behavior: smooth; /* Un peu de douceur dans ce monde de brute */
+  /* max-height:100%;
+  overflow-x:hidden; */
+  font-family: 'Nunito Sans', Verdana, sans-serif;
 }
 
-h1 { font-size: 2em; }
+
+/* ********************
+
+ Typographie
+
+ ******************** */
+@import url('https://fonts.googleapis.com/css?family=Nunito+Sans:400,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Spectral:500,700,800&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Material+Icons');
+p, address {font-size:1em;line-height:1.6em;font-weight:400;}
+a {font-size:1.2em; line-height:1.6em;font-weight:400; color:#fdfdfd;text-decoration: underline;}
+a:hover {text-decoration: none; color:rgb(242, 208, 169);}
+h1, h2, h3, h4 {font-family: 'Spectral', Georgia, serif;}
+h1 {text-transform:uppercase;font-weight:800;}
+h2 {text-transform:uppercase;font-weight:500;}
+h3 {font-weight:700;}
+
+
+
+
+
+
+
+h1 { font-size: 4em; line-height: 1em;}
+h1 span, h3 span { font-size : 60%;}
 h2 { font-size: 1.5em; }
 h3
 {
@@ -15,10 +64,13 @@ h3
     line-height: 2.4em;
     margin-bottom:0px;
 }
+
+section {
+  width:50%;
+  margin: 1em auto;
+}
 .news
 {
-    width:50%;
-    margin: 1em auto;
     border-bottom: 1px dotted #000;
     padding: 2em 1em;
 }
@@ -62,7 +114,17 @@ a
 }
 
 header {
-  text-align: center;
+  width: 100%;
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #00EAB5;
+  color: #fdfdfd;
+}
+#header-content {
+  width: 50%;
 }
 
 #grid {

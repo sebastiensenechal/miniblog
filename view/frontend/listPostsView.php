@@ -1,28 +1,32 @@
-<?php $title = 'Mon blog' ?>
+<?php $title = 'John Do' ?>
 
 <?php ob_start(); ?>
 
 <header>
-  <h1>Mini blog</h1>
-  <h2>Derniers billets</h2>
+  <div id="header-content">
+    <h1>John Do<br />
+    <span>Essayiste - Auteur - Ecrivain</span></h1>
+  </div>
 </header>
 
 <section id="list-news">
+
+  <h2>Derniers billets</h2>
+
   <?php
   while ($data = $posts->fetch())
   {
   ?>
       <article class="news">
           <h3>
-              <?= htmlspecialchars($data['title']) ?>
-              <em>le <?= $data['creation_date_fr'] ?></em>
+              <?= htmlspecialchars($data['title']) ?><br />
+              <span><?= $data['creation_date_fr'] ?></span>
           </h3>
 
           <p>
               <?= nl2br(htmlspecialchars($data['content'])) ?>
-              <br />
-              <em><a href="index.php?action=post&amp;id=<?= $data['id'] ?>">Commentaires</a></em>
           </p>
+          <p><a href="index.php?action=post&amp;id=<?= $data['id'] ?>">Commentaires</a></p>
       </article>
   <?php
   }
