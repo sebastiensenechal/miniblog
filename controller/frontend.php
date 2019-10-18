@@ -32,11 +32,12 @@ function addComment($postId, $author, $comment)
 
   if ($affectedLines === false)
   {
-    die('Impossible d\'ajouter le commentaire');
+    // Si erreur, elle remonte jusqu'au bloc try du router (index.php)
+    throw new Exception('Impossible d\'ajouter le commentaire');
   }
   else
   {
-    // Si pas d'erreur, on redirige le contributeur vers le post avec son commentaire 
+    // Si pas d'erreur, on redirige le contributeur vers le post avec son commentaire
     header('Location: index.php?action=post&id=' . $postId);
   }
 }
