@@ -2,20 +2,21 @@
 
 <?php ob_start(); ?>
 
-<header>
-  <h1>Mini blog</h1>
+<header id="header">
+  <h1>John Do</h1>
   <p><a href="./index.php" title="Index des billets">Retour à la liste des billets</a></p>
 </header>
 
 <div id="layout-post">
   <section id="content-news">
+    <header>
+      <h2>
+          <?= htmlspecialchars($post['title']) ?><br />
+          <span><?= $post['creation_date_fr'] ?></span>
+      </h2>
+    </header>
 
     <article class="news">
-        <h3>
-            <?= htmlspecialchars($post['title']) ?>
-            <em>le <?= $post['creation_date_fr'] ?></em>
-        </h3>
-
         <p>
             <?= nl2br(htmlspecialchars($post['content'])) ?>
         </p>
