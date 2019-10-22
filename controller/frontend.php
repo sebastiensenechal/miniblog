@@ -10,7 +10,7 @@ require_once('model/CommentManager.php');
 // Affiche la liste des billets
 function listPosts()
 {
-  $postManager = new PostManager(); // Création d'un objet
+  $postManager = new \SebastienSenechal\Miniblog\Model\PostManager(); // Création d'un objet (namespace "\SebastienSenechal\Miniblog\Model\")
   $posts = $postManager->getPosts(); // Appel d'une fonction de cet objet
 
   require('./view/frontend/listPostsView.php');
@@ -20,8 +20,8 @@ function listPosts()
 // Affiche un billet avec ses commentaires
 function post()
 {
-  $postManager = new PostManager();
-  $commentManager = new CommentManager();
+  $postManager = new \SebastienSenechal\Miniblog\Model\PostManager();
+  $commentManager = new \SebastienSenechal\Miniblog\Model\CommentManager();
 
   $post = $postManager->getPost($_GET['id']);
   $comments = $commentManager->getComments($_GET['id']);
@@ -33,7 +33,7 @@ function post()
 // Ajout d'un commentaire dans la base
 function addComment($postId, $author, $comment)
 {
-  $commentManager = new CommentManager();
+  $commentManager = new \SebastienSenechal\Miniblog\Model\CommentManager();
 
   $affectedLines = $commentManager->postComment($postId, $author, $comment);
 

@@ -1,4 +1,6 @@
 <?php
+namespace SebastienSenechal\Miniblog\Model; // La classe sera dans ce namespace 
+
 require_once('model/Manager.php');
 
 
