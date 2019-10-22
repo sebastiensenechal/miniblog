@@ -3,14 +3,14 @@
 // Il est utilisé par le routeur qui se charge d'appeler les bons controllers (fonctions).
 
 
-require_once('model/PostManager.php');
-require_once('model/CommentManager.php');
+require_once('model/frontend/PostManager.php');
+require_once('model/frontend/CommentManager.php');
 
 
 // Affiche la liste des billets
 function listPosts()
 {
-  $postManager = new \SebastienSenechal\Miniblog\Model\PostManager(); // Création d'un objet (namespace "\SebastienSenechal\Miniblog\Model\")
+  $postManager = new \SebastienSenechal\Miniblog\Model\Frontend\PostManager(); // Création d'un objet (namespace "\SebastienSenechal\Miniblog\Model\")
   $posts = $postManager->getPosts(); // Appel d'une fonction de cet objet
 
   require('./view/frontend/listPostsView.php');
@@ -20,8 +20,8 @@ function listPosts()
 // Affiche un billet avec ses commentaires
 function post()
 {
-  $postManager = new \SebastienSenechal\Miniblog\Model\PostManager();
-  $commentManager = new \SebastienSenechal\Miniblog\Model\CommentManager();
+  $postManager = new \SebastienSenechal\Miniblog\Model\Frontend\PostManager();
+  $commentManager = new \SebastienSenechal\Miniblog\Model\Frontend\CommentManager();
 
   $post = $postManager->getPost($_GET['id']);
   $comments = $commentManager->getComments($_GET['id']);
@@ -33,7 +33,7 @@ function post()
 // Ajout d'un commentaire dans la base
 function addComment($postId, $author, $comment)
 {
-  $commentManager = new \SebastienSenechal\Miniblog\Model\CommentManager();
+  $commentManager = new \SebastienSenechal\Miniblog\Model\Frontend\CommentManager();
 
   $affectedLines = $commentManager->postComment($postId, $author, $comment);
 

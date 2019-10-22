@@ -1,4 +1,4 @@
-<?php $title = 'John Do' ?>
+<?php $title = 'Tableau de bord du site de John Do' ?>
 
 <?php ob_start(); ?>
 

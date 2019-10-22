@@ -1,5 +1,5 @@
 <?php
-namespace SebastienSenechal\Miniblog\Model;
+namespace SebastienSenechal\Miniblog\Model\Frontend;
 // Ajout de la classe Manager dans le namespace \SebastienSenechal\Miniblog\Model\
 
 class Manager

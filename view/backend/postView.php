@@ -1,4 +1,4 @@
-<?php $title = 'Mon blog | ' . htmlspecialchars($post['title']) ?>
+<?php $title = 'Tableau de bord de John Do | ' . htmlspecialchars($post['title']) ?>
 
 <?php ob_start(); ?>
 

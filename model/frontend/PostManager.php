@@ -1,7 +1,7 @@
 <?php
-namespace SebastienSenechal\Miniblog\Model; // La classe sera dans ce namespace 
+namespace SebastienSenechal\Miniblog\Model\Frontend; // La classe sera dans ce namespace
 
-require_once('model/Manager.php');
+require_once('model/frontend/Manager.php');
 
 
 class PostManager extends Manager

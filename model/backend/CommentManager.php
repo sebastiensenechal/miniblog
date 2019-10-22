@@ -1,8 +1,8 @@
 <?php
-namespace SebastienSenechal\Miniblog\Model; // La classe sera dans ce namespace
+namespace SebastienSenechal\Miniblog\Model\Backend; // La classe sera dans ce namespace
 
 
-require_once('model/Manager.php');
+require_once('model/frontend/Manager.php');
 
 
 class CommentManager extends Manager
