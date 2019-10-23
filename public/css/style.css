@@ -224,3 +224,15 @@ input, textarea {
     height: 100vh;
     width: 70%;
 }
+
+#layout-connexion {
+  display: flex;
+  flex-direction: row;
+  width: 70%;
+  justify-content: space-around;
+  align-content: space-around;
+  align-items: flex-start;
+}
+#layout-connexion section {
+  width: auto;
+}

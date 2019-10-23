@@ -48,3 +48,32 @@ function addComment($postId, $author, $comment)
     header('Location: index.php?action=post&id=' . $postId);
   }
 }
+
+function login()
+{
+  require('view/frontend/loginView.php');
+}
+
+function logUser($pseudo, $pass)
+{
+  // Vérifier la présence des informations demandées
+  // Créer une instance de la classe User Manager
+  // -- Si le user est bon et le mot de passe aussi, démarrer la session. Session ID, pseudo et pass.
+  // -- Créer les cookies coorespondant
+  // S'il manque une informaiton, lancer Exception
+}
+
+function registerUser($pseudo, $email, $pass)
+{
+  // Instancier la classe User Manager
+  // Faire appel à une fonction de création d'utilisateur. Paramètres : (pseudo, email, password hash).
+  // Si l'inscription est refusé "false", jeter Exception
+  // Sinon, rediriger vers l'index avec la fonction Header('Location: ...')
+}
+
+function logoutUser()
+{
+  // Supprimer les variables de session et la session
+  // Supprimer les cookies
+  // Rediriger vers l'index avec fonction Header('...')
+}

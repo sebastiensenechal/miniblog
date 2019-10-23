@@ -46,6 +46,11 @@ try // Test (Exception)
         throw new Exception('Erreur : aucun identifiant de billet envoyé.');
       }
     }
+
+    // Page de connexion
+    elseif ($_GET['action'] == 'login') {
+        login();
+    }
   }
   else
   {
