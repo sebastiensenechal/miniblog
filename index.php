@@ -1,3 +1,5 @@
+<?php session_start() ?>
+
 <?php
 // Le routeur : premier fichier appelé, c'est un "controleur frontal". Il appel le bon controleur chez "controller.php" en fonction d'un paramètre dans l'url.
 // Ajout d'une gestion d'exceptions pour les erreurs
@@ -51,6 +53,60 @@ try // Test (Exception)
     elseif ($_GET['action'] == 'login') {
         login();
     }
+
+    // Inscription d'un utilisateur
+    elseif ($_GET['action'] == 'subscription')
+    {
+      if (!empty($_POST['pseudo']) && !empty($_POST['pass']) && !empty($_POST['pass_confirm']) && !empty($_POST['email']))
+      {
+        // Sécurité
+        $pseudo = htmlspecialchars($_POST['pseudo']);
+        $email = htmlspecialchars($_POST['email']);
+        // Hachage du mot de passe
+        $password_hash = password_hash($_POST['pass'], PASSWORD_DEFAULT);
+        // Regex pour l'adresse email
+        if (preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#", $_POST['email']))
+        {
+            // On vérifie que les 2 mots de passe sont identiques.
+            if ($_POST['pass'] == $_POST['pass_confirm'])
+            {
+                registerUser($pseudo, $password_hash, $email);
+            }
+            else
+            {
+                throw new Exception('Les deux mots de passe ne sont pas identiques, recommencez !');
+            }
+        }
+        else
+        {
+            throw new Exception('L\'adresse email ' . $email . ' n\'est pas valide, recommencez !');
+        }
+      }
+      else
+      {
+          throw new Exception('Tous les champs doivent être remplis !');
+      }
+    }
+
+    // Connexion
+    elseif ($_GET['action'] == 'connect')
+    {
+      if (!empty($_POST['pseudo']) && !empty($_POST['pass']))
+      {
+          logUser($_POST['pseudo'], $_POST['pass']);
+      }
+      else
+      {
+          throw new Exception('Tous les champs doivent être remplis !');
+      }
+    }
+
+    // Déconnexion
+    elseif ($_GET['action'] == 'logout')
+    {
+        logoutUser();
+    }
+
   }
   else
   {

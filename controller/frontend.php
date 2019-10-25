@@ -5,6 +5,7 @@
 
 require_once('model/frontend/PostManager.php');
 require_once('model/frontend/CommentManager.php');
+require_once('model/frontend/UserManager.php');
 
 
 // Affiche la liste des billets
@@ -49,31 +50,86 @@ function addComment($postId, $author, $comment)
   }
 }
 
+
 function login()
 {
   require('view/frontend/loginView.php');
 }
 
+
 function logUser($pseudo, $pass)
 {
   // Vérifier la présence des informations demandées
   // Créer une instance de la classe User Manager
+  $userManager = new \SebastienSenechal\Miniblog\Model\Frontend\UserManager();
+
+  $user = $userManager->getUser($pseudo);
+  $proper_pass = password_verify($_POST['pass'], $user['pass']);
+  if(!$user)
+  {
+    throw new Exception('Mauvais pseudo ou mot de passe');
+  }
   // -- Si le user est bon et le mot de passe aussi, démarrer la session. Session ID, pseudo et pass.
   // -- Créer les cookies coorespondant
+  else
+  {
+    if ($proper_pass)
+    {
+      session_start();
+
+      $_SESSION['id'] = $user['id'];
+      $_SESSION['pseudo'] = $user['pseudo'];
+      $_SESSION['pass'] = $user['pass'];
+
+      $id = $user['id'];
+      $pseudo = $user['pseudo'];
+      $pass_hash = $user['pass'];
+
+      setcookie('id', $id, time() + 1800, null, null, false, true);
+      setcookie('pseudo', $pseudo, time() + 1800, null, null, false, true);
+      setcookie('pass', $password_hash, time() + 1800, null, null, false, true);
+
+      header('Location: ../index.php?action=dashbord');
+    }
+    else
+    {
+      throw new Exception('Mauvais pseudo ou mot de passe');
+    }
+  }
   // S'il manque une informaiton, lancer Exception
 }
 
-function registerUser($pseudo, $email, $pass)
+
+function registerUser($pseudo, $password_hash, $email)
 {
   // Instancier la classe User Manager
+  $userManager = new \SebastienSenechal\Miniblog\Model\Frontend\UserManager();
   // Faire appel à une fonction de création d'utilisateur. Paramètres : (pseudo, email, password hash).
+  $registerUser = $userManager->createUser($pseudo, $password_hash, $email);
   // Si l'inscription est refusé "false", jeter Exception
+  if($registerUser === false)
+  {
+      throw new Exception('Impossible d\'inscrire le nouvel utilisateur');
+  }
   // Sinon, rediriger vers l'index avec la fonction Header('Location: ...')
+  else
+  {
+      header('Location: ../index.php');
+  }
 }
+
 
 function logoutUser()
 {
-  // Supprimer les variables de session et la session
-  // Supprimer les cookies
-  // Rediriger vers l'index avec fonction Header('...')
+  session_start();
+
+  // Suppression des variables de session et de la session
+  $_SESSION = array();
+  session_destroy();
+  // Suppression des cookies de connexion automatique
+  setcookie('id', '');
+  setcookie('pseudo', '');
+  setcookie('pass', '');
+
+  header('Location: ../index.php');
 }

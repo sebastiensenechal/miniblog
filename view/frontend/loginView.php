@@ -31,7 +31,7 @@
 
   <section>
     <header>
-      <h2>Formulaire d'insciption</h2>
+      <h2>Formulaire d'inscription</h2>
     </header>
 
     <form action="index.php?action=subscription" method="post">
