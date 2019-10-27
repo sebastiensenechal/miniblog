@@ -32,11 +32,11 @@ function post()
 
 
 // Ajout d'un commentaire dans la base
-function addComment($postId, $author, $comment)
+function addComment($id_post, $author, $comment)
 {
   $commentManager = new \SebastienSenechal\Miniblog\Model\Frontend\CommentManager();
 
-  $affectedLines = $commentManager->postComment($postId, $author, $comment);
+  $affectedLines = $commentManager->postComment($id_post, $author, $comment);
 
   if ($affectedLines === false)
   {
@@ -46,7 +46,7 @@ function addComment($postId, $author, $comment)
   else
   {
     // Si pas d'erreur, on redirige le contributeur vers le post avec son commentaire
-    header('Location: index.php?action=post&id=' . $postId);
+    header('Location: index.php?action=post&id=' . $id_post);
   }
 }
 
@@ -89,7 +89,7 @@ function logUser($pseudo, $pass)
       setcookie('pseudo', $pseudo, time() + 1800, null, null, false, true);
       setcookie('pass', $password_hash, time() + 1800, null, null, false, true);
 
-      header('Location: ../index.php?action=dashbord');
+      header('Location: ./index.php?action=dashbord');
     }
     else
     {
@@ -131,5 +131,5 @@ function logoutUser()
   setcookie('pseudo', '');
   setcookie('pass', '');
 
-  header('Location: ../index.php');
+  header('Location: ./index.php');
 }

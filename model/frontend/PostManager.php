@@ -19,14 +19,14 @@ class PostManager extends Manager
   }
 
 
-  public function getPost($postId)
+  public function getPost($id_post)
   {
     // Connexion à la base de données - $db est un objet PDO
     $db = $this->dbConnect();
 
     // Récupérer un post en fonction de son ID avec une requête préparé
     $req = $db->prepare('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM posts WHERE id = ?');
-    $req->execute(array($postId));
+    $req->execute(array($id_post));
     $post = $req->fetch();
 
     return $post;

@@ -1,11 +1,11 @@
-<?php $title = 'John Do' ?>
+<?php $title = 'John Doe' ?>
 
 <?php ob_start(); ?>
 
 <header id="main_header">
 
   <div id="header_content">
-    <h1>John Do<br />
+    <h1>John Doe<br />
     <span>Essayiste - Auteur - Ecrivain</span></h1>
   </div>
 
@@ -20,7 +20,7 @@
 <div id="home-grid">
   <section id="list-news">
     <header class="content_header">
-      <h2 style="color: #000;font-weight:100;line-height:1.5em;">John Do <span style="font-size:1em">est un écrivain français installé à Paris.<br />
+      <h2 style="color: #000;font-weight:100;line-height:1.5em;">John Doe <span style="font-size:1em">est un écrivain français installé à Paris.<br />
         Il écris des nouvelles et des essais depuis bientôt de 10 ans.</span></h2>
     </header>
 
@@ -35,9 +35,9 @@
             </h3>
 
             <p>
-                <?= nl2br(htmlspecialchars($data['content'])) ?>
+                <?= nl2br(htmlspecialchars(substr($data['content'], 0, 150))); ?>...
             </p>
-            <p><a href="index.php?action=post&amp;id=<?= $data['id'] ?>">Commentaires</a></p>
+            <p><a href="index.php?action=post&amp;id=<?= $data['id'] ?>">Lire la suite</a></p>
         </article>
     <?php
     }
