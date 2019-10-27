@@ -3,9 +3,9 @@
 // Il est utilisé par le routeur qui se charge d'appeler les bons controllers (fonctions).
 
 
-require_once('model/frontend/PostManager.php');
-require_once('model/frontend/CommentManager.php');
-require_once('model/frontend/UserManager.php');
+require_once('./model/frontend/PostManager.php');
+require_once('./model/frontend/CommentManager.php');
+require_once('./model/frontend/UserManager.php');
 
 
 // Affiche la liste des billets
@@ -83,7 +83,7 @@ function logUser($pseudo, $pass)
 
       $id = $user['id'];
       $pseudo = $user['pseudo'];
-      $pass_hash = $user['pass'];
+      $password_hash = $user['pass'];
 
       setcookie('id', $id, time() + 1800, null, null, false, true);
       setcookie('pseudo', $pseudo, time() + 1800, null, null, false, true);
@@ -114,7 +114,7 @@ function registerUser($pseudo, $password_hash, $email)
   // Sinon, rediriger vers l'index avec la fonction Header('Location: ...')
   else
   {
-      header('Location: ../index.php');
+      header('Location: ./index.php');
   }
 }
 

@@ -2,7 +2,7 @@
 namespace SebastienSenechal\Miniblog\Model\Frontend;
 
 
-require_once('model/frontend/Manager.php');
+require_once('./model/frontend/Manager.php');
 
 
 class UserManager extends Manager
@@ -24,7 +24,7 @@ class UserManager extends Manager
   {
     // Instructions
     $db = $this->dbConnect();
-    $req = $db->prepare('INSERT INTO members(pseudo, pass, email, subscription_date) VALUES(?, ?, ?, ?, NOW())');
+    $req = $db->prepare('INSERT INTO members(pseudo, pass, email, subscription_date) VALUES(?, ?, ?, NOW())');
     $registerUser = $req->execute(array($pseudo, $password_hash, $email));
 
     return $registerUser;
