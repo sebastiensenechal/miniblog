@@ -3,9 +3,9 @@
 // Il est utilisé par le routeur qui se charge d'appeler les bons controllers (fonctions).
 
 
-require_once('./model/frontend/PostManager.php');
-require_once('./model/frontend/CommentManager.php');
-require_once('./model/frontend/UserManager.php');
+require('./model/frontend/PostManager.php');
+require('./model/frontend/CommentManager.php');
+require('./model/frontend/UserManager.php');
 
 
 
