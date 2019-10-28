@@ -8,6 +8,21 @@ require_once('./model/frontend/CommentManager.php');
 require_once('./model/frontend/UserManager.php');
 
 
+
+// Retour accueil
+function home()
+{
+  $postManager = new \SebastienSenechal\Miniblog\Model\Frontend\PostManager();
+  $commentManager = new \SebastienSenechal\Miniblog\Model\Frontend\CommentManager();
+
+  $post = $postManager->getLastPost();
+  $comment = $commentManager->getLastComment();
+
+  require('./view/frontend/listPostsView.php');
+}
+
+
+
 // Affiche la liste des billets
 function listPosts()
 {

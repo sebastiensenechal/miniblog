@@ -10,7 +10,7 @@ require('controller/backend.php');
 
 try // Test (Exception)
 {
-  // SI ADMIN
+  // Utilisateur authentifié - ADMINISTRATEUR
   if(isset($_SESSION['id']))
   {
     if (isset($_GET['action']) && !empty($_GET['action']))
@@ -21,18 +21,116 @@ try // Test (Exception)
         dashbord();
       }
 
+      // ADMIN - Liste des chapitres
+     elseif ($_GET['action'] == 'adminListPosts')
+     {
+        adminListPosts();
+     }
+
       // ADMIN - Chapitre avec ses commentaires
       elseif ($_GET['action'] == 'adminPost')
       {
+        if (isset($_GET['id']) && $_GET['id'] > 0)
+        {
+          adminPost();
+        }
+        else
+        {
+          throw new Exception('Aucun identifiant de chapitre envoyé !');
+        }
+      }
+
+
+      // ADMIN - Page pour créer un chapitre
+      elseif ($_GET['action'] == 'adminNewPost')
+      {
+        adminNewPost();
+      }
+      // ADMIN - Creation d'un chapitre
+      elseif ($_GET['action'] == 'createPost')
+      {
+        if ($_POST['author'] != NULL && $_POST['title'] != NULL && $_POST['content'] != NULL)
+        {
+          addPost($_POST['author'], $_POST['title'], $_POST['content']);
+        }
+        else
+        {
+          throw new Exception('Tous les champs ne sont pas remplis..');
+        }
+      }
+
+      // ADMIN - page de MAJ d'un chapitre
+      elseif ($_GET['action'] == 'adminUpdatePost')
+      {
+          adminUpdatePost();
+      }
+
+      // ADMIN - Mise à jour d'un chapitre
+      elseif ($_GET['action'] == 'updatePost')
+      {
+        if (isset($_GET['id']) && $_GET['id'] > 0)
+        {
+          if ($_POST['author'] != NULL && $_POST['title'] != NULL && $_POST['content'] != NULL)
+          {
+            updatePost($_GET['id'], $_POST['author'], $_POST['title'], $_POST['content']);
+          }
+          else
+          {
+            throw new Exception('Tous les champs ne sont pas remplis..');
+          }
+        }
+        else
+        {
+          throw new Exception('Aucun identifiant de chapitre envoyé !');
+        }
+      }
+
+
+      // Accueil Visiteur
+      // elseif ($_GET['action'] == 'home')
+      // {
+      //   home();
+      // }
+
+      // Liste des chapitres
+      elseif ($_GET['action'] == 'listPosts')
+      {
+        listPosts();
+      }
+
+      // Affiche le chapitre avec ses commentaires
+      elseif ($_GET['action'] == 'post')
+      {
+        if (isset($_GET['id']) && $_GET['id'] > 0)
+        {
+          post();
+        }
+        else
+        {
+          throw new Exception('Aucun identifiant de chapitre envoyé !');
+        }
+      }
+
+      // Ajoute un commentaire dans le chapitre selectionné
+      elseif ($_GET['action'] == 'addComment')
+      {
           if (isset($_GET['id']) && $_GET['id'] > 0)
           {
-              adminPost();
+              if (!empty($_POST['author']) && !empty($_POST['comment']))
+              {
+                  addComment($_GET['id'], $_POST['author'], $_POST['comment']);
+              }
+              else
+              {
+                  throw new Exception('Tous les champs doivent être remplis !');
+              }
           }
           else
           {
               throw new Exception('Aucun identifiant de chapitre envoyé !');
           }
       }
+
 
       // Page de connexion
       elseif ($_GET['action'] == 'login')
@@ -86,6 +184,7 @@ try // Test (Exception)
           throw new Exception('Tous les champs doivent être remplis !');
         }
       }
+
       // Deconnexion
       elseif ($_GET['action'] == 'logout')
       {
@@ -101,16 +200,24 @@ try // Test (Exception)
 
   }
 
-
+  // Visiteur non authentifié
   else
   {
     if (isset($_GET['action']) && !empty($_GET['action']))
     {
+      // Accueil Visiteur
       if ($_GET['action'] == 'listPosts')
       {
         listPosts();
       }
 
+      // Liste des articles
+      // elseif ($_GET['action'] == 'listPosts')
+      // {
+      //   listPosts();
+      // }
+
+      // Affichage d'un article
       elseif ($_GET['action'] == 'post')
       {
         if (isset($_GET['id']) && $_GET['id'] > 0)
@@ -124,6 +231,7 @@ try // Test (Exception)
         }
       }
 
+      // Ajouter un commentaire
       elseif ($_GET['action'] == 'addComment')
       {
         if (isset($_GET['id']) && $_GET['id'] > 0)

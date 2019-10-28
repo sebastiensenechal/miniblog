@@ -24,7 +24,7 @@
       <div>
         <h2>Modifier l'article</h2>
 
-          <form action="index.php?action=postUpdate&amp;id=<?= $post['id'] ?>" method="post">
+          <form action="index.php?action=updatePost&amp;id=<?= $post['id'] ?>" method="post">
             <fieldset>
               <label for="author">Auteur</label><br>
               <input type="text" name="author" id="author" value="<?php

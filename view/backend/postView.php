@@ -1,9 +1,9 @@
-<?php $title = 'Tableau de bord de John Do | ' . htmlspecialchars($post['title']) ?>
+<?php $title = 'Post View | ' . htmlspecialchars($post['title']) ?>
 
 <?php ob_start(); ?>
 
 <header id="header">
-  <h1>John Do</h1>
+  <h1>John Doe</h1>
   <p><a href="./index.php" title="Index des billets">Retour à la liste des billets</a></p>
 </header>
 

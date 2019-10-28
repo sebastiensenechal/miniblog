@@ -33,6 +33,19 @@ class PostManager extends Manager
   }
 
 
+
+  public function createPost($author, $title, $content)
+  {
+    $db = $this->dbConnect();
+
+    $post = $db->prepare('INSERT INTO posts (author, title, content, creation_date) VALUES ( ?, ?, ?, NOW())');
+    $createPost = $post->execute(array($author, $title, $content));
+
+    return $createPost;
+  }
+
+
+
   public function updatePost($id_post, $author, $title, $content)
   {
     $db = $this->dbConnect();
@@ -47,6 +60,8 @@ class PostManager extends Manager
     return $updatePost;
   }
 
+
+
   public function getLastPost()
   {
       $db = $this->dbConnect();
@@ -54,6 +69,18 @@ class PostManager extends Manager
       $req = $db->query('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %H:%i:%s\') AS creation_date_fr FROM posts ORDER BY creation_date DESC LIMIT 0, 3');
 
       return $req;
+  }
+
+
+
+  public function deleteChapter($id_post)
+  {
+    $db = $this->dbConnect();
+
+    $post = $db->prepare('DELETE FROM posts WHERE id= ?');
+    $deletePost = $post->execute(array($id_post));
+
+    return $deletePost;
   }
 
 }

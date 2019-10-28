@@ -17,6 +17,8 @@
           ?>
             <ul>
               <li><a href="index.php">Accueil</a></li>
+              <li><a href="index.php?action=adminListPosts">Articles</a></li>
+              <li><a href="index.php?action=adminNewPost">Créer un article</a></li>
               <li><a href="index.php?action=dashbord">Tableau de bord</a></li>
               <li><a href="index.php?action=logout">Déconnection</a></li>
             </ul>
