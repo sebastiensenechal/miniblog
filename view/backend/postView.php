@@ -4,7 +4,7 @@
 
 <header id="header">
   <h1>John Doe</h1>
-  <p><a href="./index.php" title="Index des billets">Retour à la liste des billets</a></p>
+  <?php include('./view/nav_backend.php') ?>
 </header>
 
 <div id="layout-post">

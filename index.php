@@ -195,7 +195,7 @@ try // Test (Exception)
     // Retourne au Dashbord.
     else
     {
-      dashbord();
+      listPosts();
     }
 
   }

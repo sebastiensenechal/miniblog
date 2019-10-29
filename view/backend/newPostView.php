@@ -4,7 +4,7 @@
 
 <header id="header">
   <h1>Création d'un article</h1>
-  <p><a href="./index.php" title="Index des articles">Retour à la liste des articles</a></p>
+  <?php include('./view/nav_backend.php') ?>
 </header>
 
 <div id="layout-post">

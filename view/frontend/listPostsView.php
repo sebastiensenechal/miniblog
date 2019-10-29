@@ -7,6 +7,8 @@
   <div id="header_content">
     <h1>John Doe<br />
     <span>Essayiste - Auteur - Ecrivain</span></h1>
+    
+    <?php include('./view/nav_backend.php') ?>
   </div>
 
   <figure id="image_home">
