@@ -7,7 +7,7 @@
   <div id="header_content">
     <h1>John Doe<br />
     <span>Essayiste - Auteur - Ecrivain</span></h1>
-    
+
     <?php include('./view/nav_backend.php') ?>
   </div>
 
@@ -37,7 +37,7 @@
             </h3>
 
             <p>
-                <?= nl2br(htmlspecialchars(substr($data['content'], 0, 150))); ?>...
+                <?= nl2br(substr($data['content'], 0, 150)); ?>...
             </p>
             <p><a href="index.php?action=post&amp;id=<?= $data['id'] ?>">Lire la suite</a></p>
         </article>

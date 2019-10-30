@@ -18,7 +18,7 @@
 
     <article class="news">
         <p>
-            <?= nl2br(htmlspecialchars($post['content'])) ?>
+            <?= nl2br($post['content']) ?>
         </p>
 
       <div id="post-comments">
@@ -46,11 +46,11 @@
         while ($comment = $comments->fetch())
         {
         ?>
-          <div class="content-comment">
-            <p><strong><?= htmlspecialchars($comment['author']) ?></strong><br />
-            <span class="comment-date"><?= $comment['comment_date_fr'] ?></span></p>
-            <p><?= nl2br(htmlspecialchars($comment['comment'])) ?></p>
-          </div>
+          <aside class="content-comment">
+            <p><span class="meta-content"><?= htmlspecialchars($comment['author']) ?><br />
+            <span class="comment-date"><?= $comment['comment_date_fr'] ?></span></span></p>
+            <p><?= nl2br($comment['comment']) ?></p>
+          </aside>
         <?php
         }
         ?>

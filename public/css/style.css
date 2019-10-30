@@ -41,15 +41,15 @@ body {
 @import url('https://fonts.googleapis.com/css?family=Nunito+Sans:400,700&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Spectral:500,700,800&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Material+Icons');
-p, address {font-size:1em;line-height:1.6em;font-weight:400;}
+p, address {font-size:1em;line-height:1.6em;font-weight:400; color:#444;}
 a {font-size:1em; line-height:1.6em;font-weight:400; color:#666;text-decoration: underline;}
 a:hover {text-decoration: none;}
-h1, h2, h3, h4 {font-family: 'Spectral', Georgia, serif;}
+h1, h2, h3, h4 {font-family: 'Spectral', Georgia, serif; color: #444;}
 h1 {text-transform:uppercase;font-weight:800;}
 h2 {font-weight:700;}
 h3 {font-weight:700;}
-strong {font-weight: bold; color: #EECDA4;}
-em {font-style: italic; color: #EECDA4;}
+strong {font-weight: bold; color: #EEA852;}
+em {font-style: italic;}
 
 
 

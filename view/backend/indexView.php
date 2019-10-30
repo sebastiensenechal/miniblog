@@ -38,7 +38,7 @@
             </h3>
 
             <p>
-                <?= nl2br(htmlspecialchars(substr($data['content'], 0, 150))); ?>...
+                <?= nl2br(substr($data['content'], 0, 150)); ?>...
             </p>
             <p><a href="index.php?action=adminPost&amp;id=<?= $data['id'] ?>">Lire la suite</a></p>
         </article>
@@ -53,8 +53,11 @@
     while ($data = $comment->fetch())
     {
         ?>
-        <p><strong><?= htmlspecialchars($data['author']); ?></strong> le <?= $data['comment_date_fr']; ?></p>
-        <p><?= nl2br(htmlspecialchars($data['comment'])); ?></p>
+        <aside class="content-comment">
+          <p><span class="meta-content"><?= htmlspecialchars($data['author']); ?><br />
+          <?= $data['comment_date_fr']; ?></span></p>
+          <p><?= nl2br($data['comment']); ?></p>
+        </aside>
         <?php
     }
     $comment->closeCursor(); ?>

@@ -28,7 +28,7 @@
                 </h3>
 
                 <p>
-                    <?= nl2br(htmlspecialchars(substr($data['content'], 0, 150))); ?>...
+                    <?= nl2br(substr($data['content'], 0, 150)); ?>...
                 </p>
                 <p><a href="./index.php?action=adminUpdatePost&amp;id=<?= $data['id']; ?>">Éditer</a></p>
                 <p><a href="./index.php?action=deletePost&amp;id=<?= $data['id']; ?>">Supprimer</i></a></p>
