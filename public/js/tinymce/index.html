@@ -1,19 +1,13 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <title><?= $title ?></title>
-    <link href="./public/css/style.css" rel="stylesheet" />
-    <meta name="robots" content="noindex, nofollow">
-    <script type="text/javascript" src="public/js/tinymce/tinymce.min.js"></script>
+<head>
+    <script type="text/javascript" src="tinymce.js"></script>
     <script type="text/javascript">
       tinyMCE.init({
           // type de mode
           mode : "exact",
           // id ou class, des textareas
-          elements : "content, comment",
+          elements : "content",
           // en mode avancé, cela permet de choisir les plugins
-          // theme : "advanced",
+          theme : "advanced",
           // liste des plugins
           plugins : "autolink,lists,pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template,wordcount,advlist,autosave,visualblocks",
 
@@ -33,7 +27,7 @@
           theme_advanced_resizing : true,
 
           // chemin vers le fichier css
-          // content_css : " ./design-tiny.css,",
+          content_css : " ./design-tiny.css,",
           // taille disponible
           theme_advanced_font_sizes: "10px,11px,12px,13px,14px,15px,16px,17px,18px,19px,20px,21px,22px,23px,24px,25px",
           // couleur disponible dans la palette de couleur
@@ -56,16 +50,4 @@
           */
       });
      </script>
-  </head>
-
-  <body>
-    <div id="grid">
-
-      <?php include('nav.php') ?>
-
-      <?= $content ?>
-
-    </div>
-
-  </body>
-</html>
+</head>

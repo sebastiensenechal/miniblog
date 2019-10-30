@@ -36,7 +36,7 @@
             </fieldset>
             <fieldset>
               <label for="content">Contenu</label><br />
-              <textarea id="content" name="content" placeholder="C'est à vous de jouer..."></textarea>
+              <textarea id="content" name="content" rows="25" placeholder="C'est à vous de jouer..."></textarea>
             </fieldset>
             <fieldset>
               <input type="submit" />
