@@ -28,11 +28,13 @@
                 </h3>
 
                 <p>
-                    <?= nl2br(substr($data['content'], 0, 150)); ?>...
+                    <?= nl2br(substr($data['content'], 0, 300)); ?>...
                 </p>
-                <p><a href="./index.php?action=adminUpdatePost&amp;id=<?= $data['id']; ?>">Éditer</a></p>
-                <p><a href="./index.php?action=deletePost&amp;id=<?= $data['id']; ?>">Supprimer</i></a></p>
-                <p><a href="./index.php?action=post&amp;id=<?= $data['id'] ?>">Lire la suite</a></p>
+                <ul class="admin-content">
+                  <li><a href="./index.php?action=adminUpdatePost&amp;id=<?= $data['id']; ?>">Éditer</a></li>
+                  <li><a href="./index.php?action=deletePost&amp;id=<?= $data['id']; ?>">Supprimer</a></li>
+                  <li><a href="./index.php?action=post&amp;id=<?= $data['id'] ?>">Lire la suite</a></li>
+                </ul>
             </article>
         <?php
         }
@@ -46,4 +48,4 @@
 
 <?php $content = ob_get_clean() ?>
 
-<?php require('view/template.php') ?>
+<?php require('view/backend/template.php') ?>

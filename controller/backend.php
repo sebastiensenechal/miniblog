@@ -102,13 +102,13 @@ function updatePost($id, $author, $title, $content)
 }
 
   // Supprimer un article
-function deletePost($id_post)
+function deletePost($id)
   {
     $postManager = new \SebastienSenechal\Miniblog\Model\Backend\PostManager();
     $commentManager = new \SebastienSenechal\Miniblog\Model\Backend\CommentManager();
 
-    $deletePost = $postManager->deletePost($id_post);
-    $deleteComments = $commentManager->deleteComments($id_post);
+    $deletePost = $postManager->deletePost($id);
+    $deleteComments = $commentManager->deleteComments($id);
     if($deletePost === false)
     {
         throw new Exception('Impossible de supprimer le chapitre' );

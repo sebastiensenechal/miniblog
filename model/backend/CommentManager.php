@@ -75,7 +75,7 @@ class CommentManager extends Manager
     {
         $db = $this->dbConnect();
         $comments = $db->prepare('DELETE FROM comments WHERE post_id= ?');
-        $deleteComments = $comment->execute(array($post_id));
+        $deleteComments = $comments->execute(array($post_id));
         return $deleteComments;
     }
 
