@@ -10,24 +10,24 @@ require('controller/backend.php');
 
 try // Test (Exception)
 {
-  // Utilisateur authentifié - ADMINISTRATEUR
+  // Utilisateur authentifié
   if(isset($_SESSION['id']))
   {
     if (isset($_GET['action']) && !empty($_GET['action']))
     {
-      // ADMIN - Dashbord
+      // Tableau de bord
       if ($_GET['action'] == 'dashbord')
       {
         dashbord();
       }
 
-      // ADMIN - Liste des chapitres
+      // Lister les articles
      elseif ($_GET['action'] == 'adminListPosts')
      {
         adminListPosts();
      }
 
-      // ADMIN - Chapitre avec ses commentaires
+      // Afficher un article et ses commentaires
       elseif ($_GET['action'] == 'adminPost')
       {
         if (isset($_GET['id']) && $_GET['id'] > 0)
@@ -41,12 +41,13 @@ try // Test (Exception)
       }
 
 
-      // ADMIN - Page pour créer un chapitre
+      // Page d'administration de création d'un article
       elseif ($_GET['action'] == 'adminNewPost')
       {
         adminNewPost();
       }
-      // ADMIN - Creation d'un chapitre
+
+      // Fonctionnalité de creation d'article
       elseif ($_GET['action'] == 'createPost')
       {
         if ($_POST['author'] != NULL && $_POST['title'] != NULL && $_POST['content'] != NULL)
@@ -59,13 +60,14 @@ try // Test (Exception)
         }
       }
 
-      // ADMIN - page de MAJ d'un chapitre
+
+      // Page d'administration de mise à jour d'article
       elseif ($_GET['action'] == 'adminUpdatePost')
       {
           adminUpdatePost();
       }
 
-      // ADMIN - Mise à jour d'un chapitre
+      // Fonctionnalité de mise à jour d'article
       elseif ($_GET['action'] == 'updatePost')
       {
         if (isset($_GET['id']) && $_GET['id'] > 0)
@@ -84,6 +86,20 @@ try // Test (Exception)
           throw new Exception('Aucun identifiant de chapitre envoyé !');
         }
       }
+
+      // Fonctionnalité de suppression d'article
+     elseif ($_GET['action'] == 'deletePost')
+     {
+       if (isset($_GET['id']) && $_GET['id'] > 0)
+       {
+           deletePost($_GET['id']);
+       }
+       else
+       {
+           throw new Exception('Aucun identifiant de chapitre envoyé !');
+       }
+     }
+
 
 
       // Accueil Visiteur

@@ -1,4 +1,4 @@
-<?php $title = 'Ajout d\'un article ' ?>
+<?php $title = 'Ajout d\'un article' ?>
 
 <?php ob_start(); ?>
 
@@ -17,33 +17,30 @@
 
     <article class="news">
 
-      <div>
+      <form action="index.php?action=createPost" method="POST">
+        <fieldset>
+          <label for="author">Auteur</label><br>
+          <input type="text" name="author" id="author" value="<?php
+            if (isset($_SESSION['pseudo']))
+            {
+                echo htmlspecialchars($_SESSION['pseudo']);
+            }
+            ?>"
+          />
+        </fieldset>
+        <fieldset>
+          <label for="title">Titre</label><br />
+          <input type="text" id="title" name="title" />
+        </fieldset>
+        <fieldset>
+          <label for="content">Contenu</label><br />
+          <textarea id="content" name="content" rows="25" placeholder="C'est à vous de jouer..."></textarea>
+        </fieldset>
+        <fieldset>
+          <input type="submit" />
+        </fieldset>
+      </form>
 
-          <form action="index.php?action=createPost&amp;id=<?= $post['id'] ?>" method="post">
-            <fieldset>
-              <label for="author">Auteur</label><br>
-              <input type="text" name="author" id="author" value="<?php
-                if (isset($_SESSION['pseudo']))
-                {
-                    echo htmlspecialchars($_SESSION['pseudo']);
-                }
-                ?>"
-              />
-            </fieldset>
-            <fieldset>
-              <label for="title">Titre</label><br />
-              <input type="text" id="title" name="title" />
-            </fieldset>
-            <fieldset>
-              <label for="content">Contenu</label><br />
-              <textarea id="content" name="content" rows="50" placeholder="C'est à vous de jouer..."></textarea>
-            </fieldset>
-            <fieldset>
-              <input type="submit" />
-            </fieldset>
-          </form>
-
-      </div>
     </article>
 
   </section>

@@ -19,14 +19,14 @@ class PostManager extends Manager
   }
 
 
-  public function getPost($id_post)
+  public function getPost($id)
   {
     // Connexion à la base de données - $db est un objet PDO
     $db = $this->dbConnect();
 
     // Récupérer un post en fonction de son ID avec une requête préparé
     $req = $db->prepare('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM posts WHERE id = ?');
-    $req->execute(array($id_post));
+    $req->execute(array($id));
     $post = $req->fetch();
 
     return $post;
@@ -38,8 +38,12 @@ class PostManager extends Manager
   {
     $db = $this->dbConnect();
 
-    $post = $db->prepare('INSERT INTO posts (author, title, content, creation_date) VALUES ( ?, ?, ?, NOW())');
-    $createPost = $post->execute(array($author, $title, $content));
+    $post = $db->prepare('INSERT INTO posts(author, title, content, creation_date) VALUES(:author, :title, :content, NOW())');
+    $createPost = $post->execute(array(
+      'author' => $author,
+    	'title' => $title,
+    	'content' => $content
+    ));
 
     return $createPost;
   }
@@ -73,7 +77,7 @@ class PostManager extends Manager
 
 
 
-  public function deleteChapter($id_post)
+  public function deletePost($id_post)
   {
     $db = $this->dbConnect();
 

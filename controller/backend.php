@@ -9,7 +9,7 @@ require('./model/backend/UserManager.php');
 
 
 
-// Dashbord
+// Tableau de bord
 function dashbord()
 {
   $postManager = new \SebastienSenechal\Miniblog\Model\Backend\PostManager();
@@ -23,7 +23,7 @@ function dashbord()
 
 
 
-// Liste des Chapitres
+// Liste des articles
 function adminListPosts()
 {
     $postManager = new \SebastienSenechal\Miniblog\Model\Backend\PostManager();
@@ -53,15 +53,15 @@ function adminPost()
 
 
 
-// Page nouveau chapitre
+// Vue d'un nouvel article
 function adminNewPost()
 {
-  require ('./view/backend/newPostView.php');
+  require ('view/backend/newPostView.php');
 }
 
 
 
-// Ajouter un chapitre
+// Ajouter un article
 function addPost($author, $title, $content)
 {
   $postManager = new \SebastienSenechal\Miniblog\Model\Backend\PostManager();
@@ -72,7 +72,7 @@ function addPost($author, $title, $content)
 }
 
 
-// Page d'édition d'un chapitre
+// Page de mise à jour, d'édition d'article
 function adminUpdatePost()
 {
   $postManager = new \SebastienSenechal\Miniblog\Model\Backend\PostManager();
@@ -83,12 +83,12 @@ function adminUpdatePost()
 }
 
 
-// Editer un chapitre
-function updatePost($id_post, $author, $title, $content)
+// Mettre à jour / Editer un article
+function updatePost($id, $author, $title, $content)
 {
   $postManager = new \SebastienSenechal\Miniblog\Model\Backend\PostManager();
 
-  $updatePost = $postManager->updatePost($id_post, $author, $title, $content);
+  $updatePost = $postManager->updatePost($id, $author, $title, $content);
 
   if ($updatePost === false)
   {
@@ -99,3 +99,25 @@ function updatePost($id_post, $author, $title, $content)
       header('Location: ./index.php?action=adminListPosts');
   }
 }
+
+  // Supprimer un article
+function deletePost($id_post)
+  {
+    $postManager = new \SebastienSenechal\Miniblog\Model\Backend\PostManager();
+    $commentManager = new \SebastienSenechal\Miniblog\Model\Backend\CommentManager();
+
+    $deletePost = $postManager->deletePost($id_post);
+    $deleteComments = $commentManager->deleteComments($id_post);
+    if($deletePost === false)
+    {
+        throw new Exception('Impossible de supprimer le chapitre' );
+    }
+    elseif ($deleteComments === false)
+    {
+        throw new Exception('Impossible de supprimer les commentaire du chapitre' );
+    }
+    else
+    {
+        header('Location: ./index.php?action=adminListPosts');
+    }
+  }
