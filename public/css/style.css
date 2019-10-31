@@ -67,6 +67,12 @@ h3
 }
 h2 span, h3 span, h4 span, p span {color:#777;}
 
+.meta-content:first-child {
+  border-left: 4px solid #fbdeb9;
+  padding-left: 10px;
+  color: #444;
+}
+
 section {
   width:50%;
   margin: 1em auto;
@@ -262,4 +268,17 @@ input, textarea {
 }
 #layout-connexion section {
   width: auto;
+}
+
+.admin-content {
+  list-style: none;
+  padding-left: 0;
+  padding-top: 1em;
+  margin-top: 1em;
+  border-top: 1px dashed #ccc;
+  font-size: .8em;
+}
+.admin-content li {
+  display: inline-block;
+  margin-right: .5em;
 }

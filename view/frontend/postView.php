@@ -50,8 +50,10 @@
             <p><span class="meta-content"><?= htmlspecialchars($comment['author']) ?><br />
             <span class="comment-date"><?= $comment['comment_date_fr'] ?></span></span></p>
             <p><?= nl2br($comment['comment']) ?></p>
-            <em><a href="index.php?action=userUpdateComment&amp;id_post=<?= $post['id'];?>&amp;id=<?= $comment['id'];?>">Éditer</a></em>
-            <em><a href="index.php?action=report&amp;id_post=<?= $post['id'];?>&amp;id=<?= $comment['id'];?>">Signaler</a></em>
+            <ul class="admin-content">
+              <li><a href="index.php?action=userUpdateComment&amp;id_post=<?= $post['id'];?>&amp;id=<?= $comment['id'];?>">Éditer</a></li>
+              <li><a href="#">Signaler</a></li>
+            </ul>
           </aside>
         <?php
         }

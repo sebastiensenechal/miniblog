@@ -30,6 +30,7 @@ function adminListPosts()
     $posts = $postManager->getPosts();
     require('view/backend/listPostsView.php');
 }
+
 // Liste des commentaires
 function adminListComments()
 {
@@ -121,3 +122,19 @@ function deletePost($id_post)
         header('Location: ./index.php?action=adminListPosts');
     }
   }
+
+
+    // Supprimer un commentaire
+    function deleteComment($id)
+    {
+      $commentManager = new \SebastienSenechal\Miniblog\Model\Backend\CommentManager();
+      $deleteComment = $commentManager->deleteComment($id);
+      if($deleteComment === false)
+      {
+          throw new Exception('Impossible de supprimer le commentaire' );
+      }
+      else
+      {
+          header('Location: ./index.php?action=dashbord' );
+      }
+    }

@@ -21,11 +21,35 @@ try // Test (Exception)
         dashbord();
       }
 
-      // Lister les articles
+     // Lister les articles
      elseif ($_GET['action'] == 'adminListPosts')
      {
         adminListPosts();
      }
+
+     // Lister les commentaires
+     elseif ($_GET['action'] == 'adminListComments')
+     {
+        adminListComments();
+     }
+
+
+     // Afficher les commentaires signalés
+     // ...
+
+     // ADMIN - Supprimer un commentaire
+    elseif ($_GET['action'] == 'deleteComment')
+    {
+      if (isset($_GET['id']) && $_GET['id'] > 0)
+      {
+          deleteComment($_GET['id']);
+      }
+      else
+      {
+          throw new Exception('Aucun identifiant de commentaire envoyé !');
+      }
+    }
+
 
       // Afficher un article et ses commentaires
       elseif ($_GET['action'] == 'adminPost')
@@ -103,10 +127,6 @@ try // Test (Exception)
 
 
       // Accueil Visiteur
-      // elseif ($_GET['action'] == 'home')
-      // {
-      //   home();
-      // }
 
       // Liste des chapitres
       elseif ($_GET['action'] == 'listPosts')
