@@ -19,7 +19,6 @@ class UserManager extends Manager
   }
 
 
-
   public function createUser($pseudo, $password_hash, $email)
   {
     // Instructions

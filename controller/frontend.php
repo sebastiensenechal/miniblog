@@ -80,7 +80,8 @@ function logUser($pseudo, $pass)
 
   $user = $userManager->getUser($pseudo);
   $proper_pass = password_verify($_POST['pass'], $user['pass']);
-  if(!$user)
+
+  if(!$user || !$proper_pass)
   {
     throw new Exception('Mauvais pseudo ou mot de passe');
   }
@@ -88,28 +89,21 @@ function logUser($pseudo, $pass)
   // -- Créer les cookies coorespondant
   else
   {
-    if ($proper_pass)
-    {
-      session_start();
+    session_start();
 
-      $_SESSION['id'] = $user['id'];
-      $_SESSION['pseudo'] = $user['pseudo'];
-      $_SESSION['pass'] = $user['pass'];
+    $_SESSION['id'] = $user['id'];
+    $_SESSION['pseudo'] = $user['pseudo'];
+    // $_SESSION['pass'] = $user['pass'];
 
-      $id = $user['id'];
-      $pseudo = $user['pseudo'];
-      $password_hash = $user['pass'];
+    $id = $user['id'];
+    $pseudo = $user['pseudo'];
+    // $password_hash = $user['pass'];
 
-      setcookie('id', $id, time() + 1800, null, null, false, true);
-      setcookie('pseudo', $pseudo, time() + 1800, null, null, false, true);
-      setcookie('pass', $password_hash, time() + 1800, null, null, false, true);
+    setcookie('id', $id, time() + (60 * 20), null, null, false, true);
+    setcookie('pseudo', $pseudo, time() + (60 * 20), null, null, false, true);
+    // setcookie('pass', $password_hash, time() + 1800, null, null, false, true);
 
-      header('Location: ./index.php?action=dashbord');
-    }
-    else
-    {
-      throw new Exception('Mauvais pseudo ou mot de passe');
-    }
+    header('Location: ./index.php?action=dashbord');
   }
   // S'il manque une informaiton, lancer Exception
 }
