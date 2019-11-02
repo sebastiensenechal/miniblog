@@ -38,6 +38,11 @@ class PostManager extends Manager
   {
     $db = $this->dbConnect();
 
+    $content = str_replace('<script', '&lt;script', $content);
+    $content = str_replace('</script', '&lt;/script', $content);
+    $content = str_replace('<?', '&lt;?', $content);
+    $content = str_replace('?>', '>&gt;', $content);
+
     $post = $db->prepare('INSERT INTO posts(author, title, content, creation_date) VALUES(:author, :title, :content, NOW())');
     $createPost = $post->execute(array(
       'author' => $author,

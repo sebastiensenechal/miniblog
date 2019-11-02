@@ -20,7 +20,7 @@
       </fieldset>
       <fieldset>
         <label for="pass">* Mot de passe</label><br>
-        <input type="password" id="pass" name="pass"></textarea>
+        <input type="password" id="pass" name="pass" />
       </fieldset>
       <fieldset>
         <input type="submit" name="connect" />
@@ -47,11 +47,11 @@
       </fieldset>
       <fieldset>
         <label for="pass">* Mot de passe</label><br>
-        <input type="password" id="pass" name="pass"></textarea>
+        <input type="password" id="pass" name="pass" />
       </fieldset>
       <fieldset>
         <label for="pass_confirm">* Confirmez le mot de passe</label><br>
-        <input type="password" id="pass_confirm" name="pass_confirm"></textarea>
+        <input type="password" id="pass_confirm" name="pass_confirm" />
       </fieldset>
       <fieldset>
         <input type="submit" name="subscription" />

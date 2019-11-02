@@ -124,17 +124,17 @@ function deletePost($id)
   }
 
 
-    // Supprimer un commentaire
-    function deleteComment($id)
+  // Supprimer un commentaire
+  function deleteComment($id)
+  {
+    $commentManager = new \SebastienSenechal\Miniblog\Model\Backend\CommentManager();
+    $deleteComment = $commentManager->deleteComment($id);
+    if($deleteComment === false)
     {
-      $commentManager = new \SebastienSenechal\Miniblog\Model\Backend\CommentManager();
-      $deleteComment = $commentManager->deleteComment($id);
-      if($deleteComment === false)
-      {
-          throw new Exception('Impossible de supprimer le commentaire' );
-      }
-      else
-      {
-          header('Location: ./index.php?action=dashbord' );
-      }
+        throw new Exception('Impossible de supprimer le commentaire' );
     }
+    else
+    {
+        header('Location: ./index.php?action=adminListComments' );
+    }
+  }

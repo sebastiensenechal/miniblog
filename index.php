@@ -11,7 +11,7 @@ require('controller/backend.php');
 try // Test (Exception)
 {
   // Utilisateur authentifié
-  if(isset($_SESSION['id']) == isset($_COOKIE['id']) && isset($_SESSION['pseudo']) == isset($_COOKIE['pseudo']))
+  if(isset($_SESSION['id']) && isset($_SESSION['pseudo']))
   {
     if (isset($_GET['action']) && !empty($_GET['action']))
     {
@@ -329,7 +329,7 @@ try // Test (Exception)
       {
         if (!empty($_POST['pseudo']) && !empty($_POST['pass']))
         {
-            logUser($_POST['pseudo'], $_POST['pass']);
+            logUser($_POST['pseudo'], $_POST['pass'], $_POST['token']);
         }
         else
         {
