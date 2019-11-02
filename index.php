@@ -11,7 +11,7 @@ require('controller/backend.php');
 try // Test (Exception)
 {
   // Utilisateur authentifié
-  if(isset($_SESSION['id']) == isset($_COOKIE['id']) && isset($_SESSION['pseudo']) == isset($_COOKIE['pseudo'])) 
+  if(isset($_SESSION['id']) == isset($_COOKIE['id']) && isset($_SESSION['pseudo']) == isset($_COOKIE['pseudo']))
   {
     if (isset($_GET['action']) && !empty($_GET['action']))
     {
@@ -124,10 +124,6 @@ try // Test (Exception)
        }
      }
 
-
-
-      // Accueil Visiteur
-
       // Liste des chapitres
       elseif ($_GET['action'] == 'listPosts')
       {
@@ -150,21 +146,21 @@ try // Test (Exception)
       // Ajoute un commentaire dans le chapitre selectionné
       elseif ($_GET['action'] == 'addComment')
       {
-          if (isset($_GET['id']) && $_GET['id'] > 0)
-          {
-              if (!empty($_POST['author']) && !empty($_POST['comment']))
-              {
-                  addComment($_GET['id'], $_POST['author'], $_POST['comment']);
-              }
-              else
-              {
-                  throw new Exception('Tous les champs doivent être remplis !');
-              }
-          }
-          else
-          {
-              throw new Exception('Aucun identifiant de chapitre envoyé !');
-          }
+        if (isset($_GET['id']) && $_GET['id'] > 0)
+        {
+            if (!empty($_POST['author']) && !empty($_POST['comment']))
+            {
+                addComment($_GET['id'], $_POST['author'], $_POST['comment']);
+            }
+            else
+            {
+                throw new Exception('Tous les champs doivent être remplis !');
+            }
+        }
+        else
+        {
+            throw new Exception('Aucun identifiant de chapitre envoyé !');
+        }
       }
 
 
@@ -213,7 +209,7 @@ try // Test (Exception)
       {
         if (!empty($_POST['pseudo']) && !empty($_POST['pass']))
         {
-          logUser($_POST['pseudo'], $_POST['pass']);
+          logUser($_POST['pseudo'], $_POST['pass'], $_POST['token']);
         }
         else
         {

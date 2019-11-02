@@ -24,6 +24,8 @@
       </fieldset>
       <fieldset>
         <input type="submit" name="connect" />
+        <!-- Champs caché pour Token CSRF -->
+        <input type="hidden" name="token" id="token" value="<?php echo $token; ?>" />
       </fieldset>
     </form>
 

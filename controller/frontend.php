@@ -9,17 +9,17 @@ require('./model/frontend/UserManager.php');
 
 
 
-// Retour accueil
-function home()
-{
-  $postManager = new \SebastienSenechal\Miniblog\Model\Frontend\PostManager();
-  $commentManager = new \SebastienSenechal\Miniblog\Model\Frontend\CommentManager();
-
-  $post = $postManager->getLastPost();
-  $comment = $commentManager->getLastComment();
-
-  require('./view/frontend/listPostsView.php');
-}
+// // Retour accueil
+// function home()
+// {
+//   $postManager = new \SebastienSenechal\Miniblog\Model\Frontend\PostManager();
+//   $commentManager = new \SebastienSenechal\Miniblog\Model\Frontend\CommentManager();
+//
+//   $post = $postManager->getLastPost();
+//   $comment = $commentManager->getLastComment();
+//
+//   require('./view/frontend/listPostsView.php');
+// }
 
 
 
@@ -68,11 +68,17 @@ function addComment($id_post, $author, $comment)
 
 function login()
 {
+  // l'accès à la page de connexion génère un token dans un champs hidden du formulaire
+  // Génération du tooken aléatoire
+  $token = bin2hex(random_bytes(32));
+  // Créer une session CSRF
+  $_SESSION['token'] = $token;
+
   require('view/frontend/loginView.php');
 }
 
 
-function logUser($pseudo, $pass)
+function logUser($pseudo, $pass, $token)
 {
   // Vérifier la présence des informations demandées
   // Créer une instance de la classe User Manager
@@ -81,31 +87,38 @@ function logUser($pseudo, $pass)
   $user = $userManager->getUser($pseudo);
   $proper_pass = password_verify($_POST['pass'], $user['pass']);
 
-  if(!$user || !$proper_pass)
-  {
-    throw new Exception('Mauvais pseudo ou mot de passe');
-  }
-  // -- Si le user est bon et le mot de passe aussi, démarrer la session. Session ID, pseudo et pass.
-  // -- Créer les cookies coorespondant
-  else
-  {
-    session_start();
+   if(!$user || !$proper_pass)
+   {
+     throw new Exception('Mauvais pseudo ou mot de passe');
+   }
+   // -- Si le user est bon et le mot de passe aussi, démarrer la session. Session ID, pseudo et pass.
+   // -- Créer les cookies coorespondant
+   else
+   {
+     //On vérifie que tous les jetons sont là
+     if ($_SESSION['token'] == $_POST['token'])
+     {
+       session_start();
 
-    $_SESSION['id'] = $user['id'];
-    $_SESSION['pseudo'] = $user['pseudo'];
-    // $_SESSION['pass'] = $user['pass'];
+       $_SESSION['id'] = $user['id'];
+       $_SESSION['pseudo'] = $user['pseudo'];
+       // $_SESSION['pass'] = $user['pass'];
 
-    $id = $user['id'];
-    $pseudo = $user['pseudo'];
-    // $password_hash = $user['pass'];
+       $id = $user['id'];
+       $pseudo = $user['pseudo'];
+       // $password_hash = $user['pass'];
 
-    setcookie('id', $id, time() + (60 * 20), null, null, false, true);
-    setcookie('pseudo', $pseudo, time() + (60 * 20), null, null, false, true);
-    // setcookie('pass', $password_hash, time() + 1800, null, null, false, true);
+       setcookie('id', $id, time() + (60 * 20), null, null, false, true);
+       setcookie('pseudo', $pseudo, time() + (60 * 20), null, null, false, true);
+       // setcookie('pass', $password_hash, time() + 1800, null, null, false, true);
 
-    header('Location: ./index.php?action=dashbord');
-  }
-  // S'il manque une informaiton, lancer Exception
+       header('Location: ./index.php?action=dashbord');
+     }
+     else
+     {
+       throw new Exception('CSRF Token Validation Failed');
+     }
+   }
 }
 
 
@@ -138,7 +151,9 @@ function logoutUser()
   // Suppression des cookies de connexion automatique
   setcookie('id', '');
   setcookie('pseudo', '');
-  setcookie('pass', '');
+  // setcookie('pass', '');
+
+  unset($_SESSION['token']);
 
   header('Location: ./index.php');
 }
