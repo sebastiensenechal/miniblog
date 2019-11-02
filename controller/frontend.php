@@ -47,21 +47,24 @@ function post()
 
 
 // Ajout d'un commentaire dans la base
-function addComment($id_post, $author, $comment)
+function addComment($postId, $author, $comment)
 {
   $commentManager = new \SebastienSenechal\Miniblog\Model\Frontend\CommentManager();
 
-  $affectedLines = $commentManager->postComment($id_post, $author, $comment);
+  $affectedLines = $commentManager->postComment($postId, $author, $comment);
 
   if ($affectedLines === false)
   {
     // Si erreur, elle remonte jusqu'au bloc try du router (index.php)
     throw new Exception('Impossible d\'ajouter le commentaire');
+    var_dump($postId);
+    var_dump($author);
+    var_dump($comment);
   }
   else
   {
     // Si pas d'erreur, on redirige le contributeur vers le post avec son commentaire
-    header('Location: index.php?action=post&id=' . $id_post);
+    header('Location: index.php?action=post&id=' . $postId);
   }
 }
 

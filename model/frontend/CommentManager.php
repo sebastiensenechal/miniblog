@@ -29,14 +29,19 @@ class CommentManager extends Manager
     }
 
 
-  public function postComment($id_post, $author, $comment)
+  public function postComment($postId, $author, $comment)
   {
     // Connexion à la base de données - $db est un objet PDO
     $db = $this->dbConnect();
 
+    $comment = str_replace('<script', '&lt;script', $comment);
+    $comment = str_replace('</script', '&lt;/script', $comment);
+    $comment = str_replace('<?', '&lt;?', $comment);
+    $comment = str_replace('?>', '>&gt;', $comment);
+
     // Requête pour insérer les données dans la base
     $comments = $db->prepare('INSERT INTO comments(post_id, author, comment, comment_date) VALUES(?, ?, ?, NOW())');
-    $affectedLines = $comments->execute(array($id_post, $author, $comment)); // L'ID du commentaire et la date sont généré automatiquement
+    $affectedLines = $comments->execute(array($postId, $author, $comment)); // L'ID du commentaire et la date sont généré automatiquement
 
     return $affectedLines;
   }
@@ -53,8 +58,8 @@ class CommentManager extends Manager
   public function updateComment($id_comment, $id_post, $author, $comment)
   {
       $db = $this->dbConnect();
-      $comments = $db->prepare('UPDATE comments SET id_post= :id_post, author= :author, comment= :comment, comment_date= NOW() WHERE id= :id_comment');
-      $comments->bindParam('id_post', $id_chapter, \PDO::PARAM_INT);
+      $comments = $db->prepare('UPDATE comments SET post_id= :id_post, author= :author, comment= :comment, comment_date= NOW() WHERE id= :id_comment');
+      $comments->bindParam('id_post', $id_post, \PDO::PARAM_INT);
       $comments->bindParam('author',$author, \PDO::PARAM_STR);
       $comments->bindParam('comment',$comment, \PDO::PARAM_STR);
       $comments->bindParam('id_comment', $id_comment, \PDO::PARAM_INT);
