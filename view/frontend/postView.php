@@ -4,7 +4,6 @@
 
 <header id="header">
   <h1>John Doe</h1>
-  <?php include('./view/nav_backend.php') ?>
 </header>
 
 <div id="layout-post">

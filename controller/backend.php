@@ -18,7 +18,7 @@ function dashbord()
   $post = $postManager->getLastPost();
   $comment = $commentManager->getLastComment();
 
-  require('view/backend/indexView.php');
+  require('./view/backend/indexView.php');
 }
 
 
@@ -28,7 +28,7 @@ function adminListPosts()
 {
     $postManager = new \SebastienSenechal\Miniblog\Model\Backend\PostManager();
     $posts = $postManager->getPosts();
-    require('view/backend/listPostsView.php');
+    require('./view/backend/listPostsView.php');
 }
 
 // Liste des commentaires
@@ -36,7 +36,7 @@ function adminListComments()
 {
     $commentManager = new \SebastienSenechal\Miniblog\Model\Backend\CommentManager();
     $comments = $commentManager->getAllComments();
-    require ('view/backend/listCommentsView.php');
+    require ('./view/backend/listCommentsView.php');
 }
 
 
@@ -49,7 +49,7 @@ function adminPost()
   $post = $postManager->getPost($_GET['id']);
   $comments = $commentManager->getComments($_GET['id']);
 
-  require ('view/backend/postView.php');
+  require ('./view/backend/postView.php');
 }
 
 
@@ -57,7 +57,7 @@ function adminPost()
 // Vue d'un nouvel article
 function adminNewPost()
 {
-  require ('view/backend/newPostView.php');
+  require ('./view/backend/newPostView.php');
 }
 
 

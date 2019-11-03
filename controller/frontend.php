@@ -57,9 +57,6 @@ function addComment($postId, $author, $comment)
   {
     // Si erreur, elle remonte jusqu'au bloc try du router (index.php)
     throw new Exception('Impossible d\'ajouter le commentaire');
-    var_dump($postId);
-    var_dump($author);
-    var_dump($comment);
   }
   else
   {

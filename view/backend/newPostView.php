@@ -2,17 +2,17 @@
 
 <?php ob_start(); ?>
 
-<header id="header">
-  <h1>Création d'un article</h1>
-  <?php include('./view/nav_backend.php') ?>
-</header>
+<div id="main_navigation_backend">
+  <?php include('./view/nav_backend.php'); ?>
+</div>
 
-<div id="layout-post">
+<div id="dashbord-grid">
   <section id="content-news">
     <header>
-      <h2>
+      <h1>
           Ajouter un article
-      </h2>
+      </h1>
+      <p><a href="index.php?action=adminListPosts">Retour aux articles</a></p>
     </header>
 
     <article class="news">
@@ -46,6 +46,6 @@
   </section>
 </div>
 
-<?php $content = ob_get_clean() ?>
+<?php $content = ob_get_clean(); ?>
 
-<?php require('view/backend/template.php') ?>
+<?php require('view/backend/template.php'); ?>

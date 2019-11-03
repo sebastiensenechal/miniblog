@@ -1,18 +1,17 @@
-<?php $title = 'List Comments View' ?>
+<?php $title = 'Listes des commentaires' ?>
 
 <?php ob_start(); ?>
 
-<header id="header">
-  <h1>John Doe</h1>
-  <?php include('./view/nav_backend.php') ?>
-</header>
+<div id="main_navigation_backend">
+  <?php include('./view/nav_backend.php'); ?>
+</div>
 
-<div id="layout-post">
+<div id="dashbord-grid">
   <section id="content-news">
     <header>
-      <h2>
+      <h1>
           Liste des commentaires
-      </h2>
+      </h1>
     </header>
 
     <article class="news">
@@ -24,7 +23,7 @@
         <aside class="content-comment">
           <p><span class="meta-content"><?= htmlspecialchars($comment['author']) ?><br />
           <span class="comment-date"><?= $comment['comment_date_fr'] ?></span></span></p>
-          <p><?= nl2br($comment['comment']) ?></p>
+          <?= $comment['comment'] ?>
 
           <ul class="admin-content">
             <li><a href="index.php?action=userUpdateComment&amp;id=<?= $comment['id'];?>">Éditer</a></li>

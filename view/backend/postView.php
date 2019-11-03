@@ -1,25 +1,22 @@
-<?php $title = 'Post View | ' . htmlspecialchars($post['title']) ?>
+<?php $title = htmlspecialchars($post['title']) ?>
 
 <?php ob_start(); ?>
 
-<header id="header">
-  <h1>John Doe</h1>
-  <?php include('./view/nav_backend.php') ?>
-</header>
+<div id="main_navigation_backend">
+  <?php include('view/nav_backend.php'); ?>
+</div>
 
-<div id="layout-post">
+<div id="dashbord-grid">
   <section id="content-news">
     <header>
-      <h2>
+      <h1>
           <?= htmlspecialchars($post['title']) ?><br />
           <span><?= $post['creation_date_fr'] ?></span>
-      </h2>
+      </h1>
     </header>
 
     <article class="news">
-        <p>
-            <?= nl2br($post['content']) ?>
-        </p>
+      <?= $post['content']; ?>
 
       <div id="post-comments">
         <h2>Laissez un commentaire</h2>
@@ -49,7 +46,7 @@
           <aside class="content-comment">
             <p><span class="meta-content"><?= htmlspecialchars($comment['author']) ?><br />
             <span class="comment-date"><?= $comment['comment_date_fr'] ?></span></span></p>
-            <p><?= nl2br($comment['comment']) ?></p>
+            <p><?= $comment['comment']; ?></p>
 
             <ul class="admin-content">
               <li><a href="index.php?action=userUpdateComment&amp;id=<?= $comment['id'];?>">Éditer</a></li>

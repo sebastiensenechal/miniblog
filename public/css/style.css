@@ -124,15 +124,6 @@ input, textarea {
   background: #FBDEB9;
   color: #666;
 }
-#main_header_backend {
-  width: 50%;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  background: #FBB9B9;
-  color: #666;
-}
 #main_navigation {
   position: fixed;
   top: 0;
@@ -158,23 +149,6 @@ input, textarea {
   margin-right:1.5em;
   padding-top: 10px;
   border-top: 4px solid #fbdeb9;
-}
-
-#backend_navigation {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  font-size: 80%;
-}
-#backend_navigation ul {
-  list-style: none;
-  margin: 0;
-  padding:0;
-}
-#backend_navigation ul li {
-  padding-left: 10px;
-  border-left: 4px solid #fbdeb9;
-  display: inline-block;
 }
 
 #header {
@@ -271,6 +245,59 @@ input, textarea {
   width: auto;
 }
 
+
+/* *************************************************************
+*************************** BACKOFFICE *************************
+***************************************************************/
+#main_navigation_backend {
+  width: 20%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background:#FBB9B9;
+  color:#666;
+}
+#dashbord-grid {
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row-reverse;
+    -webkit-flex-wrap: nowrap;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    -webkit-justify-content: flex-start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    -webkit-align-content: stretch;
+    -ms-flex-line-pack: stretch;
+    align-content: stretch;
+    -webkit-align-items: stretch;
+    -ms-flex-align: stretch;
+    align-items: stretch;
+    width: 80%;
+    height: 100vh;
+    overflow-y: scroll;
+}
+#backend_navigation {
+  width: 70%;
+  display: flex;
+  flex-direction: row;
+  font-size: 80%;
+  margin-left: 5em;
+}
+#backend_navigation ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  line-height: 3em;
+}
+#backend_navigation ul li {
+  display: block;
+}
 .admin-content {
   list-style: none;
   padding-left: 0;

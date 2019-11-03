@@ -4,7 +4,6 @@
 
 <header id="header">
   <h1>Page de connexion</h1>
-  <?php include('./view/nav_backend.php') ?>
 </header>
 
 <div id="layout-connexion">

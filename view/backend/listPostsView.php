@@ -1,47 +1,42 @@
-<?php $title = 'List Posts View' ?>
+<?php $title = 'Liste des articles' ?>
 
 <?php ob_start(); ?>
 
-<header id="header">
-  <h1>John Doe</h1>
-  <?php include('./view/nav_backend.php') ?>
-</header>
+<div id="main_navigation_backend">
+  <?php include('./view/nav_backend.php'); ?>
+</div>
 
-<div id="layout-post">
+<div id="dashbord-grid">
   <section id="content-news">
     <header>
-      <h2>
+      <h1>
           Liste des articles
-      </h2>
+      </h1>
+      <p><a href="index.php?action=adminNewPost" title="Créer un article">Ajouter</a></p>
     </header>
 
-    <article class="news">
-
-        <?php
-        while ($data = $posts->fetch())
-        {
-        ?>
-            <article class="news">
-                <h3>
-                    <?= htmlspecialchars($data['title']) ?><br />
-                    <span><?= $data['creation_date_fr'] ?></span>
-                </h3>
-
-                <p>
-                    <?= nl2br(substr($data['content'], 0, 300)); ?>...
-                </p>
-                <ul class="admin-content">
-                  <li><a href="./index.php?action=adminUpdatePost&amp;id=<?= $data['id']; ?>">Éditer</a></li>
-                  <li><a href="./index.php?action=deletePost&amp;id=<?= $data['id']; ?>">Supprimer</a></li>
-                  <li><a href="./index.php?action=post&amp;id=<?= $data['id'] ?>">Lire la suite</a></li>
-                </ul>
-            </article>
-        <?php
-        }
-        $posts->closeCursor();
-        ?>
-
-    </article>
+    <?php
+    while ($data = $posts->fetch())
+    {
+    ?>
+        <article class="news">
+            <h2>
+                <?= htmlspecialchars($data['title']) ?><br />
+                <span><?= $data['creation_date_fr'] ?></span>
+            </h2>
+            <p>
+                <?= substr($data['content'], 0, 150); ?>...
+            </p>
+            <ul class="admin-content">
+              <li><a href="./index.php?action=adminUpdatePost&amp;id=<?= $data['id']; ?>">Éditer</a></li>
+              <li><a href="./index.php?action=deletePost&amp;id=<?= $data['id']; ?>">Supprimer</a></li>
+              <li><a href="./index.php?action=adminPost&amp;id=<?= $data['id']; ?>">Lire la suite</a></li>
+            </ul>
+        </article>
+    <?php
+    }
+    $posts->closeCursor();
+    ?>
 
   </section>
 </div>

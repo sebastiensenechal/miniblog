@@ -37,7 +37,7 @@ class PostManager extends Manager
   public function createPost($author, $title, $content)
   {
     $db = $this->dbConnect();
-
+    
     $content = str_replace('<script', '&lt;script', $content);
     $content = str_replace('</script', '&lt;/script', $content);
     $content = str_replace('<?', '&lt;?', $content);

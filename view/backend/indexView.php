@@ -1,71 +1,58 @@
-<?php $title = 'Site de John Doe, vous êtes connecté' ?>
+<?php $title = 'Tableau de bord' ?>
 
 <?php ob_start(); ?>
 
-<header id="main_header_backend">
+<div id="main_navigation_backend">
+  <?php include('./view/nav_backend.php'); ?>
+</div>
 
-  <div id="header_content">
-    <h1>John Doe<br />
-    <span>Essayiste - Auteur - Ecrivain</span></h1>
-    <p>Bienvenu <?= $_SESSION['pseudo']; ?></p>
-
-    <?php include('./view/nav_backend.php') ?>
-  </div>
-
-  <figure id="image_home">
-    <img src="././public/img/landscape.jpg" alt="">
-      <figcaption>
-        <!-- Légende -->
-      </figcaption>
-  </figure>
-</header>
-
-<div id="home-grid">
+<div id="dashbord-grid">
   <section id="list-news">
     <header class="content_header">
-      <h2 style="color: #000;font-weight:100;line-height:1.5em;">John Doe <span style="font-size:1em">est un écrivain français installé à Paris.<br />
-        Il écris des nouvelles et des essais depuis bientôt de 10 ans.</span></h2>
+      <h1>Tableau de bord</h1>
+      <p>Bienvenu <?= $_SESSION['pseudo']; ?></p>
     </header>
 
-    <?php
-    while ($data = $post->fetch())
-    {
-    ?>
-        <article class="news">
-            <h3>
-                <?= htmlspecialchars($data['title']) ?><br />
-                <span><?= $data['creation_date_fr'] ?></span>
-            </h3>
+    <h2>Derniers articles : </h2>
 
-            <p>
-                <?= nl2br(substr($data['content'], 0, 150)); ?>...
-            </p>
-            <p><a href="index.php?action=adminPost&amp;id=<?= $data['id'] ?>">Lire la suite</a></p>
-        </article>
-    <?php
-    }
-    $post->closeCursor();
-    ?>
+    <div id="content_dashbord">
+      <?php
+      while($data = $post->fetch())
+      {
+      ?>
+          <article class="news">
+              <h3>
+                  <?= htmlspecialchars($data['title']); ?><br />
+                  <span><?= $data['creation_date_fr']; ?></span>
+              </h3>
 
-    <h3>Derniers commentaires : </h3>
+              <p>
+                  <?= substr($data['content'], 0, 150); ?>... <!-- Remplacer par un champs Extrait ? Ou autre fonction -->
+              </p>
+              <p><a href="index.php?action=adminPost&amp;id=<?= $data['id'] ?>">Lire la suite</a></p>
+          </article>
+      <?php
+      }
+      $post->closeCursor(); ?>
 
-    <?php
-    while ($data = $comment->fetch())
-    {
-        ?>
-        <aside class="content-comment">
-          <p><span class="meta-content"><?= htmlspecialchars($data['author']); ?><br />
-          <?= $data['comment_date_fr']; ?></span></p>
-          <p><?= nl2br($data['comment']); ?></p>
-        </aside>
-        <?php
-    }
-    $comment->closeCursor(); ?>
+      <h2>Derniers commentaires : </h2>
 
+      <?php
+      while($data = $comment->fetch()){
+          ?>
+          <aside class="content-comment">
+            <p><span class="meta-content"><?= htmlspecialchars($data['author']); ?><br />
+            <?= $data['comment_date_fr']; ?></span></p>
+            <p><?= $data['comment']; ?></p>
+          </aside>
+          <?php
+      }
+      $comment->closeCursor(); ?>
+    </div>
   </section>
 
 </div>
 
-<?php $content = ob_get_clean() ?>
+<?php $content = ob_get_clean(); ?>
 
-<?php require('view/backend/template.php') ?>
+<?php require('view/backend/template.php'); ?>

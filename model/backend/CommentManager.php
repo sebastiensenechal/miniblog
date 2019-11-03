@@ -32,7 +32,7 @@ class CommentManager extends Manager
   {
     // Connexion à la base de données - $db est un objet PDO
     $db = $this->dbConnect();
-
+    
     $comment = str_replace('<script', '&lt;script', $comment);
     $comment = str_replace('</script', '&lt;/script', $comment);
     $comment = str_replace('<?', '&lt;?', $comment);
