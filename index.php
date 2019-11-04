@@ -35,20 +35,31 @@ try // Test (Exception)
 
 
      // Afficher les commentaires signalés
-     // ...
+     elseif ($_GET['action'] == 'adminCommentsReport')
+     {
+       adminCommentsReport();
+     }
+
+
+     // Approuver un commentaire
+     elseif ($_GET['action'] == 'approvedComment')
+     {
+       approvedComment();
+     }
+
 
      // ADMIN - Supprimer un commentaire
-    elseif ($_GET['action'] == 'deleteComment')
-    {
-      if (isset($_GET['id']) && $_GET['id'] > 0)
-      {
-          deleteComment($_GET['id']);
-      }
-      else
-      {
-          throw new Exception('Aucun identifiant de commentaire envoyé !');
-      }
-    }
+     elseif ($_GET['action'] == 'deleteComment')
+     {
+       if (isset($_GET['id']) && $_GET['id'] > 0)
+       {
+         deleteComment($_GET['id']);
+       }
+       else
+       {
+         throw new Exception('Aucun identifiant de commentaire envoyé !');
+       }
+     }
 
 
       // Afficher un article et ses commentaires
@@ -161,6 +172,27 @@ try // Test (Exception)
         {
             throw new Exception('Aucun identifiant de chapitre envoyé !');
         }
+      }
+
+
+      // Signaler un commentaire
+      elseif ($_GET['action'] == 'report')
+      {
+          if (isset($_GET['id_post']) && $_GET['id_post'] > 0)
+          {
+              if (isset($_GET['id']) && $_GET['id'] > 0)
+              {
+                  reportingComment();
+              }
+              else
+              {
+                  throw new Exception('Aucun identifiant de commentaire envoyé pour pouvoir le signaler!');
+              }
+          }
+          else
+          {
+              throw new Exception('Aucun identifiant d\'article envoyé pour revenir sur la page précédente!');
+          }
       }
 
 

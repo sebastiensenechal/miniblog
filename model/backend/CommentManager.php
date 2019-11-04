@@ -13,7 +13,7 @@ class CommentManager extends Manager
     $db = $this->dbConnect();
 
     // Récupère un commentaire associé à un ID avec une requête préparé
-    $comments = $db->prepare('SELECT id, author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM comments WHERE post_id = ? ORDER BY comment_date DESC');
+    $comments = $db->prepare('SELECT id, author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM comments WHERE post_id = ? AND reporting = 0 ORDER BY comment_date DESC');
     $comments->execute(array($id_post));
 
     return $comments;
@@ -23,8 +23,16 @@ class CommentManager extends Manager
   {
     $db = $this->dbConnect();
 
-    $comments = $db->query('SELECT id, post_id, author, comment, reporting, DATE_FORMAT(comment_date, \'%d/%m/%Y à %H:%i:%s\') AS comment_date_fr FROM comments ORDER BY comment_date DESC');
+    $comments = $db->query('SELECT id, post_id, author, comment, reporting, DATE_FORMAT(comment_date, \'%d/%m/%Y à %H:%i:%s\') AS comment_date_fr FROM comments WHERE reporting = 0 ORDER BY comment_date DESC');
     return $comments;
+  }
+
+  public function getReportComments()
+  {
+    $db = $this->dbConnect();
+
+    $reportComments = $db->query('SELECT id, post_id, author, comment, reporting, DATE_FORMAT(comment_date, \'%d/%m/%Y à %H:%i:%s\') AS comment_date_fr FROM comments WHERE reporting= 1 ORDER BY reporting DESC');
+    return $reportComments;
   }
 
 
@@ -32,7 +40,7 @@ class CommentManager extends Manager
   {
     // Connexion à la base de données - $db est un objet PDO
     $db = $this->dbConnect();
-    
+
     $comment = str_replace('<script', '&lt;script', $comment);
     $comment = str_replace('</script', '&lt;/script', $comment);
     $comment = str_replace('<?', '&lt;?', $comment);
@@ -62,7 +70,17 @@ class CommentManager extends Manager
 
 
     // fonction Approuver commentaire
-    // ...
+    function approvedComment($id_comment)
+    {
+      $db = $this->dbConnect();
+
+      $comments = $db->prepare('UPDATE comments SET reporting= :reporting WHERE id= :id_comment');
+      $comments->bindValue(':reporting', 0, \PDO::PARAM_INT);
+      $comments->bindParam(':id_comment', $id_comment, \PDO::PARAM_INT);
+      $report = $comments->execute();
+
+      return $report;
+    }
 
 
     // Supprimer un commentaire

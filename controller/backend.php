@@ -39,6 +39,13 @@ function adminListComments()
     require ('./view/backend/listCommentsView.php');
 }
 
+// Page des commentaires en attentes d'approbation
+function adminCommentsReport()
+{
+  $commentManager = new \SebastienSenechal\Miniblog\Model\Backend\CommentManager();
+  $reportComments = $commentManager->getReportComments();
+  require ('./view/backend/reportCommentsView.php');
+}
 
 
 function adminPost()
@@ -135,6 +142,18 @@ function deletePost($id)
     }
     else
     {
-        header('Location: ./index.php?action=adminListComments' );
+        header('Location: ./index.php?action=adminListComments');
     }
+  }
+
+
+  function approvedComment() // Retirer le signalement
+  {
+    $postManager = new \SebastienSenechal\Miniblog\Model\Backend\PostManager();
+    $commentManager = new \SebastienSenechal\Miniblog\Model\Backend\CommentManager();
+
+    $post = $postManager->getPost($_GET['id']);
+    $reportComment = $commentManager->approvedComment($_GET['id']);
+
+    header('Location: ./index.php?action=adminCommentsReport');
   }

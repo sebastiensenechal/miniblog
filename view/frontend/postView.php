@@ -51,11 +51,12 @@
             <p><?= nl2br($comment['comment']) ?></p>
             <ul class="admin-content">
               <li><a href="index.php?action=userUpdateComment&amp;id_post=<?= $post['id'];?>&amp;id=<?= $comment['id'];?>">Éditer</a></li>
-              <li><a href="#">Signaler</a></li>
+              <li><a href="index.php?action=report&amp;id_post=<?= $post['id'];?>&amp;id=<?= $comment['id']; ?>">Signaler</a></li>
             </ul>
           </aside>
         <?php
         }
+        $comments->closeCursor();
         ?>
 
       </div>

@@ -66,6 +66,19 @@ function addComment($postId, $author, $comment)
 }
 
 
+// Signaler un commentaire
+function reportingComment()
+{
+  $postManager = new \SebastienSenechal\Miniblog\Model\Frontend\PostManager();
+  $commentManager = new \SebastienSenechal\Miniblog\Model\Frontend\CommentManager();
+
+  $post = $postManager->getPost($_GET['id']);
+  $reportComment = $commentManager->reportComment($_GET['id']);
+  header('Location: index.php?action=post&id=' . $_GET['id_post']);
+}
+
+
+
 function login()
 {
   // l'accès à la page de connexion génère un token dans un champs hidden du formulaire

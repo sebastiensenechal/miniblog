@@ -1,4 +1,4 @@
-<?php $title = 'Listes des commentaires' ?>
+<?php $title = 'Commentaires en attente' ?>
 
 <?php ob_start(); ?>
 
@@ -10,15 +10,15 @@
   <section id="content-news">
     <header>
       <h1>
-          Liste des commentaires
+          Commentaires en attente
       </h1>
-      <p><a href="index.php?action=adminCommentsReport" title="En attente de validation">En attente</a></p>
+      <p><a href="index.php?action=adminListComments" title="Liste des commentaires">Retour aux commentaires</a></p>
     </header>
 
     <article class="news">
 
       <?php
-      while ($comment = $comments->fetch())
+      while ($comment = $reportComments->fetch())
       {
       ?>
         <aside class="content-comment">
@@ -28,13 +28,13 @@
 
           <ul class="admin-content">
             <li><a href="index.php?action=userUpdateComment&amp;id=<?= $comment['id'];?>">Éditer</a></li>
-            <li><a href="index.php?action=report&amp;id_post=<?= $comment['post_id'];?>&amp;id=<?= $comment['id']; ?>">Signaler</a></li>
+            <li><a href="index.php?action=approvedComment&amp;id_post=<?= $comment['post_id'];?>&amp;id=<?= $comment['id'];?>">Approuver</a></li>
             <li><a href="index.php?action=deleteComment&amp;postId=<?= $comment['post_id'];?>&amp;id=<?= $comment['id'];?>">Supprimer</a></li>
           </ul>
         </aside>
       <?php
       }
-      $comments->closeCursor(); ?>
+      $reportComments->closeCursor(); ?>
 
     </article>
 

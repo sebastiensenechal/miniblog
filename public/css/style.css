@@ -297,6 +297,11 @@ input, textarea {
 }
 #backend_navigation ul li {
   display: block;
+  font-size: 1.4em;
+}
+#backend_navigation ul .submenu {
+    font-size: .7em;
+    padding-left: 1.2em;
 }
 .admin-content {
   list-style: none;
@@ -309,4 +314,9 @@ input, textarea {
 .admin-content li {
   display: inline-block;
   margin-right: .5em;
+}
+#backend_navigation ul li#title_nav {
+  font-size: 3em;
+  text-transform: lowercase;
+  margin: .5em 0;
 }
