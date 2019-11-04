@@ -23,7 +23,21 @@
   </head>
   <body>
     <div id="grid">
-      <?php include('view/nav.php'); ?>
+      <?php
+      if (empty($page))
+      {
+        $page = 'nav';
+        $page = trim('view/'.$page.'.php');
+        if (file_exists('./'.$page))
+        {
+          include($page);
+        }
+        else
+        {
+          echo "Page inexistante !";
+        }
+      }
+      ?>
       <?= $content ?>
     </div>
   </body>
