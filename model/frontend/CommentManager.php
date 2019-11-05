@@ -50,10 +50,9 @@ class CommentManager extends Manager
   {
       $db = $this->dbConnect();
 
-      $comments = $db->prepare('UPDATE comments SET reporting= :reporting WHERE id= :id_comment');
-      $comments->bindValue(':reporting', 1, \PDO::PARAM_INT);
-      $comments->bindParam(':id_comment', $id_comment, \PDO::PARAM_INT);
-      $report = $comments->execute();
+      $comments = $db->prepare('UPDATE comments SET reporting = 1 WHERE id= ?');
+      $report = $comments->execute(array($id_comment));
+
       return $report;
   }
 
@@ -61,12 +60,10 @@ class CommentManager extends Manager
   public function updateComment($id_comment, $id_post, $author, $comment)
   {
       $db = $this->dbConnect();
-      $comments = $db->prepare('UPDATE comments SET post_id= :id_post, author= :author, comment= :comment, comment_date= NOW() WHERE id= :id_comment');
-      $comments->bindParam('id_post', $id_post, \PDO::PARAM_INT);
-      $comments->bindParam('author',$author, \PDO::PARAM_STR);
-      $comments->bindParam('comment',$comment, \PDO::PARAM_STR);
-      $comments->bindParam('id_comment', $id_comment, \PDO::PARAM_INT);
-      $updateComment = $comments->execute();
+
+      $comments = $db->prepare('UPDATE comments SET post_id= :id_post, author= :author, comment= :comment, comment_date= NOW() WHERE id= ?');
+      $updateComment = $comments->execute(array($id_comment));
+
       return $updateComment;
   }
 

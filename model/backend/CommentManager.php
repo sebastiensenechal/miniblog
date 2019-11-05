@@ -59,12 +59,9 @@ class CommentManager extends Manager
     {
       $db = $this->dbConnect();
 
-      $comments = $db->prepare('UPDATE comments SET post_id= :post_id, author= :author, comment= :comment, comment_date= NOW() WHERE id= :id_comment');
-      $comments->bindParam('post_id', $id_post, \PDO::PARAM_INT);
-      $comments->bindParam('author',$author, \PDO::PARAM_STR);
-      $comments->bindParam('comment',$comment, \PDO::PARAM_STR);
-      $comments->bindParam('id_comment', $id_comment, \PDO::PARAM_INT);
-      $updateComment = $comments->execute();
+      $comments = $db->prepare('UPDATE comments SET post_id= :id_post, author= :author, comment= :comment, comment_date= NOW() WHERE id= ?');
+      $updateComment = $comments->execute(array($id_comment));
+
       return $updateComment;
     }
 
@@ -74,10 +71,13 @@ class CommentManager extends Manager
     {
       $db = $this->dbConnect();
 
-      $comments = $db->prepare('UPDATE comments SET reporting= :reporting WHERE id= :id_comment');
-      $comments->bindValue(':reporting', 0, \PDO::PARAM_INT);
-      $comments->bindParam(':id_comment', $id_comment, \PDO::PARAM_INT);
-      $report = $comments->execute();
+      // $comments = $db->prepare('UPDATE comments SET reporting= :reporting WHERE id= :id_comment');
+      // $comments->bindValue(':reporting', 0, \PDO::PARAM_INT);
+      // $comments->bindParam(':id_comment', $id_comment, \PDO::PARAM_INT);
+      // $report = $comments->execute();
+
+      $comments = $db->prepare('UPDATE comments SET reporting = 0 WHERE id= ?');
+      $report = $comments->execute(array($id_comment));
 
       return $report;
     }
@@ -109,7 +109,7 @@ class CommentManager extends Manager
   {
     $db = $this->dbConnect();
 
-    $comment = $db->query('SELECT author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %H:%i:%s\') AS comment_date_fr FROM comments ORDER BY comment_date DESC LIMIT 0, 3');
+    $comment = $db->query('SELECT author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %H:%i:%s\') AS comment_date_fr FROM comments WHERE reporting = 0 ORDER BY comment_date DESC LIMIT 0, 3');
 
     return $comment;
   }
