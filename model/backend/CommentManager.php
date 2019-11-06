@@ -109,7 +109,7 @@ class CommentManager extends Manager
   {
     $db = $this->dbConnect();
 
-    $comment = $db->query('SELECT author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %H:%i:%s\') AS comment_date_fr FROM comments ORDER BY comment_date DESC LIMIT 0, 3');
+    $comment = $db->query('SELECT author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %H:%i:%s\') AS comment_date_fr FROM comments WHERE reporting = 0 ORDER BY comment_date DESC LIMIT 0, 3');
 
     return $comment;
   }

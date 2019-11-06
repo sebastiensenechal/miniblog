@@ -27,8 +27,7 @@
           <?= $comment['comment'] ?>
 
           <ul class="admin-content">
-            <li><a href="index.php?action=userUpdateComment&amp;id=<?= $comment['id'];?>">Éditer</a></li>
-            <li><a href="index.php?action=report&amp;id_post=<?= $comment['post_id'];?>&amp;id=<?= $comment['id']; ?>">Signaler</a></li>
+            <li><a href="index.php?action=report&amp;id_post=<?= $comment['post_id'];?>&amp;id=<?= $comment['id']; ?>">Désactiver</a></li>
             <li><a href="index.php?action=deleteComment&amp;postId=<?= $comment['post_id'];?>&amp;id=<?= $comment['id'];?>">Supprimer</a></li>
           </ul>
         </aside>

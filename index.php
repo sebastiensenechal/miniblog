@@ -4,8 +4,16 @@
 // Le routeur : premier fichier appelé, c'est un "controleur frontal". Il appel le bon controleur chez "controller.php" en fonction d'un paramètre dans l'url.
 // Ajout d'une gestion d'exceptions pour les erreurs
 
-require('controller/frontend.php');
-require('controller/backend.php');
+
+require('controller/AuthController.php');
+require('controller/PostController.php');
+require('controller/CommentsController.php');
+require('controller/UserController.php');
+
+$AuthController = new AuthController;
+$PostController = new PostController;
+$CommentsController = new CommentsController;
+$UserController = new UserController;
 
 
 try // Test (Exception)
@@ -18,33 +26,33 @@ try // Test (Exception)
       // Tableau de bord
       if ($_GET['action'] == 'dashbord')
       {
-        dashbord();
+        $UserController->dashbord();
       }
 
      // Lister les articles
      elseif ($_GET['action'] == 'adminListPosts')
      {
-        adminListPosts();
+        $PostController->adminListPosts();
      }
 
      // Lister les commentaires
      elseif ($_GET['action'] == 'adminListComments')
      {
-        adminListComments();
+        $CommentsController->adminListComments();
      }
 
 
      // Afficher les commentaires signalés
      elseif ($_GET['action'] == 'adminCommentsReport')
      {
-       adminCommentsReport();
+       $CommentsController->adminCommentsReport();
      }
 
 
      // Approuver un commentaire
      elseif ($_GET['action'] == 'approvedComment')
      {
-       approvedComment();
+       $CommentsController->approvedComment();
      }
 
 
@@ -53,7 +61,7 @@ try // Test (Exception)
      {
        if (isset($_GET['id']) && $_GET['id'] > 0)
        {
-         deleteComment($_GET['id']);
+         $CommentsController->deleteComment($_GET['id']);
        }
        else
        {
@@ -67,7 +75,7 @@ try // Test (Exception)
       {
         if (isset($_GET['id']) && $_GET['id'] > 0)
         {
-          adminPost();
+          $PostController->adminPost();
         }
         else
         {
@@ -79,7 +87,7 @@ try // Test (Exception)
       // Page d'administration de création d'un article
       elseif ($_GET['action'] == 'adminNewPost')
       {
-        adminNewPost();
+        $PostController->adminNewPost();
       }
 
       // Fonctionnalité de creation d'article
@@ -87,7 +95,7 @@ try // Test (Exception)
       {
         if ($_POST['author'] != NULL && $_POST['title'] != NULL && $_POST['content'] != NULL)
         {
-          addPost($_POST['author'], $_POST['title'], $_POST['content']);
+          $PostController->addPost($_POST['author'], $_POST['title'], $_POST['content']);
         }
         else
         {
@@ -99,7 +107,7 @@ try // Test (Exception)
       // Page d'administration de mise à jour d'article
       elseif ($_GET['action'] == 'adminUpdatePost')
       {
-          adminUpdatePost();
+          $PostController->adminUpdatePost();
       }
 
       // Fonctionnalité de mise à jour d'article
@@ -109,7 +117,7 @@ try // Test (Exception)
         {
           if ($_POST['author'] != NULL && $_POST['title'] != NULL && $_POST['content'] != NULL)
           {
-            updatePost($_GET['id'], $_POST['author'], $_POST['title'], $_POST['content']);
+            $PostController->updatePost($_GET['id'], $_POST['author'], $_POST['title'], $_POST['content']);
           }
           else
           {
@@ -127,7 +135,7 @@ try // Test (Exception)
      {
        if (isset($_GET['id']) && $_GET['id'] > 0)
        {
-           deletePost($_GET['id']);
+           $PostController->deletePost($_GET['id']);
        }
        else
        {
@@ -138,7 +146,7 @@ try // Test (Exception)
       // Liste des chapitres
       elseif ($_GET['action'] == 'listPosts')
       {
-        listPosts();
+        $PostController->listPosts();
       }
 
       // Affiche le chapitre avec ses commentaires
@@ -146,7 +154,7 @@ try // Test (Exception)
       {
         if (isset($_GET['id']) && $_GET['id'] > 0)
         {
-          post();
+          $PostController->post();
         }
         else
         {
@@ -161,7 +169,7 @@ try // Test (Exception)
         {
             if (!empty($_POST['author']) && !empty($_POST['comment']))
             {
-                addComment($_GET['id'], $_POST['author'], $_POST['comment']);
+                $CommentsController->addComment($_GET['id'], $_POST['author'], $_POST['comment']);
             }
             else
             {
@@ -182,7 +190,7 @@ try // Test (Exception)
           {
               if (isset($_GET['id']) && $_GET['id'] > 0)
               {
-                  reportingComment();
+                  $CommentsController->reportingComment();
               }
               else
               {
@@ -199,7 +207,7 @@ try // Test (Exception)
       // Page de connexion
       elseif ($_GET['action'] == 'login')
       {
-          login();
+        $AuthController->login();
       }
 
       // Inscription
@@ -218,7 +226,7 @@ try // Test (Exception)
             // On vérifie que les 2 mots de passe sont identiques.
             if ($_POST['pass'] == $_POST['pass_confirm'])
             {
-              registerUser($pseudo, $password_hash, $email);
+              $UserController->registerUser($pseudo, $password_hash, $email);
             }
             else
             {
@@ -241,7 +249,7 @@ try // Test (Exception)
       {
         if (!empty($_POST['pseudo']) && !empty($_POST['pass']))
         {
-          logUser($_POST['pseudo'], $_POST['pass'], $_POST['token']);
+          $AuthController->logUser($_POST['pseudo'], $_POST['pass'], $_POST['token']);
         }
         else
         {
@@ -252,14 +260,14 @@ try // Test (Exception)
       // Deconnexion
       elseif ($_GET['action'] == 'logout')
       {
-        logoutUser();
+        $AuthController->logoutUser();
       }
 
     }
     // Retourne au Dashbord.
     else
     {
-      listPosts();
+      $PostController->listPosts();
     }
 
   }
@@ -272,21 +280,15 @@ try // Test (Exception)
       // Accueil Visiteur
       if ($_GET['action'] == 'listPosts')
       {
-        listPosts();
+        $PostController->listPosts();
       }
-
-      // Liste des articles
-      // elseif ($_GET['action'] == 'listPosts')
-      // {
-      //   listPosts();
-      // }
 
       // Affichage d'un article
       elseif ($_GET['action'] == 'post')
       {
         if (isset($_GET['id']) && $_GET['id'] > 0)
         {
-          post();
+          $PostController->post();
         }
         else
         {
@@ -302,7 +304,7 @@ try // Test (Exception)
         {
           if (!empty($_POST['author']) && !empty($_POST['comment']))
           {
-            addComment($_GET['id'], $_POST['author'], $_POST['comment']);
+            $CommentsController->addComment($_GET['id'], $_POST['author'], $_POST['comment']);
           }
           else
           {
@@ -319,7 +321,7 @@ try // Test (Exception)
 
       // Page de connexion
       elseif ($_GET['action'] == 'login') {
-          login();
+          $AuthController->login();
       }
 
       // Inscription d'un utilisateur
@@ -338,7 +340,7 @@ try // Test (Exception)
               // On vérifie que les 2 mots de passe sont identiques.
               if ($_POST['pass'] == $_POST['pass_confirm'])
               {
-                  registerUser($pseudo, $password_hash, $email);
+                  $UserController->registerUser($pseudo, $password_hash, $email);
               }
               else
               {
@@ -361,7 +363,7 @@ try // Test (Exception)
       {
         if (!empty($_POST['pseudo']) && !empty($_POST['pass']))
         {
-            logUser($_POST['pseudo'], $_POST['pass'], $_POST['token']);
+            $AuthController->logUser($_POST['pseudo'], $_POST['pass'], $_POST['token']);
         }
         else
         {
@@ -372,13 +374,13 @@ try // Test (Exception)
       // Déconnexion
       elseif ($_GET['action'] == 'logout')
       {
-        logoutUser();
+        $AuthController->logoutUser();
       }
 
     }
     else
     {
-      listPosts();
+      $PostController->listPosts();
     }
   }
 }
