@@ -27,7 +27,6 @@
           <?= $comment['comment'] ?>
 
           <ul class="admin-content">
-            <li><a href="index.php?action=report&amp;id_post=<?= $comment['post_id'];?>&amp;id=<?= $comment['id']; ?>">Mettre en attente</a></li>
             <li><a href="index.php?action=deleteComment&amp;postId=<?= $comment['post_id'];?>&amp;id=<?= $comment['id'];?>">Supprimer</a></li>
           </ul>
         </aside>

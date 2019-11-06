@@ -43,7 +43,7 @@ class PostManager extends Manager
     $content = str_replace('<?', '&lt;?', $content);
     $content = str_replace('?>', '>&gt;', $content);
 
-    $post = $db->prepare('INSERT INTO posts(author, title, content, creation_date, reporting) VALUES(:author, :title, :content, NOW())');
+    $post = $db->prepare('INSERT INTO posts(author, title, content, creation_date) VALUES(:author, :title, :content, NOW())');
     $createPost = $post->execute(array(
       'author' => $author,
     	'title' => $title,
