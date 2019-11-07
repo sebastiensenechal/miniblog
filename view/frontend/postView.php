@@ -3,7 +3,7 @@
 <?php ob_start(); ?>
 
 <header id="header">
-  <h1>John Doe</h1>
+  <h1><a href="index.php" title="Accueil de John Doe">John Doe</a></h1>
 </header>
 
 <div id="layout-post">
