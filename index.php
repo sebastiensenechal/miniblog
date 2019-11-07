@@ -23,253 +23,265 @@ try // Test (Exception)
   {
     if (isset($_GET['action']) && !empty($_GET['action']))
     {
-      // Tableau de bord
-      if ($_GET['action'] == 'dashbord')
+      if(isset($_COOKIE['ticket']) == isset($_SESSION['ticket']))
       {
-        $UserController->dashbord();
-      }
+        // C'est reparti pour un tour
+      	$ticket = session_id().microtime().rand(0,99999999);
+      	$ticket = hash('sha512', $ticket);
+      	$_COOKIE['ticket'] = $ticket;
+      	$_SESSION['ticket'] = $ticket;
 
-     // Lister les articles
-     elseif ($_GET['action'] == 'adminListPosts')
-     {
-        $PostController->adminListPosts();
-     }
+        // Tableau de bord
+        if ($_GET['action'] == 'dashbord')
+        {
+          $UserController->dashbord();
+        }
 
-     // Lister les commentaires
-     elseif ($_GET['action'] == 'adminListComments')
-     {
-        $CommentsController->adminListComments();
-     }
-
-
-     // Afficher les commentaires signalés
-     elseif ($_GET['action'] == 'adminCommentsReport')
-     {
-       $CommentsController->adminCommentsReport();
-     }
-
-
-     // Approuver un commentaire
-     elseif ($_GET['action'] == 'approvedComment')
-     {
-       $CommentsController->approvedComment();
-     }
-
-
-     // ADMIN - Supprimer un commentaire
-     elseif ($_GET['action'] == 'deleteComment')
-     {
-       if (isset($_GET['id']) && $_GET['id'] > 0)
+       // Lister les articles
+       elseif ($_GET['action'] == 'adminListPosts')
        {
-         $CommentsController->deleteComment($_GET['id']);
+          $PostController->adminListPosts();
        }
-       else
+
+       // Lister les commentaires
+       elseif ($_GET['action'] == 'adminListComments')
        {
-         throw new Exception('Aucun identifiant de commentaire envoyé !');
+          $CommentsController->adminListComments();
        }
-     }
 
 
-      // Afficher un article et ses commentaires
-      elseif ($_GET['action'] == 'adminPost')
-      {
-        if (isset($_GET['id']) && $_GET['id'] > 0)
+       // Afficher les commentaires signalés
+       elseif ($_GET['action'] == 'adminCommentsReport')
+       {
+         $CommentsController->adminCommentsReport();
+       }
+
+
+       // Approuver un commentaire
+       elseif ($_GET['action'] == 'approvedComment')
+       {
+         $CommentsController->approvedComment();
+       }
+
+
+       // ADMIN - Supprimer un commentaire
+       elseif ($_GET['action'] == 'deleteComment')
+       {
+         if (isset($_GET['id']) && $_GET['id'] > 0)
+         {
+           $CommentsController->deleteComment($_GET['id']);
+         }
+         else
+         {
+           throw new Exception('Aucun identifiant de commentaire envoyé !');
+         }
+       }
+
+
+        // Afficher un article et ses commentaires
+        elseif ($_GET['action'] == 'adminPost')
         {
-          $PostController->adminPost();
+          if (isset($_GET['id']) && $_GET['id'] > 0)
+          {
+            $PostController->adminPost();
+          }
+          else
+          {
+            throw new Exception('Aucun identifiant de chapitre envoyé !');
+          }
         }
-        else
+
+
+        // Page d'administration de création d'un article
+        elseif ($_GET['action'] == 'adminNewPost')
         {
-          throw new Exception('Aucun identifiant de chapitre envoyé !');
+          $PostController->adminNewPost();
         }
-      }
 
-
-      // Page d'administration de création d'un article
-      elseif ($_GET['action'] == 'adminNewPost')
-      {
-        $PostController->adminNewPost();
-      }
-
-      // Fonctionnalité de creation d'article
-      elseif ($_GET['action'] == 'createPost')
-      {
-        if ($_POST['author'] != NULL && $_POST['title'] != NULL && $_POST['content'] != NULL)
-        {
-          $PostController->addPost($_POST['author'], $_POST['title'], $_POST['content']);
-        }
-        else
-        {
-          throw new Exception('Tous les champs ne sont pas remplis..');
-        }
-      }
-
-
-      // Page d'administration de mise à jour d'article
-      elseif ($_GET['action'] == 'adminUpdatePost')
-      {
-          $PostController->adminUpdatePost();
-      }
-
-      // Fonctionnalité de mise à jour d'article
-      elseif ($_GET['action'] == 'updatePost')
-      {
-        if (isset($_GET['id']) && $_GET['id'] > 0)
+        // Fonctionnalité de creation d'article
+        elseif ($_GET['action'] == 'createPost')
         {
           if ($_POST['author'] != NULL && $_POST['title'] != NULL && $_POST['content'] != NULL)
           {
-            $PostController->updatePost($_GET['id'], $_POST['author'], $_POST['title'], $_POST['content']);
+            $PostController->addPost($_POST['author'], $_POST['title'], $_POST['content']);
           }
           else
           {
             throw new Exception('Tous les champs ne sont pas remplis..');
           }
         }
-        else
+
+
+        // Page d'administration de mise à jour d'article
+        elseif ($_GET['action'] == 'adminUpdatePost')
         {
-          throw new Exception('Aucun identifiant de chapitre envoyé !');
+            $PostController->adminUpdatePost();
         }
-      }
 
-      // Fonctionnalité de suppression d'article
-     elseif ($_GET['action'] == 'deletePost')
-     {
-       if (isset($_GET['id']) && $_GET['id'] > 0)
-       {
-           $PostController->deletePost($_GET['id']);
-       }
-       else
-       {
-           throw new Exception('Aucun identifiant de chapitre envoyé !');
-       }
-     }
-
-      // Liste des chapitres
-      elseif ($_GET['action'] == 'listPosts')
-      {
-        $PostController->listPosts();
-      }
-
-      // Affiche le chapitre avec ses commentaires
-      elseif ($_GET['action'] == 'post')
-      {
-        if (isset($_GET['id']) && $_GET['id'] > 0)
+        // Fonctionnalité de mise à jour d'article
+        elseif ($_GET['action'] == 'updatePost')
         {
-          $PostController->post();
-        }
-        else
-        {
-          throw new Exception('Aucun identifiant de chapitre envoyé !');
-        }
-      }
-
-      // Ajoute un commentaire dans le chapitre selectionné
-      elseif ($_GET['action'] == 'addComment')
-      {
-        if (isset($_GET['id']) && $_GET['id'] > 0)
-        {
-            if (!empty($_POST['author']) && !empty($_POST['comment']))
+          if (isset($_GET['id']) && $_GET['id'] > 0)
+          {
+            if ($_POST['author'] != NULL && $_POST['title'] != NULL && $_POST['content'] != NULL)
             {
-                $CommentsController->addComment($_GET['id'], $_POST['author'], $_POST['comment']);
+              $PostController->updatePost($_GET['id'], $_POST['author'], $_POST['title'], $_POST['content']);
             }
             else
             {
-                throw new Exception('Tous les champs doivent être remplis !');
+              throw new Exception('Tous les champs ne sont pas remplis..');
             }
-        }
-        else
-        {
-            throw new Exception('Aucun identifiant de chapitre envoyé !');
-        }
-      }
-
-
-      // Signaler un commentaire
-      elseif ($_GET['action'] == 'report')
-      {
-          if (isset($_GET['id_post']) && $_GET['id_post'] > 0)
+          }
+          else
           {
-              if (isset($_GET['id']) && $_GET['id'] > 0)
+            throw new Exception('Aucun identifiant de chapitre envoyé !');
+          }
+        }
+
+        // Fonctionnalité de suppression d'article
+       elseif ($_GET['action'] == 'deletePost')
+       {
+         if (isset($_GET['id']) && $_GET['id'] > 0)
+         {
+             $PostController->deletePost($_GET['id']);
+         }
+         else
+         {
+             throw new Exception('Aucun identifiant de chapitre envoyé !');
+         }
+       }
+
+        // Liste des chapitres
+        elseif ($_GET['action'] == 'listPosts')
+        {
+          $PostController->listPosts();
+        }
+
+        // Affiche le chapitre avec ses commentaires
+        elseif ($_GET['action'] == 'post')
+        {
+          if (isset($_GET['id']) && $_GET['id'] > 0)
+          {
+            $PostController->post();
+          }
+          else
+          {
+            throw new Exception('Aucun identifiant de chapitre envoyé !');
+          }
+        }
+
+        // Ajoute un commentaire dans le chapitre selectionné
+        elseif ($_GET['action'] == 'addComment')
+        {
+          if (isset($_GET['id']) && $_GET['id'] > 0)
+          {
+              if (!empty($_POST['author']) && !empty($_POST['comment']))
               {
-                  $CommentsController->reportingComment();
+                  $CommentsController->addComment($_GET['id'], $_POST['author'], $_POST['comment']);
               }
               else
               {
-                  throw new Exception('Aucun identifiant de commentaire envoyé pour pouvoir le signaler!');
+                  throw new Exception('Tous les champs doivent être remplis !');
               }
           }
           else
           {
-              throw new Exception('Aucun identifiant d\'article envoyé pour revenir sur la page précédente!');
+              throw new Exception('Aucun identifiant de chapitre envoyé !');
           }
-      }
+        }
 
 
-      // Page de connexion
-      elseif ($_GET['action'] == 'login')
-      {
-        $AuthController->login();
-      }
-
-      // Inscription
-      elseif ($_GET['action'] == 'subscription')
-      {
-        if (!empty($_POST['pseudo']) && !empty($_POST['pass']) && !empty($_POST['pass_confirm']) && !empty($_POST['email']))
+        // Signaler un commentaire
+        elseif ($_GET['action'] == 'report')
         {
-          // Sécurité
-          $pseudo = htmlspecialchars($_POST['pseudo']);
-          $email = htmlspecialchars($_POST['email']);
-          // Hachage du mot de passe
-          $password_hash = password_hash($_POST['pass'], PASSWORD_DEFAULT);
-          // On vérifie la Regex pour l'adresse email
-          if (preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#", $_POST['email']))
-          {
-            // On vérifie que les 2 mots de passe sont identiques.
-            if ($_POST['pass'] == $_POST['pass_confirm'])
+            if (isset($_GET['id_post']) && $_GET['id_post'] > 0)
             {
-              $UserController->registerUser($pseudo, $password_hash, $email);
+                if (isset($_GET['id']) && $_GET['id'] > 0)
+                {
+                    $CommentsController->reportingComment();
+                }
+                else
+                {
+                    throw new Exception('Aucun identifiant de commentaire envoyé pour pouvoir le signaler!');
+                }
             }
             else
             {
-              throw new Exception('Les 2 mots de passe ne sont pas identiques, recommencez !');
+                throw new Exception('Aucun identifiant d\'article envoyé pour revenir sur la page précédente!');
+            }
+        }
+
+
+        // Page de connexion
+        elseif ($_GET['action'] == 'login')
+        {
+          $AuthController->login();
+        }
+
+        // Inscription
+        elseif ($_GET['action'] == 'subscription')
+        {
+          if (!empty($_POST['pseudo']) && !empty($_POST['pass']) && !empty($_POST['pass_confirm']) && !empty($_POST['email']))
+          {
+            // Sécurité
+            $pseudo = htmlspecialchars($_POST['pseudo']);
+            $email = htmlspecialchars($_POST['email']);
+            // Hachage du mot de passe
+            $password_hash = password_hash($_POST['pass'], PASSWORD_DEFAULT);
+            // On vérifie la Regex pour l'adresse email
+            if (preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#", $_POST['email']))
+            {
+              // On vérifie que les 2 mots de passe sont identiques.
+              if ($_POST['pass'] == $_POST['pass_confirm'])
+              {
+                $UserController->registerUser($pseudo, $password_hash, $email);
+              }
+              else
+              {
+                throw new Exception('Les 2 mots de passe ne sont pas identiques, recommencez !');
+              }
+            }
+            else
+            {
+              throw new Exception('L\'adresse email ' . $email . ' n\'est pas valide, recommencez !');
             }
           }
           else
           {
-            throw new Exception('L\'adresse email ' . $email . ' n\'est pas valide, recommencez !');
+            throw new Exception('Tous les champs doivent être remplis !');
           }
         }
-        else
-        {
-          throw new Exception('Tous les champs doivent être remplis !');
-        }
-      }
 
-      // Connexion
-      elseif ($_GET['action'] == 'connect')
-      {
-        if (!empty($_POST['pseudo']) && !empty($_POST['pass']))
+        // Connexion
+        elseif ($_GET['action'] == 'connect')
         {
-          $AuthController->logUser($_POST['pseudo'], $_POST['pass'], $_POST['token']);
+          if (!empty($_POST['pseudo']) && !empty($_POST['pass']) && !empty($_POST['token']))
+          {
+            $AuthController->logUser($_POST['pseudo'], $_POST['pass'], $_POST['token']);
+          }
+          else
+          {
+            throw new Exception('Tous les champs doivent être remplis !');
+          }
         }
-        else
-        {
-          throw new Exception('Tous les champs doivent être remplis !');
-        }
-      }
 
-      // Deconnexion
-      elseif ($_GET['action'] == 'logout')
+        // Deconnexion
+        elseif ($_GET['action'] == 'logout')
+        {
+          $AuthController->logoutUser();
+        }
+
+      }
+      else
       {
         $AuthController->logoutUser();
       }
-
     }
     // Retourne au Dashbord.
     else
     {
       $PostController->listPosts();
     }
-
   }
 
   // Visiteur non authentifié

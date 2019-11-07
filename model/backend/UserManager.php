@@ -7,12 +7,12 @@ require_once('./model/backend/Manager.php');
 
 class UserManager extends Manager
 {
-  public function getUser($pseudo)
+  public function getUser($pseudo, $pass)
   {
     // Instructions
     $db = $this->dbConnect();
-    $req = $db->prepare('SELECT id, pseudo, pass FROM members WHERE pseudo = ?');
-    $req->execute(array($pseudo));
+    $req = $db->prepare('SELECT id, pseudo, pass FROM members WHERE pseudo= ? AND pass= ?');
+    $req->execute(array($pseudo, $pass));
     $user = $req->fetch();
 
     return $user;

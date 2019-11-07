@@ -25,7 +25,7 @@ class AuthController {
     // Créer une instance de la classe User Manager
     $userManager = new \SebastienSenechal\Miniblog\Model\Frontend\UserManager();
 
-    $user = $userManager->getUser($pseudo);
+    $user = $userManager->getUser($pseudo, $pass);
     $proper_pass = password_verify($_POST['pass'], $user['pass']);
 
      if(!$user || !$proper_pass)
@@ -37,31 +37,48 @@ class AuthController {
      else
      {
        //On vérifie que tous les jetons sont là
-       if ($_SESSION['token'] == $_POST['token'])
+
+       if (isset($_SESSION['token']) AND isset($_POST['token']) AND !empty($_SESSION['token']) AND !empty($_POST['token']))
        {
-         session_start();
+         if ($_SESSION['token'] == $_POST['token']) {
+           session_start();
 
-         $_SESSION['id'] = $user['id'];
-         $_SESSION['pseudo'] = $user['pseudo'];
-         // $_SESSION['pass'] = $user['pass'];
+           $this->ticket();
 
-         $id = $user['id'];
-         $pseudo = $user['pseudo'];
-         // $password_hash = $user['pass'];
+           $_SESSION['id'] = $user['id'];
+           $_SESSION['pseudo'] = $user['pseudo'];
 
-         setcookie('id', $id, time() + (60 * 20), null, null, false, true);
-         setcookie('pseudo', $pseudo, time() + (60 * 20), null, null, false, true);
-         // setcookie('pass', $password_hash, time() + 1800, null, null, false, true);
+           $id = $user['id'];
+           $pseudo = $user['pseudo'];
+           // $password_hash = $user['pass'];
 
-         header('Location: ./index.php?action=dashbord');
-       }
-       else
-       {
-         throw new Exception('CSRF Token Validation Failed');
+           setcookie('id', $id, time() + (60 * 20), null, null, false, true);
+           setcookie('pseudo', $pseudo, time() + (60 * 20), null, null, false, true);
+           // setcookie('pass', $password_hash, time() + 1800, null, null, false, true);
+
+           header('Location: ./index.php?action=dashbord');
+         }
+         else
+         {
+           throw new Exception('CSRF Token Validation Failed');
+         }
        }
      }
   }
 
+
+  public function ticket()
+  {
+    $cookie_name = "ticket";
+    // On génère quelque chose d'aléatoire
+    $ticket = session_id().microtime().rand(0,99999999);
+    // on hash pour avoir quelque chose de propre qui aura toujours la même forme
+    $ticket = hash('sha512', $ticket);
+
+    // On enregistre des deux cotés
+    setcookie($cookie_name, $ticket, time() + (60 * 20)); // Expire au bout de 20 min
+    $_SESSION['ticket'] = $ticket;
+  }
 
 
   public function logoutUser()
