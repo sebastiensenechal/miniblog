@@ -5,7 +5,7 @@
 <header id="main_header">
 
   <div id="header_content">
-    <h1>John Doe<br />
+    <h1><a href="index.php" title="Accueil de John Doe">John Doe</a><br />
     <span>Essayiste - Auteur - Ecrivain</span></h1>
   </div>
 

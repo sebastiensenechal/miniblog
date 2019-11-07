@@ -7,8 +7,8 @@
 </div>
 
 <div id="dashbord-grid">
-  <section id="list-news">
-    <header class="content_header">
+  <section id="content_news">
+    <header id="header_dashbord">
       <h1>Tableau de bord</h1>
       <p>Bienvenu <?= $_SESSION['pseudo']; ?></p>
     </header>
