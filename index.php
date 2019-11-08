@@ -21,14 +21,13 @@ try // Test (Exception)
   // Utilisateur authentifié
   if(isset($_SESSION['id']) && isset($_SESSION['pseudo']))
   {
-    if (isset($_GET['action']) && !empty($_GET['action']))
+    if (!empty($_GET['action']))
     {
-      if(isset($_COOKIE['ticket']) == isset($_SESSION['ticket']))
+      if(isset($_COOKIE['ticket']) == isset($_SESSION['ticket'])) // Vérification du ticket pour sécuriser la session
       {
-        // C'est reparti pour un tour
-      	$ticket = session_id().microtime().rand(0,99999999);
+      	$ticket = session_id().microtime().rand(0,99999999); // Génération d'un nouveau ticket lors d'une action utilisateur
       	$ticket = hash('sha512', $ticket);
-      	$_COOKIE['ticket'] = $ticket;
+        setcookie('ticket', $ticket, time() + (60 * 20)); // Expire au bout de 20 min
       	$_SESSION['ticket'] = $ticket;
 
         // Tableau de bord
@@ -101,9 +100,9 @@ try // Test (Exception)
         // Fonctionnalité de creation d'article
         elseif ($_GET['action'] == 'createPost')
         {
-          if ($_POST['author'] != NULL && $_POST['title'] != NULL && $_POST['content'] != NULL)
+          if ($_POST['author'] != NULL && $_POST['title'] != NULL && $_POST['content'] != NULL && $_POST['excerpt'] != NULL)
           {
-            $PostController->addPost($_POST['author'], $_POST['title'], $_POST['content']);
+            $PostController->addPost($_POST['author'], $_POST['title'], $_POST['content'], $_POST['excerpt']);
           }
           else
           {
@@ -123,9 +122,9 @@ try // Test (Exception)
         {
           if (isset($_GET['id']) && $_GET['id'] > 0)
           {
-            if ($_POST['author'] != NULL && $_POST['title'] != NULL && $_POST['content'] != NULL)
+            if ($_POST['author'] != NULL && $_POST['title'] != NULL && $_POST['content'] != NULL && $_POST['excerpt'] != NULL)
             {
-              $PostController->updatePost($_GET['id'], $_POST['author'], $_POST['title'], $_POST['content']);
+              $PostController->updatePost($_GET['id'], $_POST['author'], $_POST['title'], $_POST['content'], $_POST['excerpt']);
             }
             else
             {

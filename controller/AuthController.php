@@ -91,9 +91,11 @@ class AuthController {
     // Suppression des cookies de connexion automatique
     setcookie('id', '');
     setcookie('pseudo', '');
+    setcookie('ticket', '');
     // setcookie('pass', '');
 
     unset($_SESSION['token']);
+    unset($_SESSION['ticket']);
 
     header('Location: ./index.php');
   }
