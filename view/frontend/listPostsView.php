@@ -33,10 +33,9 @@
                 <?= htmlspecialchars($data['title']) ?><br />
                 <span><?= $data['creation_date_fr'] ?></span>
             </h3>
+            
+            <?= nl2br($data['excerpt']); ?>
 
-            <p>
-                <?= nl2br(substr($data['content'], 0, 150)); ?>...
-            </p>
             <p><a href="index.php?action=post&amp;id=<?= $data['id'] ?>">Lire la suite</a></p>
         </article>
     <?php

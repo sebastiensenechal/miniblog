@@ -13,7 +13,7 @@ class PostManager extends Manager
     $db = $this->dbConnect();
 
     // Récupérer les billets sur la base de données
-    $req = $db->query('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM posts ORDER BY creation_date DESC LIMIT 0, 5');
+    $req = $db->query('SELECT id, title, content, excerpt, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM posts ORDER BY creation_date DESC LIMIT 0, 5');
 
     return $req;
   }
@@ -25,7 +25,7 @@ class PostManager extends Manager
     $db = $this->dbConnect();
 
     // Récupérer un post en fonction de son ID avec une requête préparé
-    $req = $db->prepare('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM posts WHERE id = ?');
+    $req = $db->prepare('SELECT id, title, content, excerpt, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM posts WHERE id = ?');
     $req->execute(array($id));
     $post = $req->fetch();
 
@@ -34,7 +34,7 @@ class PostManager extends Manager
 
 
 
-  public function createPost($author, $title, $content)
+  public function createPost($author, $title, $content, $excerpt)
   {
     $db = $this->dbConnect();
 
@@ -43,11 +43,12 @@ class PostManager extends Manager
     $content = str_replace('<?', '&lt;?', $content);
     $content = str_replace('?>', '>&gt;', $content);
 
-    $post = $db->prepare('INSERT INTO posts(author, title, content, creation_date) VALUES(:author, :title, :content, NOW())');
+    $post = $db->prepare('INSERT INTO posts(author, title, content, excerpt, creation_date) VALUES(:author, :title, :content, :excerpt, NOW())');
     $createPost = $post->execute(array(
       'author' => $author,
     	'title' => $title,
-    	'content' => $content
+    	'content' => $content,
+      'excerpt' => $excerpt
     ));
 
     return $createPost;
@@ -55,15 +56,16 @@ class PostManager extends Manager
 
 
 
-  public function updatePost($id_post, $author, $title, $content)
+  public function updatePost($id_post, $author, $title, $content, $excerpt)
   {
     $db = $this->dbConnect();
 
-    $post = $db->prepare('UPDATE posts SET title= :title, author= :author, content= :content, creation_date= NOW() WHERE id= :id_post');
+    $post = $db->prepare('UPDATE posts SET author= :author, title= :title, content= :content, excerpt= :excerpt, creation_date= NOW() WHERE id= :id_post');
+    $post->bindParam('id_post', $id_post, \PDO::PARAM_INT);
     $post->bindParam('title',$title, \PDO::PARAM_STR);
     $post->bindParam('author', $author, \PDO::PARAM_STR);
     $post->bindParam('content',$content, \PDO::PARAM_STR);
-    $post->bindParam('id_post', $id_post, \PDO::PARAM_INT);
+    $post->bindParam('excerpt', $excerpt, \PDO::PARAM_INT);
     $updatePost = $post->execute();
 
     return $updatePost;
@@ -75,7 +77,7 @@ class PostManager extends Manager
   {
       $db = $this->dbConnect();
 
-      $req = $db->query('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %H:%i:%s\') AS creation_date_fr FROM posts ORDER BY creation_date DESC LIMIT 0, 3');
+      $req = $db->query('SELECT id, title, content, excerpt, DATE_FORMAT(creation_date, \'%d/%m/%Y à %H:%i:%s\') AS creation_date_fr FROM posts ORDER BY creation_date DESC LIMIT 0, 3');
 
       return $req;
   }

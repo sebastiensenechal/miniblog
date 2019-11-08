@@ -39,11 +39,11 @@ class PostController {
 
 
   // Ajouter un article
-  public function addPost($author, $title, $content)
+  public function addPost($author, $title, $content, $excerpt)
   {
     $postManager = new \SebastienSenechal\Miniblog\Model\Backend\PostManager();
 
-    $createPost = $postManager->createPost($author, $title, $content);
+    $createPost = $postManager->createPost($author, $title, $content, $excerpt);
 
     header('Location: ./index.php?action=adminListPosts');
   }
@@ -61,11 +61,11 @@ class PostController {
 
 
   // Mettre à jour / Editer un article
-  public function updatePost($id, $author, $title, $content)
+  public function updatePost($id, $author, $title, $content, $excerpt)
   {
     $postManager = new \SebastienSenechal\Miniblog\Model\Backend\PostManager();
 
-    $updatePost = $postManager->updatePost($id, $author, $title, $content);
+    $updatePost = $postManager->updatePost($id, $author, $title, $content, $excerpt);
 
     if ($updatePost === false)
     {

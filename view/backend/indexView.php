@@ -26,9 +26,8 @@
                   <span><?= $data['creation_date_fr']; ?></span>
               </h3>
 
-              <p>
-                  <?= substr($data['content'], 0, 150); ?>... <!-- Remplacer par un champs Extrait ? Ou autre fonction -->
-              </p>
+              <?= nl2br($data['excerpt']); ?>
+
               <p><a href="index.php?action=adminPost&amp;id=<?= $data['id'] ?>">Lire la suite</a></p>
           </article>
       <?php

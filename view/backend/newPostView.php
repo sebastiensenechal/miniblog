@@ -37,6 +37,10 @@
           <textarea id="content" name="content" rows="25" placeholder="C'est à vous de jouer..."></textarea>
         </fieldset>
         <fieldset>
+          <label for="excerpt">Extrait</label><br />
+          <textarea id="excerpt" name="excerpt" rows="20" placeholder="Extrait..."></textarea>
+        </fieldset>
+        <fieldset>
           <input type="submit" />
         </fieldset>
       </form>

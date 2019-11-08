@@ -24,9 +24,9 @@
                 <?= htmlspecialchars($data['title']) ?><br />
                 <span><?= $data['creation_date_fr'] ?></span>
             </h2>
-            <p>
-                <?= substr($data['content'], 0, 150); ?>...
-            </p>
+
+            <?= nl2br($data['excerpt']); ?>
+
             <ul class="admin-content">
               <li><a href="./index.php?action=adminUpdatePost&amp;id=<?= $data['id']; ?>">Éditer</a></li>
               <li><a href="./index.php?action=deletePost&amp;id=<?= $data['id']; ?>">Supprimer</a></li>

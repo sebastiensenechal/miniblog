@@ -35,11 +35,15 @@
             </fieldset>
             <fieldset>
               <label for="title">Titre</label><br />
-              <input type="text" id="title" name="title" />
+              <input type="text" id="title" name="title" value="<?= htmlspecialchars($post['title']); ?>" />
             </fieldset>
             <fieldset>
               <label for="content">Contenu</label><br />
-              <textarea id="content" name="content" placeholder="C'est à vous de jouer..."></textarea>
+              <textarea id="content" name="content" rows="20"><?= $post['content']; ?></textarea>
+            </fieldset>
+            <fieldset>
+              <label for="excerpt">Extrait</label><br />
+              <textarea id="excerpt" name="excerpt" rows="10"><?= $post['excerpt']; ?></textarea>
             </fieldset>
             <fieldset>
               <input type="submit" />
