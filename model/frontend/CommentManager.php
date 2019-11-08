@@ -13,7 +13,7 @@ class CommentManager extends Manager
     $db = $this->dbConnect();
 
     // Récupère un commentaire associé à un ID avec une requête préparé
-    $comments = $db->prepare('SELECT id, author, comment, reporting, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM comments WHERE post_id = ? AND reporting = 0 ORDER BY comment_date DESC');
+    $comments = $db->prepare('SELECT id, author, comment, reporting, standby, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM comments WHERE post_id = ? AND reporting = 0 AND standby = 0 ORDER BY comment_date DESC');
     $comments->execute(array($id_post));
 
     return $comments;

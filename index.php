@@ -56,6 +56,20 @@ try // Test (Exception)
        }
 
 
+       // Afficher les commentaires signalés
+       elseif ($_GET['action'] == 'adminCommentsStandby')
+       {
+         $CommentsController->adminCommentsStandby();
+       }
+
+
+       // Approuver un commentaire
+       elseif ($_GET['action'] == 'approvedReportComment')
+       {
+         $CommentsController->approvedReportComment();
+       }
+
+
        // Approuver un commentaire
        elseif ($_GET['action'] == 'approvedComment')
        {

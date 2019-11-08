@@ -1,4 +1,4 @@
-<?php $title = 'Listes des commentaires' ?>
+<?php $title = 'Commentaires en attente' ?>
 
 <?php ob_start(); ?>
 
@@ -10,19 +10,15 @@
   <section id="content-news">
     <header>
       <h1>
-          Liste des commentaires
+          Commentaires en attente
       </h1>
-
-      <ul>
-        <li><a href="index.php?action=adminCommentsReport" title="Commentaires signalés">Signalé</a></li>
-        <li><a href="index.php?action=adminCommentsStandby" title="En attente de validation">En attente</a></li>
-      </ul>
+      <p><a href="index.php?action=adminListComments" title="Liste des commentaires">Retour aux commentaires</a></p>
     </header>
 
     <article class="news">
 
       <?php
-      while ($comment = $comments->fetch())
+      while ($comment = $standbyComments->fetch())
       {
       ?>
         <aside class="content-comment">
@@ -31,12 +27,13 @@
           <?= $comment['comment'] ?>
 
           <ul class="admin-content">
+            <li><a href="index.php?action=approvedComment&amp;id_post=<?= $comment['post_id'];?>&amp;id=<?= $comment['id'];?>">Approuver</a></li>
             <li><a href="index.php?action=deleteComment&amp;postId=<?= $comment['post_id'];?>&amp;id=<?= $comment['id'];?>">Supprimer</a></li>
           </ul>
         </aside>
       <?php
       }
-      $comments->closeCursor(); ?>
+      $standbyComments->closeCursor(); ?>
 
     </article>
 

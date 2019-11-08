@@ -13,7 +13,7 @@ class PostManager extends Manager
     $db = $this->dbConnect();
 
     // Récupérer les billets sur la base de données
-    $req = $db->query('SELECT id, title, content, excerpt, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM posts ORDER BY creation_date DESC LIMIT 0, 5');
+    $req = $db->query('SELECT id, title, content, excerpt, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM posts ORDER BY creation_date DESC');
 
     return $req;
   }

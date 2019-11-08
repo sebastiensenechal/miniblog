@@ -26,6 +26,16 @@ class CommentsController {
 
 
 
+  // Page des commentaires en attentes d'approbation
+  public function adminCommentsStandby()
+  {
+    $commentManager = new \SebastienSenechal\Miniblog\Model\Backend\CommentManager();
+    $standbyComments = $commentManager->getStandbyComments();
+    require ('./view/backend/standbyCommentsView.php');
+  }
+
+
+
   // Supprimer un commentaire
   public function deleteComment($id)
   {
@@ -43,15 +53,27 @@ class CommentsController {
 
 
 
+  public function approvedReportComment() // Retirer le signalement
+  {
+    $postManager = new \SebastienSenechal\Miniblog\Model\Backend\PostManager();
+    $commentManager = new \SebastienSenechal\Miniblog\Model\Backend\CommentManager();
+
+    $post = $postManager->getPost($_GET['id']);
+    $reportComment = $commentManager->approvedReportComment($_GET['id']);
+
+    header('Location: ./index.php?action=adminCommentsReport');
+  }
+
+
   public function approvedComment() // Retirer le signalement
   {
     $postManager = new \SebastienSenechal\Miniblog\Model\Backend\PostManager();
     $commentManager = new \SebastienSenechal\Miniblog\Model\Backend\CommentManager();
 
     $post = $postManager->getPost($_GET['id']);
-    $reportComment = $commentManager->approvedComment($_GET['id']);
+    $approvedComments = $commentManager->approvedComment($_GET['id']);
 
-    header('Location: ./index.php?action=adminCommentsReport');
+    header('Location: ./index.php?action=adminCommentsStandby');
   }
 
 

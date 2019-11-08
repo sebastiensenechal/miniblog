@@ -10,7 +10,7 @@
   <section id="content-news">
     <header>
       <h1>
-          Commentaires en attente
+          Commentaires signalés
       </h1>
       <p><a href="index.php?action=adminListComments" title="Liste des commentaires">Retour aux commentaires</a></p>
     </header>
@@ -27,7 +27,7 @@
           <?= $comment['comment'] ?>
 
           <ul class="admin-content">
-            <li><a href="index.php?action=approvedComment&amp;id_post=<?= $comment['post_id'];?>&amp;id=<?= $comment['id'];?>">Approuver</a></li>
+            <li><a href="index.php?action=approvedReportComment&amp;id_post=<?= $comment['post_id'];?>&amp;id=<?= $comment['id'];?>">Approuver</a></li>
             <li><a href="index.php?action=deleteComment&amp;postId=<?= $comment['post_id'];?>&amp;id=<?= $comment['id'];?>">Supprimer</a></li>
           </ul>
         </aside>

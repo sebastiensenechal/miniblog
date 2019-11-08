@@ -13,7 +13,7 @@ class CommentManager extends Manager
     $db = $this->dbConnect();
 
     // Récupère un commentaire associé à un ID avec une requête préparé
-    $comments = $db->prepare('SELECT id, author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM comments WHERE post_id = ? AND reporting = 0 ORDER BY comment_date DESC');
+    $comments = $db->prepare('SELECT id, author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM comments WHERE post_id = ? AND reporting = 0 AND standby = 0 ORDER BY comment_date DESC');
     $comments->execute(array($id_post));
 
     return $comments;
@@ -23,7 +23,7 @@ class CommentManager extends Manager
   {
     $db = $this->dbConnect();
 
-    $comments = $db->query('SELECT id, post_id, author, comment, reporting, DATE_FORMAT(comment_date, \'%d/%m/%Y à %H:%i:%s\') AS comment_date_fr FROM comments WHERE reporting = 0 ORDER BY comment_date DESC');
+    $comments = $db->query('SELECT id, post_id, author, comment, reporting, standby, DATE_FORMAT(comment_date, \'%d/%m/%Y à %H:%i:%s\') AS comment_date_fr FROM comments WHERE reporting = 0 AND standby = 0 ORDER BY comment_date DESC');
     return $comments;
   }
 
@@ -33,6 +33,14 @@ class CommentManager extends Manager
 
     $reportComments = $db->query('SELECT id, post_id, author, comment, reporting, DATE_FORMAT(comment_date, \'%d/%m/%Y à %H:%i:%s\') AS comment_date_fr FROM comments WHERE reporting= 1 ORDER BY reporting DESC');
     return $reportComments;
+  }
+
+  public function getStandbyComments()
+  {
+    $db = $this->dbConnect();
+
+    $standbyComments = $db->query('SELECT id, post_id, author, comment, standby, DATE_FORMAT(comment_date, \'%d/%m/%Y à %H:%i:%s\') AS comment_date_fr FROM comments WHERE standby= 1 ORDER BY standby DESC');
+    return $standbyComments;
   }
 
 
@@ -67,7 +75,7 @@ class CommentManager extends Manager
 
 
     // fonction Approuver commentaire
-    function approvedComment($id_comment)
+    function approvedReportComment($id_comment)
     {
       $db = $this->dbConnect();
 
@@ -81,6 +89,24 @@ class CommentManager extends Manager
 
       return $report;
     }
+
+
+    // fonction Approuver commentaire
+    function approvedComment($id_comment)
+    {
+      $db = $this->dbConnect();
+
+      // $comments = $db->prepare('UPDATE comments SET reporting= :reporting WHERE id= :id_comment');
+      // $comments->bindValue(':reporting', 0, \PDO::PARAM_INT);
+      // $comments->bindParam(':id_comment', $id_comment, \PDO::PARAM_INT);
+      // $report = $comments->execute();
+
+      $comments = $db->prepare('UPDATE comments SET standby = 0 WHERE id= ?');
+      $approved = $comments->execute(array($id_comment));
+
+      return $approved;
+    }
+
 
 
     // Supprimer un commentaire
@@ -109,7 +135,7 @@ class CommentManager extends Manager
   {
     $db = $this->dbConnect();
 
-    $comment = $db->query('SELECT author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %H:%i:%s\') AS comment_date_fr FROM comments WHERE reporting = 0 ORDER BY comment_date DESC LIMIT 0, 3');
+    $comment = $db->query('SELECT author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %H:%i:%s\') AS comment_date_fr FROM comments WHERE reporting = 0 AND standby = 0 ORDER BY comment_date DESC LIMIT 0, 3');
 
     return $comment;
   }
