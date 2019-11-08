@@ -18,12 +18,15 @@ $UserController = new UserController;
 
 try // Test (Exception)
 {
+  $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_STRING); // Sécurise la variable superglobale $_GET
+  $cookieTicket = filter_input(INPUT_COOKIE, 'ticket'); // Sécurise la variable superglobale $_COOKIE
+
   // Utilisateur authentifié
   if(isset($_SESSION['id']) && isset($_SESSION['pseudo']))
   {
-    if (!empty($_GET['action']))
+    if (!empty($action))
     {
-      if(isset($_COOKIE['ticket']) == isset($_SESSION['ticket'])) // Vérification du ticket pour sécuriser la session
+      if(isset($cookieTicket) == isset($_SESSION['ticket'])) // Vérification du ticket pour sécuriser la session
       {
       	$ticket = session_id().microtime().rand(0,99999999); // Génération d'un nouveau ticket lors d'une action utilisateur
       	$ticket = hash('sha512', $ticket);
@@ -31,54 +34,54 @@ try // Test (Exception)
       	$_SESSION['ticket'] = $ticket;
 
         // Tableau de bord
-        if ($_GET['action'] == 'dashbord')
+        if ($action == 'dashbord')
         {
           $UserController->dashbord();
         }
 
        // Lister les articles
-       elseif ($_GET['action'] == 'adminListPosts')
+       elseif ($action == 'adminListPosts')
        {
           $PostController->adminListPosts();
        }
 
        // Lister les commentaires
-       elseif ($_GET['action'] == 'adminListComments')
+       elseif ($action == 'adminListComments')
        {
           $CommentsController->adminListComments();
        }
 
 
        // Afficher les commentaires signalés
-       elseif ($_GET['action'] == 'adminCommentsReport')
+       elseif ($action == 'adminCommentsReport')
        {
          $CommentsController->adminCommentsReport();
        }
 
 
        // Afficher les commentaires signalés
-       elseif ($_GET['action'] == 'adminCommentsStandby')
+       elseif ($action == 'adminCommentsStandby')
        {
          $CommentsController->adminCommentsStandby();
        }
 
 
        // Approuver un commentaire
-       elseif ($_GET['action'] == 'approvedReportComment')
+       elseif ($action == 'approvedReportComment')
        {
          $CommentsController->approvedReportComment();
        }
 
 
        // Approuver un commentaire
-       elseif ($_GET['action'] == 'approvedComment')
+       elseif ($action == 'approvedComment')
        {
          $CommentsController->approvedComment();
        }
 
 
        // ADMIN - Supprimer un commentaire
-       elseif ($_GET['action'] == 'deleteComment')
+       elseif ($action == 'deleteComment')
        {
          if (isset($_GET['id']) && $_GET['id'] > 0)
          {
@@ -92,7 +95,7 @@ try // Test (Exception)
 
 
         // Afficher un article et ses commentaires
-        elseif ($_GET['action'] == 'adminPost')
+        elseif ($action == 'adminPost')
         {
           if (isset($_GET['id']) && $_GET['id'] > 0)
           {
@@ -106,13 +109,13 @@ try // Test (Exception)
 
 
         // Page d'administration de création d'un article
-        elseif ($_GET['action'] == 'adminNewPost')
+        elseif ($action == 'adminNewPost')
         {
           $PostController->adminNewPost();
         }
 
         // Fonctionnalité de creation d'article
-        elseif ($_GET['action'] == 'createPost')
+        elseif ($action == 'createPost')
         {
           if ($_POST['author'] != NULL && $_POST['title'] != NULL && $_POST['content'] != NULL && $_POST['excerpt'] != NULL)
           {
@@ -126,13 +129,13 @@ try // Test (Exception)
 
 
         // Page d'administration de mise à jour d'article
-        elseif ($_GET['action'] == 'adminUpdatePost')
+        elseif ($action == 'adminUpdatePost')
         {
             $PostController->adminUpdatePost();
         }
 
         // Fonctionnalité de mise à jour d'article
-        elseif ($_GET['action'] == 'updatePost')
+        elseif ($action == 'updatePost')
         {
           if (isset($_GET['id']) && $_GET['id'] > 0)
           {
@@ -152,7 +155,7 @@ try // Test (Exception)
         }
 
         // Fonctionnalité de suppression d'article
-       elseif ($_GET['action'] == 'deletePost')
+       elseif ($action == 'deletePost')
        {
          if (isset($_GET['id']) && $_GET['id'] > 0)
          {
@@ -165,13 +168,13 @@ try // Test (Exception)
        }
 
         // Liste des chapitres
-        elseif ($_GET['action'] == 'listPosts')
+        elseif ($action == 'listPosts')
         {
           $PostController->listPosts();
         }
 
         // Affiche le chapitre avec ses commentaires
-        elseif ($_GET['action'] == 'post')
+        elseif ($action == 'post')
         {
           if (isset($_GET['id']) && $_GET['id'] > 0)
           {
@@ -184,7 +187,7 @@ try // Test (Exception)
         }
 
         // Ajoute un commentaire dans le chapitre selectionné
-        elseif ($_GET['action'] == 'addComment')
+        elseif ($action == 'addComment')
         {
           if (isset($_GET['id']) && $_GET['id'] > 0)
           {
@@ -205,7 +208,7 @@ try // Test (Exception)
 
 
         // Signaler un commentaire
-        elseif ($_GET['action'] == 'report')
+        elseif ($action == 'report')
         {
             if (isset($_GET['id_post']) && $_GET['id_post'] > 0)
             {
@@ -226,13 +229,13 @@ try // Test (Exception)
 
 
         // Page de connexion
-        elseif ($_GET['action'] == 'login')
+        elseif ($action == 'login')
         {
           $AuthController->login();
         }
 
         // Inscription
-        elseif ($_GET['action'] == 'subscription')
+        elseif ($action == 'subscription')
         {
           if (!empty($_POST['pseudo']) && !empty($_POST['pass']) && !empty($_POST['pass_confirm']) && !empty($_POST['email']))
           {
@@ -266,7 +269,7 @@ try // Test (Exception)
         }
 
         // Connexion
-        elseif ($_GET['action'] == 'connect')
+        elseif ($action == 'connect')
         {
           if (!empty($_POST['pseudo']) && !empty($_POST['pass']) && !empty($_POST['token']))
           {
@@ -279,7 +282,7 @@ try // Test (Exception)
         }
 
         // Deconnexion
-        elseif ($_GET['action'] == 'logout')
+        elseif ($action == 'logout')
         {
           $AuthController->logoutUser();
         }
@@ -300,16 +303,16 @@ try // Test (Exception)
   // Visiteur non authentifié
   else
   {
-    if (isset($_GET['action']) && !empty($_GET['action']))
+    if (isset($action) && !empty($action))
     {
       // Accueil Visiteur
-      if ($_GET['action'] == 'listPosts')
+      if ($action == 'listPosts')
       {
         $PostController->listPosts();
       }
 
       // Affichage d'un article
-      elseif ($_GET['action'] == 'post')
+      elseif ($action == 'post')
       {
         if (isset($_GET['id']) && $_GET['id'] > 0)
         {
@@ -323,7 +326,7 @@ try // Test (Exception)
       }
 
       // Ajouter un commentaire
-      elseif ($_GET['action'] == 'addComment')
+      elseif ($action == 'addComment')
       {
         if (isset($_GET['id']) && $_GET['id'] > 0)
         {
@@ -344,13 +347,33 @@ try // Test (Exception)
         }
       }
 
+      // Signaler un commentaire
+      elseif ($action == 'report')
+      {
+          if (isset($_GET['id_post']) && $_GET['id_post'] > 0)
+          {
+              if (isset($_GET['id']) && $_GET['id'] > 0)
+              {
+                  $CommentsController->reportingComment();
+              }
+              else
+              {
+                  throw new Exception('Aucun identifiant de commentaire envoyé pour pouvoir le signaler!');
+              }
+          }
+          else
+          {
+              throw new Exception('Aucun identifiant d\'article envoyé pour revenir sur la page précédente!');
+          }
+      }
+
       // Page de connexion
-      elseif ($_GET['action'] == 'login') {
+      elseif ($action == 'login') {
           $AuthController->login();
       }
 
       // Inscription d'un utilisateur
-      elseif ($_GET['action'] == 'subscription')
+      elseif ($action == 'subscription')
       {
         if (!empty($_POST['pseudo']) && !empty($_POST['pass']) && !empty($_POST['pass_confirm']) && !empty($_POST['email']))
         {
@@ -384,7 +407,7 @@ try // Test (Exception)
       }
 
       // Connexion
-      elseif ($_GET['action'] == 'connect')
+      elseif ($action == 'connect')
       {
         if (!empty($_POST['pseudo']) && !empty($_POST['pass']))
         {
@@ -397,7 +420,7 @@ try // Test (Exception)
       }
 
       // Déconnexion
-      elseif ($_GET['action'] == 'logout')
+      elseif ($action == 'logout')
       {
         $AuthController->logoutUser();
       }
