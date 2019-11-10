@@ -108,6 +108,16 @@ class CommentManager extends Manager
     }
 
 
+    public function disableComment($id_comment)
+    {
+        $db = $this->dbConnect();
+
+        $comments = $db->prepare('UPDATE comments SET standby = 1 WHERE id= ?');
+        $disable = $comments->execute(array($id_comment));
+
+        return $disable;
+    }
+
 
     // Supprimer un commentaire
     public function deleteComment($id)

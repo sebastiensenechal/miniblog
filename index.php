@@ -80,6 +80,13 @@ try // Test (Exception)
        }
 
 
+       // Approuver un commentaire
+       elseif ($action == 'disable')
+       {
+         $CommentsController->disableComment();
+       }
+
+
        // ADMIN - Supprimer un commentaire
        elseif ($action == 'deleteComment')
        {

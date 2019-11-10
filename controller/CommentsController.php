@@ -77,6 +77,16 @@ class CommentsController {
   }
 
 
+  // Signaler un commentaire
+  public function disableComment()
+  {
+    $commentManager = new \SebastienSenechal\Miniblog\Model\Backend\CommentManager();
+
+    $disableComment = $commentManager->disableComment($_GET['id']);
+    header('Location: ./index.php?action=adminListComments');
+  }
+
+
 
   // **************** FRONTEND ****************
 
@@ -102,7 +112,6 @@ class CommentsController {
   }
 
 
-
   // Signaler un commentaire
   public function reportingComment()
   {
@@ -113,5 +122,6 @@ class CommentsController {
     $reportComment = $commentManager->reportComment($_GET['id']);
     header('Location: index.php?action=post&id=' . $_GET['id_post']);
   }
+
 
 }
