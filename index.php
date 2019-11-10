@@ -19,7 +19,15 @@ $UserController = new UserController;
 try // Test (Exception)
 {
   $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_STRING); // Sécurise la variable superglobale $_GET
+  $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
+  $id_post = filter_input(INPUT_GET, 'id_post');
   $cookieTicket = filter_input(INPUT_COOKIE, 'ticket'); // Sécurise la variable superglobale $_COOKIE
+  $author = filter_input(INPUT_POST, 'author'); // Sécurise la variable superglobale $_POST
+  $title = filter_input(INPUT_POST, 'title');
+  $content = filter_input(INPUT_POST, 'content');
+  $excerpt = filter_input(INPUT_POST, 'excerpt');
+  $comment = filter_input(INPUT_POST, 'comment');
+
 
   // Utilisateur authentifié
   if(isset($_SESSION['id']) && isset($_SESSION['pseudo']))
@@ -90,9 +98,9 @@ try // Test (Exception)
        // ADMIN - Supprimer un commentaire
        elseif ($action == 'deleteComment')
        {
-         if (isset($_GET['id']) && $_GET['id'] > 0)
+         if (isset($id) && $id > 0)
          {
-           $CommentsController->deleteComment($_GET['id']);
+           $CommentsController->deleteComment($id);
          }
          else
          {
@@ -104,7 +112,7 @@ try // Test (Exception)
         // Afficher un article et ses commentaires
         elseif ($action == 'adminPost')
         {
-          if (isset($_GET['id']) && $_GET['id'] > 0)
+          if (isset($id) && $id > 0)
           {
             $PostController->adminPost();
           }
@@ -124,9 +132,9 @@ try // Test (Exception)
         // Fonctionnalité de creation d'article
         elseif ($action == 'createPost')
         {
-          if ($_POST['author'] != NULL && $_POST['title'] != NULL && $_POST['content'] != NULL && $_POST['excerpt'] != NULL)
+          if ($author != NULL && $title != NULL && $content != NULL && $excerpt != NULL)
           {
-            $PostController->addPost($_POST['author'], $_POST['title'], $_POST['content'], $_POST['excerpt']);
+            $PostController->addPost($author, $title, $content, $excerpt);
           }
           else
           {
@@ -144,11 +152,11 @@ try // Test (Exception)
         // Fonctionnalité de mise à jour d'article
         elseif ($action == 'updatePost')
         {
-          if (isset($_GET['id']) && $_GET['id'] > 0)
+          if (isset($id) && $id > 0)
           {
-            if ($_POST['author'] != NULL && $_POST['title'] != NULL && $_POST['content'] != NULL && $_POST['excerpt'] != NULL)
+            if ($author != NULL && $title != NULL && $content != NULL && $excerpt != NULL)
             {
-              $PostController->updatePost($_GET['id'], $_POST['author'], $_POST['title'], $_POST['content'], $_POST['excerpt']);
+              $PostController->updatePost($id, $author, $title, $content, $excerpt);
             }
             else
             {
@@ -164,9 +172,9 @@ try // Test (Exception)
         // Fonctionnalité de suppression d'article
        elseif ($action == 'deletePost')
        {
-         if (isset($_GET['id']) && $_GET['id'] > 0)
+         if (isset($id) && $id > 0)
          {
-             $PostController->deletePost($_GET['id']);
+             $PostController->deletePost($id);
          }
          else
          {
@@ -183,7 +191,7 @@ try // Test (Exception)
         // Affiche le chapitre avec ses commentaires
         elseif ($action == 'post')
         {
-          if (isset($_GET['id']) && $_GET['id'] > 0)
+          if (isset($id) && $id > 0)
           {
             $PostController->post();
           }
@@ -196,11 +204,11 @@ try // Test (Exception)
         // Ajoute un commentaire dans le chapitre selectionné
         elseif ($action == 'addComment')
         {
-          if (isset($_GET['id']) && $_GET['id'] > 0)
+          if (isset($id) && $id > 0)
           {
-              if (!empty($_POST['author']) && !empty($_POST['comment']))
+              if (!empty($author) && !empty($comment))
               {
-                  $CommentsController->addComment($_GET['id'], $_POST['author'], $_POST['comment']);
+                  $CommentsController->addComment($id, $author, $comment);
               }
               else
               {
@@ -217,9 +225,9 @@ try // Test (Exception)
         // Signaler un commentaire
         elseif ($action == 'report')
         {
-            if (isset($_GET['id_post']) && $_GET['id_post'] > 0)
+            if (isset($id_post) && $id_post > 0)
             {
-                if (isset($_GET['id']) && $_GET['id'] > 0)
+                if (isset($id) && $id > 0)
                 {
                     $CommentsController->reportingComment();
                 }
@@ -248,11 +256,12 @@ try // Test (Exception)
           {
             // Sécurité
             $pseudo = htmlspecialchars($_POST['pseudo']);
-            $email = htmlspecialchars($_POST['email']);
+            $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+
             // Hachage du mot de passe
             $password_hash = password_hash($_POST['pass'], PASSWORD_DEFAULT);
             // On vérifie la Regex pour l'adresse email
-            if (preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#", $_POST['email']))
+            if (filter_var($email, FILTER_VALIDATE_EMAIL))
             {
               // On vérifie que les 2 mots de passe sont identiques.
               if ($_POST['pass'] == $_POST['pass_confirm'])
@@ -321,7 +330,7 @@ try // Test (Exception)
       // Affichage d'un article
       elseif ($action == 'post')
       {
-        if (isset($_GET['id']) && $_GET['id'] > 0)
+        if (isset($id) && $id > 0)
         {
           $PostController->post();
         }
@@ -335,11 +344,11 @@ try // Test (Exception)
       // Ajouter un commentaire
       elseif ($action == 'addComment')
       {
-        if (isset($_GET['id']) && $_GET['id'] > 0)
+        if (isset($id) && $id > 0)
         {
-          if (!empty($_POST['author']) && !empty($_POST['comment']))
+          if (!empty($author) && !empty($comment))
           {
-            $CommentsController->addComment($_GET['id'], $_POST['author'], $_POST['comment']);
+            $CommentsController->addComment($id, $author, $comment);
           }
           else
           {
@@ -357,9 +366,9 @@ try // Test (Exception)
       // Signaler un commentaire
       elseif ($action == 'report')
       {
-          if (isset($_GET['id_post']) && $_GET['id_post'] > 0)
+          if (isset($id_post) && $id_post > 0)
           {
-              if (isset($_GET['id']) && $_GET['id'] > 0)
+              if (isset($id) && $id > 0)
               {
                   $CommentsController->reportingComment();
               }

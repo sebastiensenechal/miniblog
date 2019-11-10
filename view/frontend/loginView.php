@@ -3,6 +3,22 @@
 <?php ob_start(); ?>
 
 <header id="header">
+  <?php
+  if (empty($page))
+  {
+    $page = 'nav';
+    $page = trim('view/' . $page.'.php');
+    if (file_exists($page))
+    {
+      include($page);
+    }
+    else
+    {
+      echo "Page inexistante !";
+    }
+  }
+  ?>
+  
   <h1>Page de connexion</h1>
 </header>
 
