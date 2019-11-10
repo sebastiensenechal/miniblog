@@ -5,6 +5,7 @@
     <title><?= $title ?></title>
     <link href="./public/css/style.css" rel="stylesheet" />
     <meta name="robots" content="noindex, nofollow">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"  rel="stylesheet">
     <script type="text/javascript" src="public/js/tinymce/tinymce.min.js"></script>
     <script type="text/javascript">
       tinyMCE.init({
@@ -23,21 +24,6 @@
   </head>
   <body>
     <div id="grid">
-      <?php
-      if (empty($page))
-      {
-        $page = 'nav';
-        $page = trim($page.'.php');
-        if (file_exists('view/'.$page))
-        {
-          include($page);
-        }
-        else
-        {
-          echo "Page inexistante !";
-        }
-      }
-      ?>
       <?= $content ?>
     </div>
   </body>

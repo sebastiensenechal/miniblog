@@ -5,6 +5,7 @@
     <title>Backoffice | <?= $title ?></title>
     <link href="./public/css/style.css" rel="stylesheet" />
     <meta name="robots" content="noindex, nofollow">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"  rel="stylesheet">
     <script type="text/javascript" src="public/js/tinymce/tinymce.min.js"></script>
     <script type="text/javascript">
       tinyMCE.init({
