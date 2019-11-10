@@ -3,12 +3,18 @@
     <li><a href="index.php">Accueil</a></li>
     <li><a href="mailto:sebast.senechal@gmail.com">Contact</a></li>
     <?php
-    if (isset($_SESSION['id']) && isset($_SESSION['pseudo']))
+    if (isset($_SESSION['id']) && isset($_SESSION['pseudo']) && !empty($_SESSION['role'] == 0))
     {
     ?>
       <li><a href="index.php?action=dashbord">Tableau de bord</a></li>
       <li><a href="index.php?action=logout">Déconnection</a></li>
     <?php
+    }
+    elseif (isset($_SESSION['id']) && isset($_SESSION['pseudo']) && !empty($_SESSION['role'] == 1))
+    {
+      ?>
+        <li><a href="index.php?action=logout">Déconnection</a></li>
+      <?php
     }
     else
     {
