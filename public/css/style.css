@@ -54,7 +54,8 @@ body {
 p, address {font-size:1em;line-height:1.6em;font-weight:400; color:#444;}
 a {font-size:1em; line-height:1.6em;font-weight:400; color:#666;text-decoration: underline;}
 a:hover {text-decoration: none;}
-h1, h2, h3, h4 {font-family: 'Spectral', Georgia, serif; color: #444;}
+h2, h3, h4 {font-family: 'Spectral', Georgia, serif; color: #444;}
+h1 {font-family: 'Consolas', 'Courier New', monospace;; color: #666;}
 h1 {text-transform:uppercase;font-weight:800;}
 h2 {font-weight:700;}
 h3 {font-weight:700;}
@@ -135,7 +136,7 @@ input, textarea {
   top: 0;
   left: 0;
   height: 100vh;
-  background: #d4d4d4;
+  background: #ffffff;
   width: 3em;
   display: flex;
   flex-direction: column;
@@ -186,6 +187,22 @@ input, textarea {
 }
 #header_content {
   padding-left: 4.5em;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+#header_content img {
+  width: 100px;
+  height: auto;
+  margin-right:1em;
+}
+figure#logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+figure#logo img {
+  width: 80%;
 }
 
 #home-grid {

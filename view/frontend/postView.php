@@ -18,8 +18,14 @@
     }
   }
   ?>
-  
-  <h1><a href="index.php" title="Accueil de John Doe">John Doe</a></h1>
+
+  <figure id="logo">
+    <img src="././public/img/logo-gris.svg" alt="">
+    <figcaption>
+      <h1><a href="index.php" title="Accueil de John Doe">John Doe</a></h1>
+    </figcaption>
+  </figure>
+
 </header>
 
 <div id="layout-post">

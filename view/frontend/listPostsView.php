@@ -20,6 +20,7 @@
   ?>
 
   <div id="header_content">
+    <img src="././public/img/logo-gris.svg" alt="">
     <h1><a href="index.php" title="Accueil de John Doe">John Doe</a><br />
     <span>Essayiste - Auteur - Ecrivain</span></h1>
   </div>

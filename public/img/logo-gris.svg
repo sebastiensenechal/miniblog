@@ -4,7 +4,7 @@
 <svg version="1.1" id="Calque_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="380.645px" height="378.71px" viewBox="0 0 380.645 378.71" enable-background="new 0 0 380.645 378.71"
 	 xml:space="preserve">
-<rect x="13.387" y="12.548" fill="none" stroke="#FFFFFF" stroke-width="20" stroke-miterlimit="10" width="353" height="353"/>
-<text transform="matrix(1 0 0 1 41.2903 217.441)" fill="#FFFFFF" font-family="'Consolas-Bold'" font-size="107.2491">J</text>
-<text transform="matrix(1 0 0 1 41.2903 334.2691)" fill="#FFFFFF" font-family="'Consolas-Bold'" font-size="107.2491">Doe</text>
+<rect x="13.387" y="12.548" fill="none" stroke="#666666" stroke-width="20" stroke-miterlimit="10" width="353" height="353"/>
+<text transform="matrix(1 0 0 1 41.2903 217.441)" fill="#666666" font-family="'Consolas-Bold'" font-size="107.2491">J</text>
+<text transform="matrix(1 0 0 1 41.2903 334.2691)" fill="#666666" font-family="'Consolas-Bold'" font-size="107.2491">Doe</text>
 </svg>
