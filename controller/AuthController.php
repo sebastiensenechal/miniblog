@@ -4,7 +4,6 @@ require_once('./model/frontend/UserManager.php');
 class AuthController {
 
 
-
   public function login()
   {
     // l'accès à la page de connexion génère un token dans un champs hidden du formulaire
@@ -25,7 +24,7 @@ class AuthController {
     // Créer une instance de la classe User Manager
     $userManager = new \SebastienSenechal\Miniblog\Model\Frontend\UserManager();
 
-    $user = $userManager->getUser($pseudo, $pass);
+    $user = $userManager->getUser($pseudo);
     $proper_pass = password_verify($_POST['pass'], $user['pass']);
 
      if(!$user || !$proper_pass)
@@ -40,23 +39,30 @@ class AuthController {
 
        if (isset($_SESSION['token']) AND isset($_POST['token']) AND !empty($_SESSION['token']) AND !empty($_POST['token']))
        {
-         if ($_SESSION['token'] == $_POST['token']) {
+         if ($_SESSION['token'] == $_POST['token'])
+         {
            session_start();
 
            $this->ticket();
 
            $_SESSION['id'] = $user['id'];
            $_SESSION['pseudo'] = $user['pseudo'];
+           $_SESSION['role'] = $user['role'];
 
            $id = $user['id'];
            $pseudo = $user['pseudo'];
-           // $password_hash = $user['pass'];
 
            setcookie('id', $id, time() + (60 * 20), null, null, false, true);
            setcookie('pseudo', $pseudo, time() + (60 * 20), null, null, false, true);
-           // setcookie('pass', $password_hash, time() + 1800, null, null, false, true);
 
-           header('Location: ./index.php?action=dashbord');
+           if ($user['role'] == 0)
+           {
+             header('Location: ./index.php?action=dashbord');
+           }
+           else
+           {
+             header('Location: ./index.php');
+           }
          }
          else
          {

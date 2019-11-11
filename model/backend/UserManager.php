@@ -11,7 +11,7 @@ class UserManager extends Manager
   {
     // Instructions
     $db = $this->dbConnect();
-    $req = $db->prepare('SELECT id, pseudo, pass FROM members WHERE pseudo= ? AND pass= ?');
+    $req = $db->prepare('SELECT id, pseudo, pass, role FROM members WHERE pseudo= ? AND pass= ?');
     $req->execute(array($pseudo, $pass));
     $user = $req->fetch();
 
