@@ -1,7 +1,8 @@
 <?php
-namespace SebastienSenechal\Miniblog\Model\Backend; // La classe sera dans ce namespace
+namespace SebastienSenechal\Miniblog\Model; // La classe sera dans ce namespace
 
-require_once('model/backend/Manager.php');
+use \SebastienSenechal\Miniblog\Model\Manager;
+require_once('model/Manager.php');
 
 
 class PostManager extends Manager
@@ -13,7 +14,7 @@ class PostManager extends Manager
     $db = $this->dbConnect();
 
     // Récupérer les billets sur la base de données
-    $req = $db->query('SELECT id, title, content, excerpt, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM posts ORDER BY creation_date DESC');
+    $req = $db->query('SELECT id, title, content, excerpt, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%i\') AS creation_date_fr FROM posts ORDER BY creation_date DESC');
 
     return $req;
   }
@@ -25,7 +26,7 @@ class PostManager extends Manager
     $db = $this->dbConnect();
 
     // Récupérer un post en fonction de son ID avec une requête préparé
-    $req = $db->prepare('SELECT id, title, content, excerpt, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM posts WHERE id = ?');
+    $req = $db->prepare('SELECT id, title, content, excerpt, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%i\') AS creation_date_fr FROM posts WHERE id = ?');
     $req->execute(array($id));
     $post = $req->fetch();
 
@@ -61,12 +62,13 @@ class PostManager extends Manager
     $db = $this->dbConnect();
 
     $post = $db->prepare('UPDATE posts SET author= :author, title= :title, content= :content, excerpt= :excerpt, creation_date= NOW() WHERE id= :id_post');
-    $post->bindParam('id_post', $id_post, \PDO::PARAM_INT);
-    $post->bindParam('title',$title, \PDO::PARAM_STR);
-    $post->bindParam('author', $author, \PDO::PARAM_STR);
-    $post->bindParam('content',$content, \PDO::PARAM_STR);
-    $post->bindParam('excerpt', $excerpt, \PDO::PARAM_INT);
-    $updatePost = $post->execute();
+    $updatePost = $post->execute(array(
+      'id_post' => $id_post,
+    	'title' => $title,
+      'author' => $author,
+    	'content' => $content,
+      'excerpt' => $excerpt
+    ));
 
     return $updatePost;
   }

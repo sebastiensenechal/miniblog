@@ -1,8 +1,8 @@
 <?php
-namespace SebastienSenechal\Miniblog\Model\Frontend;
+namespace SebastienSenechal\Miniblog\Model;
 
-
-require_once('./model/frontend/Manager.php');
+use \SebastienSenechal\Miniblog\Model\Manager;
+require_once('model/Manager.php');
 
 
 class UserManager extends Manager
@@ -29,19 +29,4 @@ class UserManager extends Manager
     return $registerUser;
   }
 
-
-
-  // public function updateUser($id, $pseudo, $email, $password_hash)
-  // {
-  //   // Instructions
-  //   $db = $this->dbConnect();
-  // }
-  //
-  //
-  //
-  // public function deleteUser()
-  // {
-  //   // Instructions
-  //   $db = $this->dbConnect();
-  // }
 }

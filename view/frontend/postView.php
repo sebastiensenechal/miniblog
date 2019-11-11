@@ -42,24 +42,31 @@
             <?= nl2br($post['content']) ?>
         </p>
 
-      <div id="post-comments">
-        <h2>Laissez un commentaire</h2>
+      <?php
+      if (isset($_SESSION['id']) && isset($_SESSION['pseudo']))
+      {
+        ?>
+        <div id="post-comments">
+          <h2>Laissez un commentaire</h2>
 
-        <div id="comment-form">
-          <form action="index.php?action=addComment&amp;id=<?= $post['id'] ?>" method="post">
-            <fieldset>
-              <label for="author">* Auteur</label><br>
-              <input type="text" id="author" name="author" />
-            </fieldset>
-            <fieldset>
-              <label for="comment">* Commentaire</label><br>
-              <textarea id="comment" name="comment"></textarea>
-            </fieldset>
-            <fieldset>
-              <input type="submit" />
-            </fieldset>
-          </form>
-        </div>
+          <div id="comment-form">
+            <form action="index.php?action=addComment&amp;id=<?= $post['id'] ?>" method="post">
+              <fieldset>
+                <label for="author">* Auteur</label><br>
+                <input type="text" id="author" name="author" />
+              </fieldset>
+              <fieldset>
+                <label for="comment">* Commentaire</label><br>
+                <textarea id="comment" name="comment"></textarea>
+              </fieldset>
+              <fieldset>
+                <input type="submit" />
+              </fieldset>
+            </form>
+          </div>
+        <?php
+      }
+      ?>
 
         <h2>Commentaires</h2>
 
@@ -72,7 +79,6 @@
             <span class="comment-date"><?= $comment['comment_date_fr'] ?></span></span></p>
             <p><?= nl2br($comment['comment']) ?></p>
             <ul class="admin-content">
-              <li><a href="index.php?action=userUpdateComment&amp;id_post=<?= $post['id'];?>&amp;id=<?= $comment['id'];?>">Éditer</a></li>
               <li><a href="index.php?action=report&amp;id_post=<?= $post['id'];?>&amp;id=<?= $comment['id']; ?>">Signaler</a></li>
             </ul>
           </aside>

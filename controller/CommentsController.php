@@ -1,15 +1,19 @@
 <?php
-require_once('./model/frontend/PostManager.php');
-require_once('./model/frontend/CommentManager.php');
-require_once('./model/backend/PostManager.php');
-require_once('./model/backend/CommentManager.php');
+namespace SebastienSenechal\Miniblog; // La classe sera dans ce namespace
+
+use \SebastienSenechal\Miniblog\Model\PostManager;
+use \SebastienSenechal\Miniblog\Model\CommentManager;
+
+require_once 'Autoloader.php';
+Autoloader::register();
+
 
 class CommentsController {
 
   // Liste des commentaires
   public function adminListComments()
   {
-      $commentManager = new \SebastienSenechal\Miniblog\Model\Backend\CommentManager();
+      $commentManager = new CommentManager();
       $comments = $commentManager->getAllComments();
       require ('./view/backend/listCommentsView.php');
   }
@@ -19,7 +23,7 @@ class CommentsController {
   // Page des commentaires en attentes d'approbation
   public function adminCommentsReport()
   {
-    $commentManager = new \SebastienSenechal\Miniblog\Model\Backend\CommentManager();
+    $commentManager = new CommentManager();
     $reportComments = $commentManager->getReportComments();
     require ('./view/backend/reportCommentsView.php');
   }
@@ -29,7 +33,7 @@ class CommentsController {
   // Page des commentaires en attentes d'approbation
   public function adminCommentsStandby()
   {
-    $commentManager = new \SebastienSenechal\Miniblog\Model\Backend\CommentManager();
+    $commentManager = new CommentManager();
     $standbyComments = $commentManager->getStandbyComments();
     require ('./view/backend/standbyCommentsView.php');
   }
@@ -39,7 +43,7 @@ class CommentsController {
   // Supprimer un commentaire
   public function deleteComment($id)
   {
-    $commentManager = new \SebastienSenechal\Miniblog\Model\Backend\CommentManager();
+    $commentManager = new CommentManager();
     $deleteComment = $commentManager->deleteComment($id);
     if($deleteComment === false)
     {
@@ -55,8 +59,8 @@ class CommentsController {
 
   public function approvedReportComment() // Retirer le signalement
   {
-    $postManager = new \SebastienSenechal\Miniblog\Model\Backend\PostManager();
-    $commentManager = new \SebastienSenechal\Miniblog\Model\Backend\CommentManager();
+    $postManager = new PostManager();
+    $commentManager = new CommentManager();
 
     $post = $postManager->getPost($_GET['id']);
     $reportComment = $commentManager->approvedReportComment($_GET['id']);
@@ -67,8 +71,8 @@ class CommentsController {
 
   public function approvedComment() // Retirer le signalement
   {
-    $postManager = new \SebastienSenechal\Miniblog\Model\Backend\PostManager();
-    $commentManager = new \SebastienSenechal\Miniblog\Model\Backend\CommentManager();
+    $postManager = new PostManager();
+    $commentManager = new CommentManager();
 
     $post = $postManager->getPost($_GET['id']);
     $approvedComments = $commentManager->approvedComment($_GET['id']);
@@ -80,7 +84,7 @@ class CommentsController {
   // Signaler un commentaire
   public function disableComment()
   {
-    $commentManager = new \SebastienSenechal\Miniblog\Model\Backend\CommentManager();
+    $commentManager = new CommentManager();
 
     $disableComment = $commentManager->disableComment($_GET['id']);
     header('Location: ./index.php?action=adminListComments');
@@ -95,7 +99,7 @@ class CommentsController {
   // Ajout d'un commentaire dans la base
   public function addComment($postId, $author, $comment)
   {
-    $commentManager = new \SebastienSenechal\Miniblog\Model\Frontend\CommentManager();
+    $commentManager = new CommentManager();
 
     $affectedLines = $commentManager->postComment($postId, $author, $comment);
 
@@ -115,8 +119,8 @@ class CommentsController {
   // Signaler un commentaire
   public function reportingComment()
   {
-    $postManager = new \SebastienSenechal\Miniblog\Model\Frontend\PostManager();
-    $commentManager = new \SebastienSenechal\Miniblog\Model\Frontend\CommentManager();
+    $postManager = new PostManager();
+    $commentManager = new CommentManager();
 
     $post = $postManager->getPost($_GET['id']);
     $reportComment = $commentManager->reportComment($_GET['id']);

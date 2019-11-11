@@ -1,9 +1,11 @@
 <?php
-require_once('./model/frontend/PostManager.php');
-require_once('./model/frontend/CommentManager.php');
+namespace SebastienSenechal\Miniblog; // La classe sera dans ce namespace
 
-require_once('./model/backend/PostManager.php');
-require_once('./model/backend/CommentManager.php');
+use \SebastienSenechal\Miniblog\Model\PostManager;
+use \SebastienSenechal\Miniblog\Model\CommentManager;
+
+require_once 'Autoloader.php';
+Autoloader::register();
 
 
 class PostController {
@@ -11,21 +13,24 @@ class PostController {
   // Liste des articles
   public function adminListPosts()
   {
-      $postManager = new \SebastienSenechal\Miniblog\Model\Backend\PostManager();
+      $postManager = new PostManager();
       $posts = $postManager->getPosts();
-      require('./view/backend/listPostsView.php');
+
+      $listPostsView = 'view/backend/listPostsView';
+      require($listPostsView . '.php');
   }
 
 
   public function adminPost()
   {
-    $postManager = new \SebastienSenechal\Miniblog\Model\Backend\PostManager();
-    $commentManager = new \SebastienSenechal\Miniblog\Model\Backend\CommentManager();
+    $postManager = new PostManager();
+    $commentManager = new CommentManager();
 
     $post = $postManager->getPost($_GET['id']);
     $comments = $commentManager->getComments($_GET['id']);
 
-    require ('./view/backend/postView.php');
+    $postView = 'view/backend/postView';
+    require($postView . '.php');
   }
 
 
@@ -33,7 +38,8 @@ class PostController {
   // Vue d'un nouvel article
   public function adminNewPost()
   {
-    require ('./view/backend/newPostView.php');
+    $newPostView = 'view/backend/newPostView';
+    require($newPostView . '.php');
   }
 
 
@@ -41,7 +47,7 @@ class PostController {
   // Ajouter un article
   public function addPost($author, $title, $content, $excerpt)
   {
-    $postManager = new \SebastienSenechal\Miniblog\Model\Backend\PostManager();
+    $postManager = new PostManager();
 
     $createPost = $postManager->createPost($author, $title, $content, $excerpt);
 
@@ -52,18 +58,19 @@ class PostController {
   // Page de mise à jour, d'édition d'article
   public function adminUpdatePost()
   {
-    $postManager = new \SebastienSenechal\Miniblog\Model\Backend\PostManager();
+    $postManager = new PostManager();
 
     $post = $postManager->getPost($_GET['id']);
 
-    require ('view/backend/updatePostView.php');
+    $updatePostView = 'view/backend/updatePostView';
+    require($updatePostView . '.php');
   }
 
 
   // Mettre à jour / Editer un article
   public function updatePost($id, $author, $title, $content, $excerpt)
   {
-    $postManager = new \SebastienSenechal\Miniblog\Model\Backend\PostManager();
+    $postManager = new PostManager();
 
     $updatePost = $postManager->updatePost($id, $author, $title, $content, $excerpt);
 
@@ -80,8 +87,8 @@ class PostController {
     // Supprimer un article
   public function deletePost($id)
     {
-      $postManager = new \SebastienSenechal\Miniblog\Model\Backend\PostManager();
-      $commentManager = new \SebastienSenechal\Miniblog\Model\Backend\CommentManager();
+      $postManager = new PostManager();
+      $commentManager = new CommentManager();
 
       $deletePost = $postManager->deletePost($id);
       $deleteComments = $commentManager->deleteComments($id);
@@ -109,23 +116,25 @@ class PostController {
     // Affiche la liste des billets
     public function listPosts()
     {
-      $postManager = new \SebastienSenechal\Miniblog\Model\Frontend\PostManager(); // Création d'un objet (namespace "\SebastienSenechal\Miniblog\Model\")
+      $postManager = new PostManager(); // Création d'un objet (namespace "\SebastienSenechal\Miniblog\Model\")
       $posts = $postManager->getPosts(); // Appel d'une fonction de cet objet
 
-      require('./view/frontend/listPostsView.php');
+      $listPostsView = 'view/frontend/listPostsView';
+      require($listPostsView . '.php');
     }
 
 
     // Affiche un billet avec ses commentaires
     public function post()
     {
-      $postManager = new \SebastienSenechal\Miniblog\Model\Frontend\PostManager();
-      $commentManager = new \SebastienSenechal\Miniblog\Model\Frontend\CommentManager();
+      $postManager = new PostManager();
+      $commentManager = new CommentManager();
 
       $post = $postManager->getPost($_GET['id']);
       $comments = $commentManager->getComments($_GET['id']);
 
-      require('./view/frontend/postView.php');
+      $listPostsView = 'view/frontend/postView';
+      require($listPostsView . '.php');
     }
 
 }

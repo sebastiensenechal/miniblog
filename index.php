@@ -3,17 +3,21 @@
 <?php
 // Le routeur : premier fichier appelé, c'est un "controleur frontal". Il appel le bon controleur chez "controller.php" en fonction d'un paramètre dans l'url.
 // Ajout d'une gestion d'exceptions pour les erreurs
+use \SebastienSenechal\Miniblog\Autoloader;
+use \SebastienSenechal\Miniblog\AuthController;
+use \SebastienSenechal\Miniblog\PostController;
+use \SebastienSenechal\Miniblog\CommentsController;
+use \SebastienSenechal\Miniblog\UserController;
+
+$autoloader = "controller/Autoloader";
+require_once $autoloader . '.php';
+Autoloader::register();
 
 
-require('controller/AuthController.php');
-require('controller/PostController.php');
-require('controller/CommentsController.php');
-require('controller/UserController.php');
-
-$AuthController = new AuthController;
-$PostController = new PostController;
-$CommentsController = new CommentsController;
-$UserController = new UserController;
+$AuthController = new AuthController();
+$PostController = new PostController();
+$CommentsController = new CommentsController();
+$UserController = new UserController();
 
 
 try // Test (Exception)
@@ -492,28 +496,6 @@ try // Test (Exception)
         else
         {
           // "throw new Exception" arrête le bloc "try" et amène directement l'ordinateur au bloc "catch"
-          throw new Exception('Erreur : aucun identifiant de billet envoyé.');
-        }
-      }
-
-      // Ajouter un commentaire
-      elseif ($action == 'addComment')
-      {
-        if (isset($id) && $id > 0)
-        {
-          if (!empty($author) && !empty($comment))
-          {
-            $CommentsController->addComment($id, $author, $comment);
-          }
-          else
-          {
-            // Autre exception
-            throw new Exception('Erreur : tous les champs doivent être renseignés !');
-          }
-        }
-        else
-        {
-          // Autre exception
           throw new Exception('Erreur : aucun identifiant de billet envoyé.');
         }
       }

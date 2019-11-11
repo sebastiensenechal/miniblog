@@ -1,5 +1,11 @@
 <?php
-require_once('./model/frontend/UserManager.php');
+namespace SebastienSenechal\Miniblog; // La classe sera dans ce namespace
+
+use \SebastienSenechal\Miniblog\Model\UserManager;
+
+// require_once('./model/UserManager.php');
+require_once 'Autoloader.php';
+Autoloader::register();
 
 class AuthController {
 
@@ -12,7 +18,8 @@ class AuthController {
     // Créer une session CSRF
     $_SESSION['token'] = $token;
 
-    require('view/frontend/loginView.php');
+    $loginView = 'view/frontend/loginView';
+    require($loginView . '.php');
   }
 
 
@@ -22,7 +29,7 @@ class AuthController {
   {
     // Vérifier la présence des informations demandées
     // Créer une instance de la classe User Manager
-    $userManager = new \SebastienSenechal\Miniblog\Model\Frontend\UserManager();
+    $userManager = new UserManager();
 
     $user = $userManager->getUser($pseudo);
     $proper_pass = password_verify($_POST['pass'], $user['pass']);

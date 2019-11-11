@@ -1,20 +1,27 @@
 <?php
-require_once('./model/backend/PostManager.php');
-require_once('./model/backend/CommentManager.php');
-require_once('./model/frontend/UserManager.php');
+namespace SebastienSenechal\Miniblog; // La classe sera dans ce namespace
+
+use \SebastienSenechal\Miniblog\Model\PostManager;
+use \SebastienSenechal\Miniblog\Model\CommentManager;
+use \SebastienSenechal\Miniblog\Model\UserManager;
+
+require_once 'Autoloader.php';
+Autoloader::register();
+
 
 class UserController {
 
   // Tableau de bord
   public function dashbord()
   {
-    $postManager = new \SebastienSenechal\Miniblog\Model\Backend\PostManager();
-    $commentManager = new \SebastienSenechal\Miniblog\Model\Backend\CommentManager();
+    $postManager = new PostManager();
+    $commentManager = new CommentManager();
 
     $post = $postManager->getLastPost();
     $comment = $commentManager->getLastComment();
 
-    require('./view/backend/indexView.php');
+    $indexView = 'view/backend/indexView';
+    require($indexView . '.php');
   }
 
 
@@ -22,7 +29,7 @@ class UserController {
   function registerUser($pseudo, $password_hash, $email)
   {
     // Instancier la classe User Manager
-    $userManager = new \SebastienSenechal\Miniblog\Model\Frontend\UserManager();
+    $userManager = new UserManager();
     // Faire appel à une fonction de création d'utilisateur. Paramètres : (pseudo, email, password hash).
     $registerUser = $userManager->createUser($pseudo, $password_hash, $email);
     // Si l'inscription est refusé "false", jeter Exception

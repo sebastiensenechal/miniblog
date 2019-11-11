@@ -1,8 +1,8 @@
 <?php
-namespace SebastienSenechal\Miniblog\Model\Backend; // La classe sera dans ce namespace
+namespace SebastienSenechal\Miniblog\Model; // La classe sera dans ce namespace
 
-
-require_once('model/backend/Manager.php');
+use \SebastienSenechal\Miniblog\Model\Manager;
+require_once('model/Manager.php');
 
 
 class CommentManager extends Manager
@@ -13,17 +13,26 @@ class CommentManager extends Manager
     $db = $this->dbConnect();
 
     // Récupère un commentaire associé à un ID avec une requête préparé
-    $comments = $db->prepare('SELECT id, author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM comments WHERE post_id = ? AND reporting = 0 AND standby = 0 ORDER BY comment_date DESC');
+    $comments = $db->prepare('SELECT id, author, comment, reporting, standby, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%i\') AS comment_date_fr FROM comments WHERE post_id = ? AND reporting = 0 AND standby = 0 ORDER BY comment_date DESC');
     $comments->execute(array($id_post));
 
     return $comments;
   }
 
+  public function getComment($id_comment)
+    {
+        $db = $this->dbConnect();
+        $comments = $db->prepare('SELECT id, author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%i\') AS comment_date_fr FROM comments WHERE id= ?');
+        $comments->execute(array($id_comment));
+        $comment = $comments->fetch();
+        return $comment;
+    }
+
   public function getAllComments()
   {
     $db = $this->dbConnect();
 
-    $comments = $db->query('SELECT id, post_id, author, comment, reporting, standby, DATE_FORMAT(comment_date, \'%d/%m/%Y à %H:%i:%s\') AS comment_date_fr FROM comments WHERE reporting = 0 AND standby = 0 ORDER BY comment_date DESC');
+    $comments = $db->query('SELECT id, post_id, author, comment, reporting, standby, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%i\') AS comment_date_fr FROM comments WHERE reporting = 0 AND standby = 0 ORDER BY comment_date DESC');
     return $comments;
   }
 
@@ -31,7 +40,7 @@ class CommentManager extends Manager
   {
     $db = $this->dbConnect();
 
-    $reportComments = $db->query('SELECT id, post_id, author, comment, reporting, DATE_FORMAT(comment_date, \'%d/%m/%Y à %H:%i:%s\') AS comment_date_fr FROM comments WHERE reporting= 1 ORDER BY reporting DESC');
+    $reportComments = $db->query('SELECT id, post_id, author, comment, reporting, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%i\') AS comment_date_fr FROM comments WHERE reporting= 1 ORDER BY reporting DESC');
     return $reportComments;
   }
 
@@ -39,7 +48,7 @@ class CommentManager extends Manager
   {
     $db = $this->dbConnect();
 
-    $standbyComments = $db->query('SELECT id, post_id, author, comment, standby, DATE_FORMAT(comment_date, \'%d/%m/%Y à %H:%i:%s\') AS comment_date_fr FROM comments WHERE standby= 1 ORDER BY standby DESC');
+    $standbyComments = $db->query('SELECT id, post_id, author, comment, standby, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%i\') AS comment_date_fr FROM comments WHERE standby= 1 ORDER BY standby DESC');
     return $standbyComments;
   }
 
@@ -60,18 +69,6 @@ class CommentManager extends Manager
 
     return $affectedLines;
   }
-
-
-  // Mettre à jour un commentaire
-  public function updateComment($id_comment, $id_post, $author, $comment)
-    {
-      $db = $this->dbConnect();
-
-      $comments = $db->prepare('UPDATE comments SET post_id= :id_post, author= :author, comment= :comment, comment_date= NOW() WHERE id= ?');
-      $updateComment = $comments->execute(array($id_comment));
-
-      return $updateComment;
-    }
 
 
     // fonction Approuver commentaire
@@ -148,6 +145,16 @@ class CommentManager extends Manager
     $comment = $db->query('SELECT author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %H:%i:%s\') AS comment_date_fr FROM comments WHERE reporting = 0 AND standby = 0 ORDER BY comment_date DESC LIMIT 0, 3');
 
     return $comment;
+  }
+
+  public function reportComment($id_comment)
+  {
+      $db = $this->dbConnect();
+
+      $comments = $db->prepare('UPDATE comments SET reporting = 1 WHERE id= ?');
+      $report = $comments->execute(array($id_comment));
+
+      return $report;
   }
 
 }
