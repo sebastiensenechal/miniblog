@@ -1,6 +1,4 @@
 <?php
-namespace SebastienSenechal\Miniblog; // La classe sera dans ce namespace
-
 class Autoloader {
 
 	static function register()

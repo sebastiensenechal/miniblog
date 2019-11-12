@@ -1,11 +1,9 @@
 <?php
-namespace SebastienSenechal\Miniblog; // La classe sera dans ce namespace
-
 use \SebastienSenechal\Miniblog\Model\PostManager;
 use \SebastienSenechal\Miniblog\Model\CommentManager;
 
-require_once 'Autoloader.php';
-Autoloader::register();
+require_once('./model/PostManager.php');
+require_once('./model/CommentManager.php');
 
 
 class CommentsController {
@@ -15,7 +13,8 @@ class CommentsController {
   {
       $commentManager = new CommentManager();
       $comments = $commentManager->getAllComments();
-      require ('./view/backend/listCommentsView.php');
+      $listCommentsView = 'view/backend/listCommentsView';
+      require($listCommentsView . '.php');
   }
 
 
@@ -25,7 +24,8 @@ class CommentsController {
   {
     $commentManager = new CommentManager();
     $reportComments = $commentManager->getReportComments();
-    require ('./view/backend/reportCommentsView.php');
+    $reportCommentsView = 'view/backend/reportCommentsView';
+    require($reportCommentsView . '.php');
   }
 
 
@@ -35,7 +35,8 @@ class CommentsController {
   {
     $commentManager = new CommentManager();
     $standbyComments = $commentManager->getStandbyComments();
-    require ('./view/backend/standbyCommentsView.php');
+    $standbyCommentsView = 'view/backend/standbyCommentsView';
+    require($standbyCommentsView . '.php');
   }
 
 

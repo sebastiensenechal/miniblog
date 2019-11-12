@@ -2,7 +2,9 @@
 namespace SebastienSenechal\Miniblog\Model; // La classe sera dans ce namespace
 
 use \SebastienSenechal\Miniblog\Model\Manager;
-require_once('model/Manager.php');
+// require_once('Manager.php');
+$manager = "Manager";
+require_once $manager . '.php';
 
 
 class CommentManager extends Manager
@@ -76,11 +78,6 @@ class CommentManager extends Manager
     {
       $db = $this->dbConnect();
 
-      // $comments = $db->prepare('UPDATE comments SET reporting= :reporting WHERE id= :id_comment');
-      // $comments->bindValue(':reporting', 0, \PDO::PARAM_INT);
-      // $comments->bindParam(':id_comment', $id_comment, \PDO::PARAM_INT);
-      // $report = $comments->execute();
-
       $comments = $db->prepare('UPDATE comments SET reporting = 0 WHERE id= ?');
       $report = $comments->execute(array($id_comment));
 
@@ -92,11 +89,6 @@ class CommentManager extends Manager
     function approvedComment($id_comment)
     {
       $db = $this->dbConnect();
-
-      // $comments = $db->prepare('UPDATE comments SET reporting= :reporting WHERE id= :id_comment');
-      // $comments->bindValue(':reporting', 0, \PDO::PARAM_INT);
-      // $comments->bindParam(':id_comment', $id_comment, \PDO::PARAM_INT);
-      // $report = $comments->execute();
 
       $comments = $db->prepare('UPDATE comments SET standby = 0 WHERE id= ?');
       $approved = $comments->execute(array($id_comment));

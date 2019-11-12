@@ -1,11 +1,8 @@
 <?php
-namespace SebastienSenechal\Miniblog; // La classe sera dans ce namespace
-
 use \SebastienSenechal\Miniblog\Model\UserManager;
 
-// require_once('./model/UserManager.php');
-require_once 'Autoloader.php';
-Autoloader::register();
+require_once('./model/UserManager.php');
+
 
 class AuthController {
 

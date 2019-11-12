@@ -53,7 +53,12 @@
             <form action="index.php?action=addComment&amp;id=<?= $post['id'] ?>" method="post">
               <fieldset>
                 <label for="author">* Auteur</label><br>
-                <input type="text" id="author" name="author" />
+                <input type="text" id="author" name="author" value="<?php
+                  if (isset($_SESSION['pseudo']))
+                  {
+                      echo htmlspecialchars($_SESSION['pseudo']);
+                  }
+                  ?>" />
               </fieldset>
               <fieldset>
                 <label for="comment">* Commentaire</label><br>

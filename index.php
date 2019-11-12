@@ -3,21 +3,15 @@
 <?php
 // Le routeur : premier fichier appelé, c'est un "controleur frontal". Il appel le bon controleur chez "controller.php" en fonction d'un paramètre dans l'url.
 // Ajout d'une gestion d'exceptions pour les erreurs
-use \SebastienSenechal\Miniblog\Autoloader;
-use \SebastienSenechal\Miniblog\AuthController;
-use \SebastienSenechal\Miniblog\PostController;
-use \SebastienSenechal\Miniblog\CommentsController;
-use \SebastienSenechal\Miniblog\UserController;
 
 $autoloader = "controller/Autoloader";
 require_once $autoloader . '.php';
 Autoloader::register();
 
-
-$AuthController = new AuthController();
-$PostController = new PostController();
-$CommentsController = new CommentsController();
-$UserController = new UserController();
+$AuthController = new AuthController;
+$PostController = new PostController;
+$CommentsController = new CommentsController;
+$UserController = new UserController;
 
 
 try // Test (Exception)
@@ -441,13 +435,13 @@ try // Test (Exception)
         // Connexion
         elseif ($action == 'connect')
         {
-          if (!empty($_POST['pseudo']) && !empty($_POST['pass']))
+          if (!empty($_POST['pseudo']) && !empty($_POST['pass']) && !empty($_POST['token']))
           {
-              $AuthController->logUser($_POST['pseudo'], $_POST['pass'], $_POST['token']);
+            $AuthController->logUser($_POST['pseudo'], $_POST['pass'], $_POST['token']);
           }
           else
           {
-              throw new Exception('Tous les champs doivent être remplis !');
+            throw new Exception('Tous les champs doivent être remplis !');
           }
         }
 
@@ -563,13 +557,13 @@ try // Test (Exception)
       // Connexion
       elseif ($action == 'connect')
       {
-        if (!empty($_POST['pseudo']) && !empty($_POST['pass']))
+        if (!empty($_POST['pseudo']) && !empty($_POST['pass']) && !empty($_POST['token']))
         {
-            $AuthController->logUser($_POST['pseudo'], $_POST['pass'], $_POST['token']);
+          $AuthController->logUser($_POST['pseudo'], $_POST['pass'], $_POST['token']);
         }
         else
         {
-            throw new Exception('Tous les champs doivent être remplis !');
+          throw new Exception('Tous les champs doivent être remplis !');
         }
       }
 

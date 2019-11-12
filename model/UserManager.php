@@ -2,7 +2,8 @@
 namespace SebastienSenechal\Miniblog\Model;
 
 use \SebastienSenechal\Miniblog\Model\Manager;
-require_once('model/Manager.php');
+$manager = "Manager";
+require_once $manager . '.php';
 
 
 class UserManager extends Manager

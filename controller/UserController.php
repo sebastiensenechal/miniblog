@@ -1,13 +1,11 @@
 <?php
-namespace SebastienSenechal\Miniblog; // La classe sera dans ce namespace
-
 use \SebastienSenechal\Miniblog\Model\PostManager;
 use \SebastienSenechal\Miniblog\Model\CommentManager;
 use \SebastienSenechal\Miniblog\Model\UserManager;
 
-require_once 'Autoloader.php';
-Autoloader::register();
-
+require_once('./model/PostManager.php');
+require_once('./model/CommentManager.php');
+require_once('./model/UserManager.php');
 
 class UserController {
 
