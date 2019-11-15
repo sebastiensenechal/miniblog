@@ -73,21 +73,40 @@ h3
     margin-bottom:0px;
 }
 h2 span, h3 span, h4 span, p span {color:#777;}
+.big-chars {
+  font-size:1.4em;
+  font-weight: 100;
+  line-height: 1.5em;
+  font-family: "Spectral", Georgia, serif;
+}
+.big-chars > span {font-size:100%;}
+
+.list-center {
+  list-style: none;
+  padding-left: 0;
+  text-align: center;
+}
 
 .meta-content:first-child {
   border-left: 4px solid #fbdeb9;
   padding-left: 10px;
   color: #444;
 }
-
 section {
+  width:80%;
+  margin: 1em auto;
+}
+#layout-post section#content-news, #dashbord-grid > section, #dashbord-grid section#content-news, section#content-comments {
   width:50%;
   margin: 1em auto;
 }
+#layout-post section {
+  width:80%;
+}
 .news
 {
-    border-bottom: 1px dotted #000;
-    padding: 2em 0;
+  border-bottom: 1px dotted #000;
+  padding: 2em 0;
 }
 
 #post-comments {
@@ -206,23 +225,11 @@ figure#logo img {
 }
 
 #home-grid {
-    display: -ms-flexbox;
-    display: -webkit-flex;
     display: flex;
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
     flex-direction: row-reverse;
-    -webkit-flex-wrap: nowrap;
-    -ms-flex-wrap: nowrap;
     flex-wrap: nowrap;
-    -webkit-justify-content: flex-start;
-    -ms-flex-pack: start;
-    justify-content: flex-start;
-    -webkit-align-content: stretch;
-    -ms-flex-line-pack: stretch;
+    justify-content: center;
     align-content: stretch;
-    -webkit-align-items: stretch;
-    -ms-flex-align: stretch;
     align-items: stretch;
     width: 50%;
     height: 100vh;
@@ -284,6 +291,20 @@ figure#logo img {
   width: auto;
 }
 
+#posts-grid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+#posts-grid .news {
+  width: 40%;
+  margin: 0 3em 1em 0;
+}
+#layout-post #posts-grid {
+  margin: 1em auto;
+}
+
 
 /* *************************************************************
 *************************** BACKOFFICE *************************
@@ -298,23 +319,11 @@ figure#logo img {
   color:#666;
 }
 #dashbord-grid {
-    display: -ms-flexbox;
-    display: -webkit-flex;
     display: flex;
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
-    flex-direction: row-reverse;
-    -webkit-flex-wrap: nowrap;
-    -ms-flex-wrap: nowrap;
+    flex-direction: row;
     flex-wrap: nowrap;
-    -webkit-justify-content: flex-start;
-    -ms-flex-pack: start;
     justify-content: flex-start;
-    -webkit-align-content: stretch;
-    -ms-flex-line-pack: stretch;
     align-content: stretch;
-    -webkit-align-items: stretch;
-    -ms-flex-align: stretch;
     align-items: stretch;
     width: 80%;
     height: 100vh;

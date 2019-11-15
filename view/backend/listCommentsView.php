@@ -7,7 +7,7 @@
 </div>
 
 <div id="dashbord-grid">
-  <section id="content-news">
+  <section id="content-comments">
     <header>
       <h1>
           Liste des commentaires
@@ -46,4 +46,4 @@
 
 <?php $content = ob_get_clean() ?>
 
-<?php require('view/backend/template.php') ?>
+<?php require('template.php') ?>

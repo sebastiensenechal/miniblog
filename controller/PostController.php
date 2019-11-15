@@ -111,7 +111,17 @@ class PostController {
 
 
     // ************* FRONTEND
-    // Affiche la liste des billets
+    // Affiche l'index en front
+    public function indexView()
+    {
+      $postManager = new PostManager(); // Création d'un objet (namespace "\SebastienSenechal\Miniblog\Model\")
+      $posts = $postManager->getPosts(); // Appel d'une fonction de cet objet
+
+      $indexView = 'view/frontend/indexView';
+      require($indexView . '.php');
+    }
+
+    // Affiche la liste des articles
     public function listPosts()
     {
       $postManager = new PostManager(); // Création d'un objet (namespace "\SebastienSenechal\Miniblog\Model\")
@@ -129,10 +139,11 @@ class PostController {
       $commentManager = new CommentManager();
 
       $post = $postManager->getPost($_GET['id']);
+      $lastPosts = $postManager->getLastPost();
       $comments = $commentManager->getComments($_GET['id']);
 
-      $listPostsView = 'view/frontend/postView';
-      require($listPostsView . '.php');
+      $postsView = 'view/frontend/postView';
+      require($postsView . '.php');
     }
 
 }

@@ -206,7 +206,7 @@ try // Test (Exception)
           {
               if (!empty($author) && !empty($comment))
               {
-                  $CommentsController->addComment($id, $author, $comment);
+                $CommentsController->addComment($id, $author, $comment);
               }
               else
               {
@@ -331,6 +331,12 @@ try // Test (Exception)
       	$_SESSION['ticket'] = $ticket;
 
         // Accueil Visiteur
+        if ($action == 'indexView')
+        {
+          $PostController->indexView();
+        }
+
+        // Liste articles
         if ($action == 'listPosts')
         {
           $PostController->listPosts();
@@ -460,7 +466,7 @@ try // Test (Exception)
     // Retourne au Dashbord.
     else
     {
-      $PostController->listPosts();
+      $PostController->indexView();
     }
   }
 
@@ -475,6 +481,12 @@ try // Test (Exception)
     if (isset($action) && !empty($action))
     {
       // Accueil Visiteur
+      if ($action == 'indexView')
+      {
+        $PostController->indexView();
+      }
+
+      // Liste articles
       if ($action == 'listPosts')
       {
         $PostController->listPosts();
@@ -576,7 +588,7 @@ try // Test (Exception)
     }
     else
     {
-      $PostController->listPosts();
+      $PostController->indexView();
     }
   }
 }

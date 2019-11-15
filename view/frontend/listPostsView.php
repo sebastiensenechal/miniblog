@@ -1,8 +1,8 @@
-<?php $title = 'John Doe' ?>
+<?php $title = 'Liste des articles' ?>
 
 <?php ob_start(); ?>
 
-<header id="main_header">
+<header id="header">
   <?php
   if (empty($page))
   {
@@ -19,50 +19,46 @@
   }
   ?>
 
-  <div id="header_content">
+  <figure id="logo">
     <img src="././public/img/logo-gris.svg" alt="">
-    <h1><a href="index.php" title="Accueil de John Doe">John Doe</a><br />
-    <span>Essayiste - Auteur - Ecrivain</span></h1>
-  </div>
-
-  <figure id="image_home">
-    <img src="././public/img/landscape.jpg" alt="">
-      <figcaption>
-        <!-- Légende -->
-      </figcaption>
+    <figcaption>
+      <h1><a href="index.php" title="Accueil de John Doe">John Doe</a></h1>
+    </figcaption>
   </figure>
+
 </header>
 
-<div id="home-grid">
-  <section id="list-news">
-    <header class="content_header">
-      <h2 style="color: #000;font-weight:100;line-height:1.5em;">John Doe <span style="font-size:1em">est un écrivain français installé à Paris.<br />
-        Il écris des nouvelles et des essais depuis bientôt de 10 ans.</span></h2>
+<div id="layout-post">
+  <section>
+    <header>
+      <h1>
+          Liste des articles
+      </h1>
     </header>
 
-    <?php
-    while ($data = $posts->fetch())
-    {
-    ?>
-        <article class="news">
-            <h3>
-                <?= htmlspecialchars($data['title']) ?><br />
-                <span><?= $data['creation_date_fr'] ?></span>
-            </h3>
+    <div id="posts-grid">
+      <?php
+      while ($data = $posts->fetch())
+      {
+      ?>
+          <article class="news">
+              <h3>
+                  <?= htmlspecialchars($data['title']) ?><br />
+                  <span><?= $data['creation_date_fr'] ?></span>
+              </h3>
 
-            <?= nl2br($data['excerpt']); ?>
+              <?= nl2br($data['excerpt']); ?>
 
-            <p><a href="index.php?action=post&amp;id=<?= $data['id'] ?>">Lire la suite</a></p>
-        </article>
-    <?php
-    }
-    $posts->closeCursor();
-    ?>
-
+              <p><a href="index.php?action=post&amp;id=<?= $data['id'] ?>">Lire la suite</a></p>
+          </article>
+      <?php
+      }
+      $posts->closeCursor();
+      ?>
+    </div>
   </section>
-
 </div>
 
 <?php $content = ob_get_clean() ?>
 
-<?php require('view/template.php') ?>
+<?php require('template.php') ?>

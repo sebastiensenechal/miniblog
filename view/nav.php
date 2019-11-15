@@ -1,6 +1,7 @@
 <nav id="main_navigation">
   <ul>
-    <li><a href="index.php">Accueil</a></li>
+    <li><a href="index.php?action=indexView">Accueil</a></li>
+    <li><a href="index.php?action=listPosts">Articles</a></li>
     <li><a href="mailto:sebast.senechal@gmail.com">Contact</a></li>
     <?php
     if (isset($_SESSION['id']) && isset($_SESSION['pseudo']) && !empty($_SESSION['role'] == 0))

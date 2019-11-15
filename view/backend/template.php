@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="fr">
   <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8">
     <title>Backoffice | <?= $title ?></title>
-    <link href="./public/css/style.css" rel="stylesheet" />
+    <link href="./public/css/style.css" rel="stylesheet">
     <meta name="robots" content="noindex, nofollow">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"  rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   </head>
   <body>
     <div id="grid">

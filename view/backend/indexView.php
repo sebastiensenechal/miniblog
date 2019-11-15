@@ -7,7 +7,7 @@
 </div>
 
 <div id="dashbord-grid">
-  <section id="content_news">
+  <section id="content-news">
     <header id="header_dashbord">
       <h1>Tableau de bord</h1>
       <p>Bienvenu <?= $_SESSION['pseudo']; ?></p>
@@ -54,4 +54,4 @@
 
 <?php $content = ob_get_clean(); ?>
 
-<?php require('view/backend/template.php'); ?>
+<?php require('template.php'); ?>

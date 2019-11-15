@@ -20,12 +20,22 @@
   ?>
 
   <figure id="logo">
-    <img src="././public/img/logo-gris.svg" alt="">
-    <figcaption>
-      <h1><a href="index.php" title="Accueil de John Doe">John Doe</a></h1>
-    </figcaption>
+    <img src="././public/img/logo-gris.svg" alt="Logo de l'écrivain John Doe">
   </figure>
 
+  <p><span class="big-chars">Derniers articles</span></p>
+
+  <ul class="list-center">
+    <?php
+    while ($data = $lastPosts->fetch())
+    {
+    ?>
+      <li><a href="index.php?action=post&amp;id=<?= $data['id'] ?>"><?= htmlspecialchars($data['title']) ?></a></li>
+    <?php
+    }
+    $lastPosts->closeCursor();
+    ?>
+  </ul>
 </header>
 
 <div id="layout-post">
@@ -101,4 +111,4 @@
 
 <?php $content = ob_get_clean() ?>
 
-<?php require('view/template.php') ?>
+<?php require('template.php') ?>
