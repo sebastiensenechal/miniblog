@@ -38,15 +38,15 @@
     </header>
 
     <article class="news">
-        <p>
-            <?= nl2br($post['content']) ?>
-        </p>
+
+      <?= nl2br($post['content']) ?>
+
+      <div id="post-comments">
 
       <?php
       if (isset($_SESSION['id']) && isset($_SESSION['pseudo']))
       {
         ?>
-        <div id="post-comments">
           <h2>Laissez un commentaire</h2>
 
           <div id="comment-form">
@@ -74,6 +74,7 @@
       ?>
 
         <h2>Commentaires</h2>
+        <p><em>Les commentaires sont soumis à validation</em>.</p>
 
         <?php
         while ($comment = $comments->fetch())
