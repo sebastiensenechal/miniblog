@@ -35,11 +35,11 @@
 
     <form action="index.php?action=connect" method="post">
       <fieldset>
-        <label for="pseudo">* Pseudo</label><br>
+        <label for="pseudo"><abbr title="Champs obligatoire">*</abbr> Pseudo</label><br>
         <input type="text" id="pseudo" name="pseudo" placeholder="Votre pseudo" />
       </fieldset>
       <fieldset>
-        <label for="pass">* Mot de passe</label><br>
+        <label for="pass"><abbr title="Champs obligatoire">*</abbr> Mot de passe</label><br>
         <input type="password" id="pass" name="pass" />
       </fieldset>
       <fieldset>
@@ -58,20 +58,26 @@
 
     <form action="index.php?action=subscription" method="post">
       <fieldset>
-        <label for="pseudo">* Pseudo</label><br>
-        <input type="text" id="pseudo" name="pseudo" placeholder="Votre pseudo" />
+        <label for="pseudo"><abbr title="Champs obligatoire">*</abbr> Pseudo</label><br>
+        <input type="text" id="pseudo" name="pseudo" placeholder="Votre pseudo" required />
       </fieldset>
       <fieldset>
-        <label for="email">* Email</label><br>
-        <input type="email" id="email" name="email" placeholder="Votre adresse courriel" />
+        <label for="email"><abbr title="Champs obligatoire">*</abbr> Email</label><br>
+        <input type="email" id="email" name="email" placeholder="email@domain.com" required />
       </fieldset>
       <fieldset>
-        <label for="pass">* Mot de passe</label><br>
-        <input type="password" id="pass" name="pass" />
+        <label for="pass"><abbr title="Champs obligatoire">*</abbr> Mot de passe</label><br>
+        <input type="password" id="pass" name="pass" required />
       </fieldset>
       <fieldset>
-        <label for="pass_confirm">* Confirmez le mot de passe</label><br>
-        <input type="password" id="pass_confirm" name="pass_confirm" />
+        <label for="pass_confirm"><abbr title="Champs obligatoire">*</abbr> Confirmez le mot de passe</label><br>
+        <input type="password" id="pass_confirm" name="pass_confirm" required />
+      </fieldset>
+      <fieldset>
+        <label for="agreement">
+          <abbr title="Champs obligatoire">*</abbr> J'accepte le traitement de mes données conformément à notre politique de données personnelles.
+          <input type="checkbox" name="agreement" value="true" id="agreement" required />
+        </label>
       </fieldset>
       <fieldset>
         <input type="submit" name="subscription" />

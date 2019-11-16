@@ -250,7 +250,7 @@ try // Test (Exception)
         // Inscription
         elseif ($action == 'subscription')
         {
-          if (!empty($_POST['pseudo']) && !empty($_POST['pass']) && !empty($_POST['pass_confirm']) && !empty($_POST['email']))
+          if (!empty($_POST['pseudo']) && !empty($_POST['pass']) && !empty($_POST['pass_confirm']) && !empty($_POST['email']) && $_POST['agreement'] == true)
           {
             // Sécurité
             $pseudo = htmlspecialchars($_POST['pseudo']);

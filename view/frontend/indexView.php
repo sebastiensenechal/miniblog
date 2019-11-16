@@ -26,7 +26,7 @@
   </div>
 
   <figure id="image_home">
-    <img src="././public/img/landscape.jpg" alt="">
+    <img src="././public/img/montagnes-pyrenees.jpg" alt="">
       <figcaption>
         <!-- Légende -->
       </figcaption>
