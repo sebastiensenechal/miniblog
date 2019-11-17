@@ -4,7 +4,7 @@ if (isset($_SESSION['id']))
   ?>
   <nav id="backend_navigation">
     <ul>
-      <li id="title_nav"><a href="index.php">John Doe</a></li>
+      <li id="title_nav"><a href="index.php?action=indexView">John Doe</a></li>
       <li><a href="index.php?action=dashbord">Tableau de bord</a></li>
       <li><a href="index.php?action=adminListPosts">Articles</a></li>
         <ul class="submenu">

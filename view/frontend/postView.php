@@ -1,4 +1,4 @@
-<?php $title = 'Mon blog | ' . htmlspecialchars($post['title']) ?>
+<?php $title = 'John Doe | ' . htmlspecialchars($post['title']) ?>
 
 <?php ob_start(); ?>
 
@@ -18,6 +18,10 @@
     }
   }
   ?>
+
+  <h1><a href="index.php" title="Accueil de John Doe">John Doe</a></h1>
+
+  <?php include('view/navigation.php'); ?>
 
   <figure id="logo">
     <img src="././public/img/logo-gris.svg" alt="Logo de l'écrivain John Doe">
@@ -41,10 +45,10 @@
 <div id="layout-post">
   <section id="content-news">
     <header>
-      <h2>
+      <h1>
           <?= htmlspecialchars($post['title']) ?><br />
           <span><?= $post['creation_date_fr'] ?></span>
-      </h2>
+      </h1>
     </header>
 
     <article class="news">

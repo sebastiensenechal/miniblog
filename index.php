@@ -342,6 +342,12 @@ try // Test (Exception)
           $PostController->listPosts();
         }
 
+        // Biographie
+        if ($action == 'authorView')
+        {
+          $UserController->authorView();
+        }
+
         // Affichage d'un article
         elseif ($action == 'post')
         {
@@ -504,6 +510,12 @@ try // Test (Exception)
           // "throw new Exception" arrête le bloc "try" et amène directement l'ordinateur au bloc "catch"
           throw new Exception('Erreur : aucun identifiant de billet envoyé.');
         }
+      }
+
+      // Biographie
+      if ($action == 'authorView')
+      {
+        $UserController->authorView();
       }
 
       // Signaler un commentaire

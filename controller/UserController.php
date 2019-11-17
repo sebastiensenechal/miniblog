@@ -42,4 +42,10 @@ class UserController {
     }
   }
 
+  public function authorView()
+  {
+    $authorView = 'view/frontend/authorView';
+    require($authorView . '.php');
+  }
+
 }

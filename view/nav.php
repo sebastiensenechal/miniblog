@@ -1,28 +1,30 @@
 <nav id="main_navigation">
-  <ul>
-    <li><a href="index.php?action=indexView">Accueil</a></li>
-    <li><a href="index.php?action=listPosts">Articles</a></li>
-    <li><a href="mailto:sebast.senechal@gmail.com">Contact</a></li>
+  <div id="bouton_navigation">
     <?php
-    if (isset($_SESSION['id']) && isset($_SESSION['pseudo']) && !empty($_SESSION['role'] == 0))
-    {
-    ?>
-      <li><a href="index.php?action=dashbord">Tableau de bord</a></li>
-      <li><a href="index.php?action=logout">Déconnection</a></li>
-    <?php
-    }
-    elseif (isset($_SESSION['id']) && isset($_SESSION['pseudo']) && !empty($_SESSION['role'] == 1))
+    if (isset($_SESSION['id']) && isset($_SESSION['pseudo']))
     {
       ?>
-        <li><a href="index.php?action=logout">Déconnection</a></li>
+        <p><a href="index.php?action=logout">Déconnection</a></p>
       <?php
     }
     else
     {
       ?>
-        <li><a href="index.php?action=login">Connexion / Inscription</a></li> <!-- action=login appel la fonction "login() du controleur" -->
+        <p><a href="index.php?action=login">Connexion</a></p>
       <?php
     }
     ?>
+  </div>
+  <ul>
+    <?php
+    if (isset($_SESSION['id']) && isset($_SESSION['pseudo']) && !empty($_SESSION['role'] == 0))
+    {
+    ?>
+      <li><a href="index.php?action=dashbord">Tableau de bord</a></li>
+    <?php
+    }
+    ?>
+    <li><a href="index.php?action=legale">Mentions légales</a></li>
+    <li><a href="index.php?action=rgpd" title="Données personnelles">RGPD</a></li>
   </ul>
 </nav>

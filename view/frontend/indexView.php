@@ -20,9 +20,13 @@
   ?>
 
   <div id="header_content">
-    <img src="././public/img/logo-gris.svg" alt="">
-    <h1><a href="index.php" title="Accueil de John Doe">John Doe</a><br />
-    <span>Essayiste - Auteur - Ecrivain</span></h1>
+    <?php include('view/navigation.php'); ?>
+
+    <div id="container">
+      <img src="././public/img/logo-gris.svg" alt="">
+      <h1><a href="index.php" title="Accueil de John Doe">John Doe</a><br />
+      <span>Essayiste - Auteur - Ecrivain</span></h1>
+    </div>
   </div>
 
   <figure id="image_home">
@@ -33,7 +37,7 @@
   </figure>
 </header>
 
-<div id="home-grid">
+<main id="home-grid">
   <section id="list-news">
     <header class="content_header">
       <h2 class="big-chars" style="color: #000;">John Doe <span>est un écrivain français installé à Paris.<br />
@@ -61,7 +65,7 @@
 
   </section>
 
-</div>
+</main>
 
 <?php $content = ob_get_clean() ?>
 

@@ -103,6 +103,11 @@ section {
 #layout-post section {
   width:80%;
 }
+#layout-post header, #dashbord-grid header {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 2em;
+  margin-bottom: 2em;
+}
 .news
 {
   border-bottom: 1px dotted #000;
@@ -164,7 +169,7 @@ input#agreement {
   width: 3em;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   align-content: center;
 }
@@ -183,6 +188,37 @@ input#agreement {
 }
 #main_navigation a {
   font-family: "Courier New", Courier, monospace;
+  font-weight: 600;
+  font-size: .8em;
+}
+#bouton_navigation {
+    height: 29.5vh;
+    background:  #000;
+    width: 100%;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+#bouton_navigation a {
+  color: #f4f4f4;
+  font-weight: 400;
+}
+#nav {
+  font-size: .8em;
+  font-family: "Courier New", Courier, monospace;
+}
+#nav ul {
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+}
+#nav ul li {
+  padding-right: 1em;
+}
+#nav a {
   font-weight: 600;
 }
 .button_home {
@@ -212,23 +248,34 @@ input#agreement {
 #header_content {
   padding-left: 4.5em;
   display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
+  flex-direction: column-reverse;
+}
+#header_content #container {
+  display:flex;
+  border-bottom: 1px solid #ccc;
 }
 #header_content img {
   width: 100px;
   height: auto;
   margin-right:1em;
 }
-figure#logo {
+figure#logo, figure#photo {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 figure#logo img {
+  width: 60%;
+}
+figure#photo img {
   width: 80%;
 }
-
+.circle {
+  border-radius: 50%;
+}
+figcaption {
+  font-size: 60%;
+}
 #home-grid {
     display: flex;
     flex-direction: row-reverse;
@@ -378,4 +425,224 @@ figure#logo img {
 #header_dashbord {
   min-height: 20vh;
   padding: 1em 0 1em 0;
+}
+
+
+/* *************************************************************
+*************************** RESPONSIVE *************************
+***************************************************************/
+@media only screen and (max-width: 479px) {
+  body {
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
+  h1, h1 a {
+    line-height: 1.2em;
+  }
+  #main_header {
+    width: 100%;
+    height: 120vh;
+    justify-content: stretch;
+  }
+  #grid {
+    flex-direction: column;
+  }
+  #home-grid {
+    width: 100%;
+    height: auto;
+    overflow: auto;
+    margin-top: 2em;
+  }
+  #header_content {
+    padding-left: 2.5em;
+  }
+  #header_content img {
+    display:none;
+  }
+  #image_home {
+    margin: 0 0 0 2.5em;
+  }
+  #image_home img {
+    width: 90%;
+  }
+  #main_navigation {
+    position: absolute;
+    width: 2em;
+    height: 120vh;
+  }
+  #nav ul li {
+    border-bottom: 1px solid #ccc;
+    line-height: 3em;
+  }
+  #nav ul {
+    flex-direction: column;
+  }
+  #header {
+    justify-content: flex-start;
+    width: 100%;
+    height: 120vh;
+    padding-left: 0;
+  }
+  #layout-post {
+    overflow: auto;
+    height: auto;
+    width: 100%;
+  }
+  #layout-post section#content-news, #dashbord-grid > section, #dashbord-grid section#content-news, section#content-comments {
+    width: 80%;
+  }
+  figure#logo img {
+    display: none;
+  }
+  #layout-post header, #dashbord-grid header {
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+  #posts-grid .news {
+    width: 100%;
+    margin: 0 1em 1em 0;
+  }
+  #layout-connexion {
+    flex-direction: column;
+    width: 100%;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: stretch;
+  }
+  #layout-connexion section {
+    width: 80%;
+    padding: 0 1em;
+  }
+  /* ******************
+  ****  Backoffice ****
+  ********************/
+  #main_navigation_backend {
+    width: 100%;
+    height: 120vh;
+  }
+  #backend_navigation {
+    margin-left: 4em;
+  }
+  #dashbord-grid {
+    width: 100%;
+    height: auto;
+    overflow: inherit;
+  }
+  form {
+    padding: .1em;
+  }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 959px) {
+  body {
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
+  h1, h1 a {
+    line-height: 1.2em;
+  }
+  #main_header {
+    width: 100%;
+    height: 120vh;
+    justify-content: stretch;
+  }
+  #grid {
+    flex-direction: column;
+  }
+  #home-grid {
+    width: 100%;
+    height: auto;
+    overflow: auto;
+    margin-top: 3em;
+  }
+  #header_content {
+    padding-left: 2.5em;
+  }
+  #header_content img {
+    display:none;
+  }
+  #image_home {
+    margin: 0;
+  }
+  #image_home img {
+    width: 50%;
+    margin: 0 auto;
+  }
+  #main_navigation {
+    position: absolute;
+    width: 2em;
+    height: 120vh;
+  }
+  #nav ul li {
+    border-bottom: 1px solid #ccc;
+    line-height: 3em;
+  }
+  #nav ul {
+    flex-direction: row;
+  }
+  #header {
+    justify-content: flex-start;
+    width: 100%;
+    height: 120vh;
+    padding-left: 0;
+  }
+  #layout-post {
+    overflow: auto;
+    height: auto;
+    width: 100%;
+  }
+  #layout-post section#content-news, #dashbord-grid > section, #dashbord-grid section#content-news, section#content-comments {
+    width: 80%;
+  }
+  figure#logo img {
+    display: none;
+  }
+  figure#photo img {
+    width: 30%;
+  }
+  #layout-post header, #dashbord-grid header {
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+  #posts-grid .news {
+    width: 100%;
+    margin: 0 1em 1em 0;
+  }
+  #layout-connexion {
+    flex-direction: column;
+    width: 100%;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: stretch;
+  }
+  #layout-connexion section {
+    width: 80%;
+    padding: 0 1em;
+  }
+  /* ******************
+  ****  Backoffice ****
+  ********************/
+  #main_navigation_backend {
+    width: 100%;
+    height: 120vh;
+  }
+  #backend_navigation {
+    margin-left: 4em;
+  }
+  #dashbord-grid {
+    width: 100%;
+    height: auto;
+    overflow: inherit;
+  }
+  form {
+    padding: .1em;
+  }
+}
+
+@media only screen (min-width: 960px) and (max-width: 1280px) {
+
+}
+
+@media print {
+  /* print style sheets go here */
 }

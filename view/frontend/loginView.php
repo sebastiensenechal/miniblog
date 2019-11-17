@@ -1,4 +1,4 @@
-<?php $title = 'John Do | Inscription / Connexion' ?>
+<?php $title = 'John Doe | Inscription / Connexion' ?>
 
 <?php ob_start(); ?>
 
@@ -18,6 +18,8 @@
     }
   }
   ?>
+
+  <?php include('view/navigation.php'); ?>
 
   <figure id="logo">
     <img src="././public/img/logo-gris.svg" alt="">
