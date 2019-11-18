@@ -12,7 +12,9 @@
       <h1>
           Liste des articles
       </h1>
-      <p><a href="index.php?action=adminNewPost" title="Créer un article">Ajouter</a></p>
+      <ul class="admin-link">
+        <li><a href="index.php?action=adminNewPost" title="Créer un article">Ajouter</a></li>
+      <ul>
     </header>
 
     <div id="posts-grid">

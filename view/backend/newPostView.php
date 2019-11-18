@@ -12,7 +12,9 @@
       <h1>
           Ajouter un article
       </h1>
-      <p><a href="index.php?action=adminListPosts">Retour aux articles</a></p>
+      <ul class="admin-link">
+        <li><a href="index.php?action=adminListPosts">Retour aux articles</a></li>
+      </ul>
     </header>
 
     <article class="news">

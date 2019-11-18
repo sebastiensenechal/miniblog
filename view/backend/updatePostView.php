@@ -13,6 +13,9 @@
           <?= htmlspecialchars($post['title']); ?><br />
           <span><?= $post['creation_date_fr']; ?></span>
       </h1>
+      <ul class="admin-link">
+        <li><a href="index.php?action=adminListPosts" title="Voir tous les articles">Retour aux articles</a></li>
+      <ul>
     </header>
 
     <article class="news">

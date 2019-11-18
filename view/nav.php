@@ -24,7 +24,7 @@
     <?php
     }
     ?>
-    <li><a href="index.php?action=legale">Mentions légales</a></li>
+    <li><a href="index.php?action=legal">Mentions légales</a></li>
     <li><a href="index.php?action=rgpd" title="Données personnelles">RGPD</a></li>
   </ul>
 </nav>

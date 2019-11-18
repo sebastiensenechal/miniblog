@@ -12,7 +12,9 @@
       <h1>
           Commentaires en attente
       </h1>
-      <p><a href="index.php?action=adminListComments" title="Liste des commentaires">Retour aux commentaires</a></p>
+      <ul class="admin-link">
+        <li><a href="index.php?action=adminListComments" title="Liste des commentaires">Retour aux commentaires</a></li>
+      </ul>
     </header>
 
     <article class="news">

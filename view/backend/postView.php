@@ -13,6 +13,10 @@
           <?= htmlspecialchars($post['title']) ?><br />
           <span><?= $post['creation_date_fr'] ?></span>
       </h1>
+      <ul class="admin-link">
+        <li><a href="index.php?action=adminUpdatePost&amp;id=<?= $post['id']; ?>">Éditer</a></li>
+        <li><a href="index.php?action=deletePost&amp;id=<?= $post['id']; ?>">Supprimer</a></li>
+      </ul>
     </header>
 
     <article class="news">

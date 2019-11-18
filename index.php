@@ -348,6 +348,18 @@ try // Test (Exception)
           $UserController->authorView();
         }
 
+        // Mentions légales
+        if ($action == 'legal')
+        {
+          $UserController->legalView();
+        }
+
+        // RGPD
+        if ($action == 'rgpd')
+        {
+          $UserController->rgpdView();
+        }
+
         // Affichage d'un article
         elseif ($action == 'post')
         {
@@ -516,6 +528,18 @@ try // Test (Exception)
       if ($action == 'authorView')
       {
         $UserController->authorView();
+      }
+
+      // Mentions légales
+      if ($action == 'legal')
+      {
+        $UserController->legalView();
+      }
+
+      // RGPD
+      if ($action == 'rgpd')
+      {
+        $UserController->rgpdView();
       }
 
       // Signaler un commentaire

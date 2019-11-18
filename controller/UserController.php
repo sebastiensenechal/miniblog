@@ -48,4 +48,16 @@ class UserController {
     require($authorView . '.php');
   }
 
+  public function legalView()
+  {
+    $legalView = 'view/frontend/legalView';
+    require($legalView . '.php');
+  }
+
+  public function rgpdView()
+  {
+    $rgpdView = 'view/frontend/rgpdView';
+    require($rgpdView . '.php');
+  }
+
 }

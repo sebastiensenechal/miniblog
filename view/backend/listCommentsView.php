@@ -13,9 +13,9 @@
           Liste des commentaires
       </h1>
 
-      <ul>
-        <li><a href="index.php?action=adminCommentsReport" title="Commentaires signalés">Signalé</a></li>
-        <li><a href="index.php?action=adminCommentsStandby" title="En attente de validation">En attente</a></li>
+      <ul class="admin-link">
+        <li><a href="index.php?action=adminCommentsReport" title="Commentaires signalés">Commentaires signalés</a></li>
+        <li><a href="index.php?action=adminCommentsStandby" title="En attente de validation">Commentaires en attente</a></li>
       </ul>
     </header>
 
