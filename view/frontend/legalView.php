@@ -23,7 +23,7 @@
 
   <?php include('view/navigation.php'); ?>
 
-  <figure id="logo">
+  <figure id="photo">
     <img src="././public/img/logo-gris.svg" alt="">
     <figcaption>
       <p>John Doe © Sébastien Sénéchal</p>
@@ -53,4 +53,4 @@
 
 <?php $content = ob_get_clean() ?>
 
-<?php require('template.php') ?>
+<?php require('./view/template.php') ?>

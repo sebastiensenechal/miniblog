@@ -42,6 +42,7 @@
         </div>
 
         <h2>Commentaires</h2>
+        <p><em>Les commentaires sont soumis à validation</em>.</p>
 
         <?php
         while ($comment = $comments->fetch())
@@ -69,4 +70,4 @@
 
 <?php $content = ob_get_clean() ?>
 
-<?php require('template.php') ?>
+<?php require('./view/template.php') ?>

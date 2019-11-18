@@ -180,24 +180,24 @@ try // Test (Exception)
          }
        }
 
-        // Liste des chapitres
-        elseif ($action == 'listPosts')
-        {
-          $PostController->listPosts();
-        }
-
-        // Affiche le chapitre avec ses commentaires
-        elseif ($action == 'post')
-        {
-          if (isset($id) && $id > 0)
-          {
-            $PostController->post();
-          }
-          else
-          {
-            throw new Exception('Aucun identifiant de chapitre envoyé !');
-          }
-        }
+        // // Liste des chapitres
+        // elseif ($action == 'listPosts')
+        // {
+        //   $PostController->listPosts();
+        // }
+        //
+        // // Affiche le chapitre avec ses commentaires
+        // elseif ($action == 'post')
+        // {
+        //   if (isset($id) && $id > 0)
+        //   {
+        //     $PostController->post();
+        //   }
+        //   else
+        //   {
+        //     throw new Exception('Aucun identifiant de chapitre envoyé !');
+        //   }
+        // }
 
         // Ajoute un commentaire dans le chapitre selectionné
         elseif ($action == 'addComment')

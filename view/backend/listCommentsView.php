@@ -19,7 +19,7 @@
       </ul>
     </header>
 
-    <article class="news">
+    <article class="content">
 
       <?php
       while ($comment = $comments->fetch())
@@ -46,4 +46,4 @@
 
 <?php $content = ob_get_clean() ?>
 
-<?php require('template.php') ?>
+<?php require('./view/template.php') ?>
