@@ -37,15 +37,15 @@
 
     <form action="index.php?action=connect" method="post">
       <fieldset>
-        <label for="pseudo"><abbr title="Champs obligatoire">*</abbr> Pseudo</label><br>
-        <input type="text" id="pseudo" name="pseudo" placeholder="Votre pseudo" />
+        <label for="pseudo" class="hidden"><abbr title="Champs obligatoire">*</abbr> Pseudo</label>
+        <input type="text" id="pseudo" name="pseudo" placeholder="* Votre pseudo" required />
       </fieldset>
       <fieldset>
-        <label for="pass"><abbr title="Champs obligatoire">*</abbr> Mot de passe</label><br>
-        <input type="password" id="pass" name="pass" />
+        <label for="pass" class="hidden"><abbr title="Champs obligatoire">*</abbr> Mot de passe</label>
+        <input type="password" id="pass" name="pass" placeholder="* Mot de passe" required />
       </fieldset>
       <fieldset>
-        <input type="submit" name="connect" />
+        <input type="submit" name="connect" value="Envoyer" />
         <!-- Champs caché pour Token CSRF -->
         <input type="hidden" name="token" id="token" value="<?php echo $token; ?>" />
       </fieldset>
@@ -60,20 +60,20 @@
 
     <form action="index.php?action=subscription" method="post">
       <fieldset>
-        <label for="pseudo"><abbr title="Champs obligatoire">*</abbr> Pseudo</label><br>
-        <input type="text" id="pseudo" name="pseudo" placeholder="Votre pseudo" required />
+        <label for="pseudo" class="hidden"><abbr title="Champs obligatoire">*</abbr> Pseudo</label>
+        <input type="text" id="pseudo" name="pseudo" placeholder="* Votre pseudo" required />
       </fieldset>
       <fieldset>
-        <label for="email"><abbr title="Champs obligatoire">*</abbr> Email</label><br>
-        <input type="email" id="email" name="email" placeholder="email@domain.com" required />
+        <label for="email" class="hidden"><abbr title="Champs obligatoire">*</abbr> Email</label>
+        <input type="email" id="email" name="email" placeholder="* Email : email@domain.com" required />
       </fieldset>
       <fieldset>
-        <label for="pass"><abbr title="Champs obligatoire">*</abbr> Mot de passe</label><br>
-        <input type="password" id="pass" name="pass" required />
+        <label for="pass" class="hidden"><abbr title="Champs obligatoire">*</abbr> Mot de passe</label>
+        <input type="password" id="pass" name="pass" placeholder="* Mot de passe" required />
       </fieldset>
       <fieldset>
-        <label for="pass_confirm"><abbr title="Champs obligatoire">*</abbr> Confirmez le mot de passe</label><br>
-        <input type="password" id="pass_confirm" name="pass_confirm" required />
+        <label for="pass_confirm" class="hidden"><abbr title="Champs obligatoire">*</abbr> Confirmez le mot de passe</label>
+        <input type="password" id="pass_confirm" name="pass_confirm" placeholder="* Confirmez votre mot de passe" required />
       </fieldset>
       <fieldset>
         <label for="agreement">
@@ -82,7 +82,7 @@
         </label>
       </fieldset>
       <fieldset>
-        <input type="submit" name="subscription" />
+        <input type="submit" name="subscription" value="Envoyer" />
       </fieldset>
     </form>
 

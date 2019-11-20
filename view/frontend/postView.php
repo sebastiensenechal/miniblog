@@ -111,6 +111,7 @@
     </article>
 
   </section>
+
 </div>
 
 <?php $content = ob_get_clean() ?>
