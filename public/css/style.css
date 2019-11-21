@@ -51,11 +51,11 @@ body {
 .material-icons.md-light { color: rgba(255, 255, 255, 0.54); }
 
 
-p, address {font-size:1em;line-height:1.6em;font-weight:400; color:#444;}
-a {font-size:1em; line-height:1.6em;font-weight:400; color:#666;text-decoration: underline;}
+p, address {font-size:1em;line-height:1.6em;font-weight:400; color:#666;}
+a {font-size:1em; line-height:1.6em;font-weight:400; color:#555;text-decoration: underline;}
 a:hover {text-decoration: none;}
-h2, h3, h4 {font-family: 'Spectral', Georgia, serif; color: #444;}
-h1 {font-family: 'Consolas', 'Courier New', monospace;; color: #666;}
+h2, h3, h4 {font-family: 'Spectral', Georgia, serif; color: #555;}
+h1 {font-family: 'Consolas', 'Courier New', monospace;; color: #555;}
 h1 {text-transform:uppercase;font-weight:800;}
 h2 {font-weight:700;}
 h3 {font-weight:700;}
@@ -121,6 +121,7 @@ section {
   border-top: 1px dashed #ccc;
   margin-top: 4em;
   padding-top: 2em;
+  margin-bottom: 4em;
 }
 .content-comment {
   margin-top: 1em;
@@ -184,30 +185,28 @@ input[type="submit"] {
   color: #666;
 }
 #main_navigation {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  background: #ffffff;
-  width: 3em;
+  width: 100%;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  align-content: center;
+  flex-direction: row;
+  justify-content: flex-start;
+  height: 2em;
+  padding-left: 3em;
+  left: -2em;
+  position: relative;
+  border-bottom: 2px solid #fff;
 }
 #main_navigation ul {
   list-style: none;
   margin: 0;
-  padding:0;
+  padding: 0 0 0 1em;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
 }
 #main_navigation ul li {
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-  margin-bottom: 1.5em;
-  margin-right:1.5em;
-  padding-top: 10px;
-  border-top: 4px solid #fbdeb9;
+  padding-right: 1em;
 }
 #main_navigation a {
   font-family: "Courier New", Courier, monospace;
@@ -215,15 +214,12 @@ input[type="submit"] {
   font-size: .8em;
 }
 #bouton_navigation {
-    height: 29.5vh;
-    background:  #000;
-    width: 100%;
-    writing-mode: vertical-rl;
-    text-orientation: mixed;
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    align-items: center;
+  background:#000;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  padding: 0 1em;
 }
 #bouton_navigation a {
   color: #f4f4f4;
@@ -262,14 +258,13 @@ input[type="submit"] {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  padding-left: 3em;
-  background: #FBDEB9;
-  color: #666;
+  background:#FBDEB9;
+  color:#444;
 }
 #header_content {
-  padding-left: 4.5em;
+  padding-left: 2em;
   display: flex;
   flex-direction: column-reverse;
 }
@@ -381,6 +376,30 @@ figcaption {
   margin: 1em auto;
 }
 
+footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background:
+  transparent;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+footer ul li, footer p, footer a {
+  color: #444;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 600;
+  font-size: .9em;
+}
+footer ul {
+  list-style: none;
+  padding-left: 1em;
+}
+footer ul li {
+  display:inline-block;
+  padding-right: 1em;
+}
 
 /* *************************************************************
 *************************** BACKOFFICE *************************
@@ -410,7 +429,7 @@ figcaption {
   display: flex;
   flex-direction: row;
   font-size: 80%;
-  margin-left: 5em;
+  margin-left: 2em;
 }
 #backend_navigation ul {
   list-style: none;
@@ -472,14 +491,11 @@ figcaption {
   p, address {
     font-size: .9em;
   }
-  .big-chars {
-    font-size: 1.2em;
-    line-height: 1.2em;
-  }
   #main_header {
     width: 100%;
-    height: 120vh;
+    height: 100%;
     justify-content: stretch;
+    padding-bottom: 2em;
   }
   #grid {
     flex-direction: column;
@@ -491,21 +507,41 @@ figcaption {
     margin-top: 2em;
   }
   #header_content {
-    padding-left: 2.5em;
+    padding-left: 1em;
   }
   #header_content img {
     display:none;
   }
   #image_home {
-    margin: 0 0 0 2.5em;
+    margin: 0 0 0 1em;
   }
   #image_home img {
     width: 90%;
   }
   #main_navigation {
-    position: absolute;
-    width: 2em;
-    height: 120vh;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: auto;
+    padding-left: 0;
+    left: 0;
+    position: relative;
+    border-bottom: 2px solid  #fff;
+  }
+  #main_navigation ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+  }
+  #main_navigation ul li {
+    padding-right: 0;
+    display: block;
   }
   #nav ul li {
     border-bottom: 1px solid #ccc;
@@ -518,9 +554,13 @@ figcaption {
   #header {
     justify-content: flex-start;
     width: 100%;
-    height: 120vh;
+    height: 100%;
+    padding-bottom: 2em;
     padding-left: 0;
     border-bottom: 1px solid #ccc;
+  }
+  .list-news {
+    width: 80%;
   }
   #layout-post {
     overflow: auto;
@@ -530,8 +570,8 @@ figcaption {
   #layout-post section#content-news, #dashbord-grid > section, #dashbord-grid section#content-news, section#content-comments {
     width: 80%;
   }
-  figure#logo img {
-    width: 50%;
+  figure#logo {
+    display: none;
   }
   figure#photo img {
     width: 70%;
@@ -557,6 +597,13 @@ figcaption {
   #layout-connexion section {
     width: 80%;
     padding: 0 1em;
+  }
+  footer {
+    position: inherit;
+  }
+  footer ul {
+    margin: 0 auto;
+    padding-left: 0;
   }
   /* ******************
   ****  Backoffice ****
@@ -588,7 +635,7 @@ figcaption {
   }
   #main_header {
     width: 100%;
-    height: 120vh;
+    height: 100%;
     justify-content: stretch;
   }
   #grid {
@@ -607,20 +654,32 @@ figcaption {
     display:none;
   }
   figure#image_home {
-    background: url('http://localhost/openclassroom/php_poo/miniblog/public/img/montagnes-pyrenees.jpg') fixed no-repeat;
-    /* background: url('././public/img/montagnes-pyrenees.jpg') fixed no-repeat; */
-    background-size: cover;
-    width: 100%;
-  }
-  #image_home img {
-    opacity: 0;
-    margin: 0 auto;
-    visibility: hidden;
+    display: none;
   }
   #main_navigation {
-    position: absolute;
-    width: 2em;
-    height: 120vh;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    height: auto;
+    padding-left: 3em;
+    left: 0;
+    position: relative;
+    border-bottom: 2px solid  #fff;
+  }
+  #main_navigation ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+  }
+  #main_navigation ul li {
+    padding-right: 0;
+    display: block;
   }
   #nav ul li {
     border-bottom: 1px solid #ccc;
@@ -632,9 +691,12 @@ figcaption {
   #header {
     justify-content: flex-start;
     width: 100%;
-    height: 120vh;
+    height: 100%;
     padding-left: 0;
     border-bottom: 1px solid #ccc;
+  }
+  #list-news {
+    width: 85%;
   }
   #layout-post {
     overflow: auto;
@@ -643,6 +705,16 @@ figcaption {
   }
   #layout-post section#content-news, #dashbord-grid > section, #dashbord-grid section#content-news, section#content-comments {
     width: 80%;
+  }
+  figure#logo {
+    display: none;
+    /* width: 100%;
+    background-attachment: fixed;
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 500px;
+    background-image: url('https://sebastiensenechal.com/openclassroom/miniblog/public/img/montagnes-pyrenees.jpg'); */
   }
   figure#logo img {
     display: none;
@@ -669,6 +741,14 @@ figcaption {
     width: 80%;
     padding: 0 1em;
   }
+  footer {
+    position: inherit;
+    padding-left: 0;
+  }
+  footer ul {
+    margin: 0 auto;
+    padding-left: 0;
+  }
   /* ******************
   ****  Backoffice ****
   ********************/
@@ -689,12 +769,43 @@ figcaption {
   }
 }
 
-@media only screen (min-width: 960px) and (max-width: 1280px) {
-  #header {
-    width: 40%;
+@media only screen and (min-width: 960px) and (max-width: 1279px) {
+  #layout-post section#content-news, #dashbord-grid > section, #dashbord-grid section#content-news, section#content-comments, section#content {
+    width: 70%;
   }
-  #layout-post {
-    width: 60%;
+  #main_navigation_backend {
+    width: 30%;
+  }
+  #dashbord-grid {
+    width: 70%;
+  }
+  #dashbord-grid > section {
+    width: 80%;
+  }
+}
+@media only screen (min-width: 1280px) and (max-width: 1919px) {
+  body {
+    font-size: 28px;
+    line-height: 34px;
+  }
+  #nav {
+    font-size: 1em;
+  }
+  #bouton_navigation {
+    height: 26.5vh;
+  }
+}
+
+@media only screen (min-width: 1920px) and (max-width: 2560px) {
+  body {
+    font-size: 30px;
+    line-height: 34px;
+  }
+  #nav {
+    font-size: 1em;
+  }
+  #bouton_navigation {
+    height: 26.5vh;
   }
 }
 

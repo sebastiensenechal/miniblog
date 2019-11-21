@@ -1,4 +1,4 @@
-<?php $title = htmlspecialchars($post['title']) ?>
+<?php $title = $post['title']; ?>
 
 <?php ob_start(); ?>
 
@@ -51,7 +51,7 @@
           <aside class="content-comment">
             <p><span class="meta-content"><?= htmlspecialchars($comment['author']) ?><br />
             <span class="comment-date"><?= $comment['comment_date_fr'] ?></span></span></p>
-            <p><?= $comment['comment']; ?></p>
+            <?= $comment['comment']; ?>
 
             <ul class="admin-content">
               <li><a href="index.php?action=disable&amp;id=<?= $comment['id']; ?>">Désactiver</a></li>

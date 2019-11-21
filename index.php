@@ -240,61 +240,6 @@ try // Test (Exception)
             }
         }
 
-
-        // Page de connexion
-        elseif ($action == 'login')
-        {
-          $AuthController->login();
-        }
-
-        // Inscription
-        elseif ($action == 'subscription')
-        {
-          if (!empty($_POST['pseudo']) && !empty($_POST['pass']) && !empty($_POST['pass_confirm']) && !empty($_POST['email']) && $_POST['agreement'] == true)
-          {
-            // Sécurité
-            $pseudo = htmlspecialchars($_POST['pseudo']);
-            $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
-
-            // Hachage du mot de passe
-            $password_hash = password_hash($_POST['pass'], PASSWORD_DEFAULT);
-            // On vérifie la Regex pour l'adresse email
-            if (filter_var($email, FILTER_VALIDATE_EMAIL))
-            {
-              // On vérifie que les 2 mots de passe sont identiques.
-              if ($_POST['pass'] == $_POST['pass_confirm'])
-              {
-                $UserController->registerUser($pseudo, $password_hash, $email);
-              }
-              else
-              {
-                throw new Exception('Les 2 mots de passe ne sont pas identiques, recommencez !');
-              }
-            }
-            else
-            {
-              throw new Exception('L\'adresse email ' . $email . ' n\'est pas valide, recommencez !');
-            }
-          }
-          else
-          {
-            throw new Exception('Tous les champs doivent être remplis !');
-          }
-        }
-
-        // Connexion
-        elseif ($action == 'connect')
-        {
-          if (!empty($_POST['pseudo']) && !empty($_POST['pass']) && !empty($_POST['token']))
-          {
-            $AuthController->logUser($_POST['pseudo'], $_POST['pass'], $_POST['token']);
-          }
-          else
-          {
-            throw new Exception('Tous les champs doivent être remplis !');
-          }
-        }
-
         // Deconnexion
         elseif ($action == 'logout')
         {
@@ -307,10 +252,9 @@ try // Test (Exception)
         $AuthController->logoutUser();
       }
     }
-    // Retourne au Dashbord.
     else
     {
-      $PostController->listPosts();
+      $PostController->indexView();
     }
   }
 
@@ -414,59 +358,6 @@ try // Test (Exception)
             {
                 throw new Exception('Aucun identifiant d\'article envoyé pour revenir sur la page précédente!');
             }
-        }
-
-        // Page de connexion
-        elseif ($action == 'login') {
-            $AuthController->login();
-        }
-
-        // Inscription d'un utilisateur
-        elseif ($action == 'subscription')
-        {
-          if (!empty($_POST['pseudo']) && !empty($_POST['pass']) && !empty($_POST['pass_confirm']) && !empty($_POST['email']))
-          {
-            // Sécurité
-            $pseudo = htmlspecialchars($_POST['pseudo']);
-            $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
-
-            // Hachage du mot de passe
-            $password_hash = password_hash($_POST['pass'], PASSWORD_DEFAULT);
-            // On vérifie la Regex pour l'adresse email
-            if (filter_var($email, FILTER_VALIDATE_EMAIL))
-            {
-              // On vérifie que les 2 mots de passe sont identiques.
-              if ($_POST['pass'] == $_POST['pass_confirm'])
-              {
-                $UserController->registerUser($pseudo, $password_hash, $email);
-              }
-              else
-              {
-                throw new Exception('Les 2 mots de passe ne sont pas identiques, recommencez !');
-              }
-            }
-            else
-            {
-              throw new Exception('L\'adresse email ' . $email . ' n\'est pas valide, recommencez !');
-            }
-          }
-          else
-          {
-            throw new Exception('Tous les champs doivent être remplis !');
-          }
-        }
-
-        // Connexion
-        elseif ($action == 'connect')
-        {
-          if (!empty($_POST['pseudo']) && !empty($_POST['pass']) && !empty($_POST['token']))
-          {
-            $AuthController->logUser($_POST['pseudo'], $_POST['pass'], $_POST['token']);
-          }
-          else
-          {
-            throw new Exception('Tous les champs doivent être remplis !');
-          }
         }
 
         // Déconnexion

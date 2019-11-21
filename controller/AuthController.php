@@ -61,11 +61,11 @@ class AuthController {
 
            if ($user['role'] == 0)
            {
-             header('Location: ./index.php?action=dashbord');
+             header('Location: index.php?action=dashbord');
            }
            else
            {
-             header('Location: ./index.php');
+             header('Location: index.php?action=indexView');
            }
          }
          else
@@ -107,7 +107,7 @@ class AuthController {
     unset($_SESSION['token']);
     unset($_SESSION['ticket']);
 
-    header('Location: ./index.php');
+    header('Location: index.php?action=indexView');
   }
 
 }

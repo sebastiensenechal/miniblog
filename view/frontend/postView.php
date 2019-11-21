@@ -19,7 +19,7 @@
   }
   ?>
 
-  <h1><a href="index.php" title="Accueil de John Doe">John Doe</a></h1>
+  <h1><a href="index.php?action=indexView" title="Accueil de John Doe">John Doe</a></h1>
 
   <?php include('view/navigation.php'); ?>
 
@@ -27,19 +27,6 @@
     <img src="././public/img/logo-gris.svg" alt="Logo de l'écrivain John Doe">
   </figure>
 
-  <p><span class="big-chars">Derniers articles</span></p>
-
-  <ul class="list-center">
-    <?php
-    while ($data = $lastPosts->fetch())
-    {
-    ?>
-      <li><a href="index.php?action=post&amp;id=<?= $data['id'] ?>"><?= htmlspecialchars($data['title']) ?></a></li>
-    <?php
-    }
-    $lastPosts->closeCursor();
-    ?>
-  </ul>
 </header>
 
 <div id="layout-post">
@@ -87,27 +74,41 @@
       }
       ?>
 
-        <h2>Commentaires</h2>
-        <p><em>Les commentaires sont soumis à validation</em>.</p>
+      <h2>Commentaires</h2>
+      <p><em>Les commentaires sont soumis à validation</em>.</p>
 
-        <?php
-        while ($comment = $comments->fetch())
-        {
-        ?>
-          <aside class="content-comment">
-            <p><span class="meta-content"><?= htmlspecialchars($comment['author']) ?><br />
-            <span class="comment-date"><?= $comment['comment_date_fr'] ?></span></span></p>
-            <p><?= nl2br($comment['comment']) ?></p>
-            <ul class="admin-content">
-              <li><a href="index.php?action=report&amp;id_post=<?= $post['id'];?>&amp;id=<?= $comment['id']; ?>">Signaler</a></li>
-            </ul>
-          </aside>
-        <?php
-        }
-        $comments->closeCursor();
-        ?>
+      <?php
+      while ($comment = $comments->fetch())
+      {
+      ?>
+        <aside class="content-comment">
+          <p><span class="meta-content"><?= htmlspecialchars($comment['author']) ?><br />
+          <span class="comment-date"><?= $comment['comment_date_fr'] ?></span></span></p>
+          <?= nl2br($comment['comment']) ?>
+          <ul class="admin-content">
+            <li><a href="index.php?action=report&amp;id_post=<?= $post['id'];?>&amp;id=<?= $comment['id']; ?>">Signaler</a></li>
+          </ul>
+        </aside>
+      <?php
+      }
+      $comments->closeCursor();
+      ?>
 
       </div>
+
+
+      <h2>Derniers articles</h2>
+      <ul>
+        <?php
+        while ($data = $lastPosts->fetch())
+        {
+        ?>
+          <li><a href="index.php?action=post&amp;id=<?= $data['id'] ?>"><?= htmlspecialchars($data['title']) ?></a></li>
+        <?php
+        }
+        $lastPosts->closeCursor();
+        ?>
+      </ul>
     </article>
 
   </section>

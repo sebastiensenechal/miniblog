@@ -1,4 +1,4 @@
-<?php $title = htmlspecialchars($post['title']) ?>
+<?php $title = $post['title']; ?>
 
 <?php ob_start(); ?>
 
@@ -15,7 +15,7 @@
       </h1>
       <ul class="admin-link">
         <li><a href="index.php?action=adminListPosts" title="Voir tous les articles">Retour aux articles</a></li>
-      <ul>
+      </ul>
     </header>
 
     <article class="news">

@@ -18,7 +18,7 @@ class UserController {
     $post = $postManager->getLastPost();
     $comment = $commentManager->getLastComment();
 
-    $indexView = 'view/backend/indexView';
+    $indexView = 'view/backend/dashbordView';
     require($indexView . '.php');
   }
 
@@ -38,7 +38,7 @@ class UserController {
     // Sinon, rediriger vers l'index avec la fonction Header('Location: ...')
     else
     {
-        header('Location: ./index.php');
+        header('Location: ./index.php?action=indexView');
     }
   }
 

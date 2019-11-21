@@ -19,6 +19,8 @@
   }
   ?>
 
+  <h1><a href="index.php?action=indexView" title="Accueil de John Doe">John Doe</a></h1>
+
   <?php include('view/navigation.php'); ?>
 
   <figure id="logo">

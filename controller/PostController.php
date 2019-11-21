@@ -14,7 +14,7 @@ class PostController {
       $postManager = new PostManager();
       $posts = $postManager->getPosts();
 
-      $listPostsView = 'view/backend/listPostsView';
+      $listPostsView = './view/backend/listPostsView';
       require($listPostsView . '.php');
   }
 
@@ -27,7 +27,7 @@ class PostController {
     $post = $postManager->getPost($_GET['id']);
     $comments = $commentManager->getComments($_GET['id']);
 
-    $postView = 'view/backend/postView';
+    $postView = './view/backend/postView';
     require($postView . '.php');
   }
 
@@ -36,7 +36,7 @@ class PostController {
   // Vue d'un nouvel article
   public function adminNewPost()
   {
-    $newPostView = 'view/backend/newPostView';
+    $newPostView = './view/backend/newPostView';
     require($newPostView . '.php');
   }
 
@@ -60,7 +60,7 @@ class PostController {
 
     $post = $postManager->getPost($_GET['id']);
 
-    $updatePostView = 'view/backend/updatePostView';
+    $updatePostView = './view/backend/updatePostView';
     require($updatePostView . '.php');
   }
 
@@ -117,7 +117,7 @@ class PostController {
       $postManager = new PostManager(); // Création d'un objet (namespace "\SebastienSenechal\Miniblog\Model\")
       $posts = $postManager->getPosts(); // Appel d'une fonction de cet objet
 
-      $indexView = 'view/frontend/indexView';
+      $indexView = './view/frontend/indexView';
       require($indexView . '.php');
     }
 
@@ -127,7 +127,7 @@ class PostController {
       $postManager = new PostManager(); // Création d'un objet (namespace "\SebastienSenechal\Miniblog\Model\")
       $posts = $postManager->getPosts(); // Appel d'une fonction de cet objet
 
-      $listPostsView = 'view/frontend/listPostsView';
+      $listPostsView = './view/frontend/listPostsView';
       require($listPostsView . '.php');
     }
 
@@ -142,7 +142,7 @@ class PostController {
       $lastPosts = $postManager->getLastPost();
       $comments = $commentManager->getComments($_GET['id']);
 
-      $postsView = 'view/frontend/postView';
+      $postsView = './view/frontend/postView';
       require($postsView . '.php');
     }
 

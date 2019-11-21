@@ -1,9 +1,9 @@
-<?php $title = 'Commentaires en attente' ?>
+<?php $title = 'Commentaires en attente'; ?>
 
 <?php ob_start(); ?>
 
 <div id="main_navigation_backend">
-  <?php include('./view/nav_backend.php'); ?>
+  <?php include('view/nav_backend.php'); ?>
 </div>
 
 <div id="dashbord-grid">

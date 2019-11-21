@@ -1,6 +1,6 @@
-<?php ob_start(); ?>
+<?php $title = 'Liste des articles'; ?>
 
-<?php $title = 'Liste des articles' ?>
+<?php ob_start(); ?>
 
 <div id="main_navigation_backend">
   <?php include('view/nav_backend.php'); ?>

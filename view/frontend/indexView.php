@@ -3,6 +3,7 @@
 <?php ob_start(); ?>
 
 <header id="main_header">
+
   <?php
   if (empty($page))
   {
@@ -30,7 +31,7 @@
   </div>
 
   <figure id="image_home">
-    <img src="././public/img/montagnes-pyrenees.jpg" alt="">
+    <img src="././public/img/montagnes-pyrenees2-1200.jpg" alt="">
       <figcaption>
         <!-- Légende -->
       </figcaption>

@@ -19,13 +19,13 @@
   }
   ?>
 
-  <h1><a href="index.php" title="Accueil de John Doe">John Doe</a></h1>
+  <h1><a href="index.php?action=indexView" title="Accueil de John Doe">John Doe</a></h1>
 
   <?php include('view/navigation.php'); ?>
 
   <figure id="photo">
     <!-- <img src="././public/img/logo-gris.svg" alt=""> -->
-    <img src="././public/img/montagnes-pyrenees.jpg" alt="Montagne dans les Pyrénées">
+    <img src="././public/img/montagnes-pyrenees-480.jpg" alt="Montagne dans les Pyrénées">
     <figcaption>
       <p>© Sébastien Sénéchal</p>
     </figcaption>
