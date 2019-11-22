@@ -23,26 +23,9 @@
       <?= $post['content']; ?>
 
       <div id="post-comments">
-        <h2>Laissez un commentaire</h2>
-
-        <div id="comment-form">
-          <form action="index.php?action=addComment&amp;id=<?= $post['id'] ?>" method="post">
-            <fieldset>
-              <label for="author">* Auteur</label><br>
-              <input type="text" id="author" name="author" />
-            </fieldset>
-            <fieldset>
-              <label for="comment">* Commentaire</label><br>
-              <textarea id="comment" name="comment"></textarea>
-            </fieldset>
-            <fieldset>
-              <input type="submit" />
-            </fieldset>
-          </form>
-        </div>
-
         <h2>Commentaires</h2>
-        <p><em>Les commentaires sont soumis à validation</em>.</p>
+
+        <?php include('view/commentForm.php'); ?>
 
         <?php
         while ($comment = $comments->fetch())

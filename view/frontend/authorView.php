@@ -24,7 +24,7 @@
   <?php include('view/navigation.php'); ?>
 
   <figure id="photo">
-    <img class="circle" src="././public/img/sebastien-senechal.jpg" alt="Portrait de l'écrivain John Doe">
+    <img class="circle" src="././public/img/sebastien-senechal-480.jpg" alt="Portrait de l'écrivain John Doe">
     <figcaption>
       <p>Portrait de John Doe - © Sophie Rueter</p>
     </figcaption>

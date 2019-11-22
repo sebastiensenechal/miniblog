@@ -44,40 +44,17 @@
 
       <div id="post-comments">
 
-      <?php
-      if (isset($_SESSION['id']) && isset($_SESSION['pseudo']))
-      {
-        ?>
-          <h2>Laissez un commentaire</h2>
+      <h2>Commentaires</h2>
 
-          <div id="comment-form">
-            <form action="index.php?action=addComment&amp;id=<?= $post['id'] ?>" method="post">
-              <fieldset>
-                <label for="author">* Auteur</label><br>
-                <input type="text" id="author" name="author" value="<?php
-                  if (isset($_SESSION['pseudo']))
-                  {
-                      echo htmlspecialchars($_SESSION['pseudo']);
-                  }
-                  ?>" />
-              </fieldset>
-              <fieldset>
-                <label for="comment">* Commentaire</label><br>
-                <textarea id="comment" name="comment"></textarea>
-              </fieldset>
-              <fieldset>
-                <input type="submit" />
-              </fieldset>
-            </form>
-          </div>
+      <?php
+      if (isset($_SESSION['id']) && isset($_SESSION['pseudo'])) {
+        include('view/commentForm.php');
+      } else {
+        ?>
+          <p>Pour laisser un commentaire, vous devez être <a href="index.php?action=login" title="Page d'inscription ou de connexion">connecté</a>...</p>
         <?php
       }
-      ?>
 
-      <h2>Commentaires</h2>
-      <p><em>Les commentaires sont soumis à validation</em>.</p>
-
-      <?php
       while ($comment = $comments->fetch())
       {
       ?>

@@ -22,13 +22,13 @@ class CommentManager extends Manager
   }
 
   public function getComment($id_comment)
-    {
-        $db = $this->dbConnect();
-        $comments = $db->prepare('SELECT id, author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%i\') AS comment_date_fr FROM oc_comments WHERE id= ?');
-        $comments->execute(array($id_comment));
-        $comment = $comments->fetch();
-        return $comment;
-    }
+  {
+      $db = $this->dbConnect();
+      $comments = $db->prepare('SELECT id, author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%i\') AS comment_date_fr FROM oc_comments WHERE id= ?');
+      $comments->execute(array($id_comment));
+      $comment = $comments->fetch();
+      return $comment;
+  }
 
   public function getAllComments()
   {

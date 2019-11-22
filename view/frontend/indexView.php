@@ -31,10 +31,10 @@
   </div>
 
   <figure id="image_home">
-    <img src="././public/img/montagnes-pyrenees2-1200.jpg" alt="">
-      <figcaption>
-        <!-- Légende -->
-      </figcaption>
+    <picture>
+      <source srcset="././public/img/montagnes-pyrenees2-1200.jpg" media="(min-width: 480px)">
+      <img src="././public/img/montagnes-pyrenees-480.jpg" />
+    </picture>
   </figure>
 </header>
 

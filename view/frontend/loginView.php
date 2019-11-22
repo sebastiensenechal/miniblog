@@ -34,7 +34,7 @@
 <div id="layout-connexion">
   <section>
     <header>
-      <h2>Formulaire de connexion</h2>
+      <h2>Vous avez un compte</h2>
     </header>
 
     <form action="index.php?action=connect" method="post">
@@ -57,7 +57,7 @@
 
   <section>
     <header>
-      <h2>Formulaire d'inscription</h2>
+      <h2>Vous inscrire</h2>
     </header>
 
     <form action="index.php?action=subscription" method="post">
@@ -79,11 +79,16 @@
       </fieldset>
       <fieldset>
         <label for="agreement">
-          <abbr title="Champs obligatoire">*</abbr> J'accepte le traitement de mes données conformément à notre politique de données personnelles.
+          <abbr title="Champs obligatoire">*</abbr> J'accepte le traitement de mes données conformément à la politique de données personnelles.
           <input type="checkbox" name="agreement" value="true" id="agreement" required />
         </label>
       </fieldset>
       <fieldset>
+        <?php
+          if (isset($_COOKIE['message'])) {
+            echo '<p class="validate">' . $_COOKIE['message'] . '</p>';
+          }
+        ?>
         <input type="submit" name="subscription" value="Envoyer" />
       </fieldset>
     </form>

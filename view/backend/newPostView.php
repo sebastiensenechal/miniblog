@@ -21,14 +21,13 @@
 
       <form action="index.php?action=createPost" method="POST">
         <fieldset>
-          <label for="author">Auteur</label><br>
+          <label for="author">Auteur</label><br />
           <input type="text" name="author" id="author" value="<?php
             if (isset($_SESSION['pseudo']))
             {
                 echo htmlspecialchars($_SESSION['pseudo']);
             }
-            ?>"
-          />
+            ?>" readonly="readonly" />
         </fieldset>
         <fieldset>
           <label for="title">Titre</label><br />
@@ -43,7 +42,7 @@
           <textarea id="excerpt" name="excerpt" rows="20" placeholder="Extrait..."></textarea>
         </fieldset>
         <fieldset>
-          <input type="submit" />
+          <input type="submit" value="Envoyer" />
         </fieldset>
       </form>
 

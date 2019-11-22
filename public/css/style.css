@@ -73,11 +73,18 @@ h3
     margin-bottom:0px;
 }
 h2 span, h3 span, h4 span, p span {color:#777;}
+article h2 {margin-top:3em;}
 .big-chars {
   font-size:1.4em;
   font-weight: 100;
   line-height: 1.5em;
   font-family: "Spectral", Georgia, serif;
+}
+
+.validate {
+  background: #69ce69;
+  color:  #094f03;
+  padding: 0 1em;
 }
 .big-chars > span {font-size:100%;}
 img {
@@ -100,7 +107,7 @@ section {
   margin: 1em auto;
 }
 #layout-post section#content-news, #dashbord-grid > section, #dashbord-grid section#content-news, section#content-comments, section#content {
-  width:50%;
+  width:60%;
   margin: 1em auto;
 }
 #layout-post section {
@@ -113,7 +120,6 @@ section {
 }
 .news
 {
-  border-bottom: 1px dotted #000;
   padding: 2em 0;
 }
 
@@ -146,7 +152,7 @@ label.hidden {
   /* color: rgba(0, 0, 0, 0.5);
   transform-origin: left;
   transition: all 0.3s ease; */
-  position: absolute !important;
+  position: absolute;
   clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
   clip: rect(1px, 1px, 1px, 1px);
   height: 1px;
@@ -189,7 +195,7 @@ input[type="submit"] {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  height: 2em;
+  height: auto;
   padding-left: 3em;
   left: -2em;
   position: relative;
@@ -201,17 +207,14 @@ input[type="submit"] {
   padding: 0 0 0 1em;
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-content: center;
-  align-items: center;
 }
 #main_navigation ul li {
   padding-right: 1em;
+  font-family: "Courier New", Courier, monospace;
+  font-size: .8em;
 }
 #main_navigation a {
   font-family: "Courier New", Courier, monospace;
-  font-weight: 600;
-  font-size: .8em;
 }
 #bouton_navigation {
   background:#000;
@@ -260,8 +263,10 @@ input[type="submit"] {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  background:#FBDEB9;
+  /* background:#FBDEB9; */
   color:#444;
+  background: rgb(247,238,227);
+  background: linear-gradient(0deg, rgba(247,238,227,1) 0%, rgba(251,222,185,1) 9%, rgba(244,200,145,1) 86%, rgba(251,222,185,1) 100%);
 }
 #header_content {
   padding-left: 2em;
@@ -380,8 +385,7 @@ footer {
   position: absolute;
   bottom: 0;
   left: 0;
-  background:
-  transparent;
+  background: transparent;
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -523,6 +527,7 @@ footer ul li {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    text-align: center;
     height: auto;
     padding-left: 0;
     left: 0;
@@ -672,13 +677,13 @@ footer ul li {
     margin: 0;
     padding: 0;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-content: center;
     align-items: center;
   }
   #main_navigation ul li {
-    padding-right: 0;
+    padding-right: 1em;
     display: block;
   }
   #nav ul li {

@@ -27,7 +27,7 @@
             {
                 echo htmlspecialchars($_SESSION['pseudo']);
             }
-            ?>" />
+            ?>" readonly="readonly" />
         </fieldset>
         <fieldset>
           <label for="title">Titre</label><br />

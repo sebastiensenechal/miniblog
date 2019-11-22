@@ -102,10 +102,12 @@ class AuthController {
     setcookie('id', '');
     setcookie('pseudo', '');
     setcookie('ticket', '');
+    setcookie('message', '');
     // setcookie('pass', '');
 
     unset($_SESSION['token']);
     unset($_SESSION['ticket']);
+    unset($_COOKIE['message']);
 
     header('Location: index.php?action=indexView');
   }

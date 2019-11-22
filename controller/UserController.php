@@ -33,12 +33,14 @@ class UserController {
     // Si l'inscription est refusé "false", jeter Exception
     if($registerUser === false)
     {
-        throw new Exception('Impossible d\'inscrire le nouvel utilisateur');
+      throw new Exception('Impossible d\'inscrire le nouvel utilisateur');
     }
     // Sinon, rediriger vers l'index avec la fonction Header('Location: ...')
     else
     {
-        header('Location: ./index.php?action=indexView');
+      setcookie('message', "Merci, vous pouvez désormais vous connecter.", time() + 10, null, null, false, true);
+
+      header('Location: ./index.php?action=login');
     }
   }
 

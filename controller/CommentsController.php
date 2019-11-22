@@ -111,8 +111,11 @@ class CommentsController {
     }
     else
     {
+      setcookie('message', "Merci, votre commentaire a bien été soumi.", time() + 10, null, null, false, true);
       // Si pas d'erreur, on redirige le contributeur vers le post avec son commentaire
-      header('Location: index.php?action=post&id=' . $postId);
+      header('Location: index.php?action=post&id=' . $postId . '#post-comments');
+      // $_SESSION['message'] = "Merci, votre commentaire est soumi à validation.";
+      // $message = $_SESSION['message'];
     }
   }
 
