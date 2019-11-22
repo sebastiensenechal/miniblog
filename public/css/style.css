@@ -30,6 +30,13 @@ body {
   /* max-height:100%; */
   overflow:hidden;
   font-family: 'Nunito Sans', Verdana, sans-serif;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-content: stretch;
+  align-items: stretch;
 }
 
 
@@ -107,7 +114,7 @@ section {
   margin: 1em auto;
 }
 #layout-post section#content-news, #dashbord-grid > section, #dashbord-grid section#content-news, section#content-comments, section#content {
-  width:60%;
+  width: 60%;
   margin: 1em auto;
 }
 #layout-post section {
@@ -187,8 +194,13 @@ input[type="submit"] {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background: #FBDEB9;
   color: #666;
+  background: #FBDEB9;
+  background: linear-gradient(0deg,
+    rgba(247,238,227,1) 0%,
+    rgba(251,222,185,1) 9%,
+    rgba(244,200,145,1) 86%,
+    rgba(251,222,185,1) 100%);
 }
 #main_navigation {
   width: 100%;
@@ -200,6 +212,7 @@ input[type="submit"] {
   left: -2em;
   position: relative;
   border-bottom: 2px solid #fff;
+  font-weight: 600;
 }
 #main_navigation ul {
   list-style: none;
@@ -207,6 +220,7 @@ input[type="submit"] {
   padding: 0 0 0 1em;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
 }
 #main_navigation ul li {
   padding-right: 1em;
@@ -215,6 +229,7 @@ input[type="submit"] {
 }
 #main_navigation a {
   font-family: "Courier New", Courier, monospace;
+  font-weight: 600;
 }
 #bouton_navigation {
   background:#000;
@@ -321,15 +336,6 @@ figcaption {
   width: 50vw;
 }
 
-#grid {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
-  align-content: stretch;
-  align-items: stretch;
-}
-
 #layout-post {
   display: -ms-flexbox;
     display: -webkit-flex;
@@ -409,7 +415,7 @@ footer ul li {
 *************************** BACKOFFICE *************************
 ***************************************************************/
 #main_navigation_backend {
-  width: 20%;
+  width: 25%;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -424,15 +430,14 @@ footer ul li {
     justify-content: flex-start;
     align-content: stretch;
     align-items: stretch;
-    width: 80%;
+    width: 75%;
     height: 100vh;
     overflow-y: scroll;
 }
 #backend_navigation {
   width: 70%;
   display: flex;
-  flex-direction: row;
-  font-size: 80%;
+  flex-direction: column;
   margin-left: 2em;
 }
 #backend_navigation ul {
@@ -441,6 +446,7 @@ footer ul li {
   padding: 0;
   width: 100%;
   line-height: 3em;
+  font-size: 80%;
 }
 #backend_navigation ul li {
   display: block;
@@ -488,6 +494,7 @@ footer ul li {
   body {
     overflow-y: scroll;
     overflow-x: hidden;
+    flex-direction: column;
   }
   h1, h1 a {
     line-height: 1.2em;
@@ -498,11 +505,10 @@ footer ul li {
   #main_header {
     width: 100%;
     height: 100%;
-    justify-content: stretch;
+    justify-content: center;
     padding-bottom: 2em;
-  }
-  #grid {
-    flex-direction: column;
+    align-content: center;
+    align-items: center;
   }
   #home-grid {
     width: 100%;
@@ -511,7 +517,13 @@ footer ul li {
     margin-top: 2em;
   }
   #header_content {
-    padding-left: 1em;
+    padding-left: 0;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+  }
+  #header_content #container {
+    text-align: center;
   }
   #header_content img {
     display:none;
@@ -564,7 +576,8 @@ footer ul li {
     padding-left: 0;
     border-bottom: 1px solid #ccc;
   }
-  .list-news {
+  .news {padding: 2em 0;}
+  #list-news {
     width: 80%;
   }
   #layout-post {
@@ -605,6 +618,7 @@ footer ul li {
   }
   footer {
     position: inherit;
+    padding: 1em 0;
   }
   footer ul {
     margin: 0 auto;
@@ -615,10 +629,11 @@ footer ul li {
   ********************/
   #main_navigation_backend {
     width: 100%;
-    height: 120vh;
+    height: auto;
+    padding-bottom: 2em;
   }
   #backend_navigation {
-    margin-left: 4em;
+    margin-left: 1.5em;
   }
   #dashbord-grid {
     width: 100%;
@@ -634,6 +649,7 @@ footer ul li {
   body {
     overflow-y: scroll;
     overflow-x: hidden;
+    flex-direction: column;
   }
   h1, h1 a {
     line-height: 1.2em;
@@ -642,9 +658,6 @@ footer ul li {
     width: 100%;
     height: 100%;
     justify-content: stretch;
-  }
-  #grid {
-    flex-direction: column;
   }
   #home-grid {
     width: 100%;
@@ -731,6 +744,7 @@ footer ul li {
     padding-bottom: 0;
     margin-bottom: 0;
   }
+  .news {padding: 2em 0;}
   #posts-grid .news {
     width: 100%;
     margin: 0 1em 1em 0;
@@ -748,7 +762,7 @@ footer ul li {
   }
   footer {
     position: inherit;
-    padding-left: 0;
+    padding: 1em 0;
   }
   footer ul {
     margin: 0 auto;
@@ -759,12 +773,14 @@ footer ul li {
   ********************/
   #main_navigation_backend {
     width: 100%;
-    height: 120vh;
+    height: auto;
+    padding-bottom: 2em;
   }
   #backend_navigation {
     margin-left: 4em;
   }
   #dashbord-grid {
+    flex-direction: column;
     width: 100%;
     height: auto;
     overflow: inherit;

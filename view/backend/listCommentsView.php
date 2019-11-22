@@ -2,11 +2,10 @@
 
 <?php ob_start(); ?>
 
-<div id="main_navigation_backend">
-  <?php include('view/nav_backend.php'); ?>
-</div>
+<?php include('view/nav_backend.php'); ?>
 
-<div id="dashbord-grid">
+<main id="dashbord-grid">
+
   <section id="content-comments">
     <header>
       <h1>
@@ -42,7 +41,7 @@
     </article>
 
   </section>
-</div>
+</main>
 
 <?php $content = ob_get_clean() ?>
 

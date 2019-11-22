@@ -2,11 +2,10 @@
 
 <?php ob_start(); ?>
 
-<div id="main_navigation_backend">
-  <?php include('view/nav_backend.php'); ?>
-</div>
+<?php include('view/nav_backend.php'); ?>
 
-<div id="dashbord-grid">
+<main id="dashbord-grid">
+
   <section id="content-news">
     <header id="header_dashbord">
       <h1>Tableau de bord</h1>
@@ -50,7 +49,7 @@
     </div>
   </section>
 
-</div>
+</main>
 
 <?php $content = ob_get_clean() ?>
 

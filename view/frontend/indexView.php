@@ -3,22 +3,7 @@
 <?php ob_start(); ?>
 
 <header id="main_header">
-
-  <?php
-  if (empty($page))
-  {
-    $page = 'nav';
-    $page = trim('view/' . $page.'.php');
-    if (file_exists($page))
-    {
-      include($page);
-    }
-    else
-    {
-      echo "Page inexistante !";
-    }
-  }
-  ?>
+  <?php include('view/nav.php'); ?>
 
   <div id="header_content">
     <?php include('view/navigation.php'); ?>
@@ -33,7 +18,7 @@
   <figure id="image_home">
     <picture>
       <source srcset="././public/img/montagnes-pyrenees2-1200.jpg" media="(min-width: 480px)">
-      <img src="././public/img/montagnes-pyrenees-480.jpg" />
+      <img src="././public/img/montagnes-pyrenees-480.jpg" alt="Photographie de montagnes dans les Pyrénées." />
     </picture>
   </figure>
 </header>

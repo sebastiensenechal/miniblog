@@ -4,7 +4,7 @@
     if (isset($_SESSION['id']) && isset($_SESSION['pseudo']))
     {
       ?>
-        <li><?= $_SESSION['pseudo'] ?> (<a href="index.php?action=logout">déconnexion</a>)</li>
+        <li>Bonjour <?= $_SESSION['pseudo'] ?> (<a href="index.php?action=logout">déconnexion</a>)</li>
       <?php
     }
     else

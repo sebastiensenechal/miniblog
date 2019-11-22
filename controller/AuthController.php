@@ -103,11 +103,14 @@ class AuthController {
     setcookie('pseudo', '');
     setcookie('ticket', '');
     setcookie('message', '');
-    // setcookie('pass', '');
+    setcookie('message_report', '');
+    setcookie('message_subscription', '');
 
     unset($_SESSION['token']);
     unset($_SESSION['ticket']);
     unset($_COOKIE['message']);
+    unset($_COOKIE['message_report']);
+    unset($_COOKIE['message_subscription']);
 
     header('Location: index.php?action=indexView');
   }

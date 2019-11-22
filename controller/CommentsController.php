@@ -58,7 +58,7 @@ class CommentsController {
 
 
 
-  public function approvedReportComment() // Retirer le signalement
+  public function approvedReportComment() // Retirer le signalement d'un commentaire
   {
     $postManager = new PostManager();
     $commentManager = new CommentManager();
@@ -66,11 +66,14 @@ class CommentsController {
     $post = $postManager->getPost($_GET['id']);
     $reportComment = $commentManager->approvedReportComment($_GET['id']);
 
+    setcookie('message_report', '');
+    unset($_COOKIE['message_report']);
+
     header('Location: ./index.php?action=adminCommentsReport');
   }
 
 
-  public function approvedComment() // Retirer le signalement
+  public function approvedComment() // Approuve un commentaire soumi
   {
     $postManager = new PostManager();
     $commentManager = new CommentManager();
@@ -82,7 +85,7 @@ class CommentsController {
   }
 
 
-  // Signaler un commentaire
+  // Désactiver un commentaire
   public function disableComment()
   {
     $commentManager = new CommentManager();
@@ -106,16 +109,13 @@ class CommentsController {
 
     if ($affectedLines === false)
     {
-      // Si erreur, elle remonte jusqu'au bloc try du router (index.php)
       throw new Exception('Impossible d\'ajouter le commentaire');
     }
     else
     {
-      setcookie('message', "Merci, votre commentaire a bien été soumi.", time() + 10, null, null, false, true);
-      // Si pas d'erreur, on redirige le contributeur vers le post avec son commentaire
+      setcookie('message', "Merci, votre commentaire a bien été soumi.", time() + 5, null, null, false, true);
+
       header('Location: index.php?action=post&id=' . $postId . '#post-comments');
-      // $_SESSION['message'] = "Merci, votre commentaire est soumi à validation.";
-      // $message = $_SESSION['message'];
     }
   }
 
@@ -128,7 +128,10 @@ class CommentsController {
 
     $post = $postManager->getPost($_GET['id']);
     $reportComment = $commentManager->reportComment($_GET['id']);
-    header('Location: index.php?action=post&id=' . $_GET['id_post']);
+
+    setcookie('message_report', "Merci, votre signalement sera pris en compte.");
+
+    header('Location: index.php?action=post&id=' . $_GET['id_post'] . '#post-comments');
   }
 
 

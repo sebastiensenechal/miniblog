@@ -3,21 +3,7 @@
 <?php ob_start(); ?>
 
 <header id="header">
-  <?php
-  if (empty($page))
-  {
-    $page = 'nav';
-    $page = trim('view/' . $page.'.php');
-    if (file_exists($page))
-    {
-      include($page);
-    }
-    else
-    {
-      echo "Page inexistante !";
-    }
-  }
-  ?>
+  <?php include('view/nav.php'); ?>
 
   <h1><a href="index.php?action=indexView" title="Accueil de John Doe">John Doe</a></h1>
 
@@ -32,7 +18,7 @@
 
 </header>
 
-<div id="layout-post">
+<main id="layout-post">
   <section id="content-news">
     <header>
       <h1>
@@ -83,7 +69,7 @@
     </article>
 
   </section>
-</div>
+</main>
 
 <?php $content = ob_get_clean() ?>
 

@@ -3,21 +3,7 @@
 <?php ob_start(); ?>
 
 <header id="header">
-  <?php
-  if (empty($page))
-  {
-    $page = 'nav';
-    $page = trim('view/' . $page.'.php');
-    if (file_exists($page))
-    {
-      include($page);
-    }
-    else
-    {
-      echo "Page inexistante !";
-    }
-  }
-  ?>
+  <?php include('view/nav.php'); ?>
 
   <h1><a href="index.php?action=indexView" title="Accueil de John Doe">John Doe</a></h1>
 
@@ -29,7 +15,7 @@
 
 </header>
 
-<div id="layout-post">
+<main id="layout-post">
   <section id="content-news">
     <header>
       <h1>
@@ -49,6 +35,11 @@
       <?php
       if (isset($_SESSION['id']) && isset($_SESSION['pseudo'])) {
         include('view/commentForm.php');
+
+        if (isset($_COOKIE['message_report'])) {
+          echo '<p class="validate">' . $_COOKIE['message_report'] . '</p>';
+        }
+
       } else {
         ?>
           <p>Pour laisser un commentaire, vous devez être <a href="index.php?action=login" title="Page d'inscription ou de connexion">connecté</a>...</p>
@@ -62,9 +53,15 @@
           <p><span class="meta-content"><?= htmlspecialchars($comment['author']) ?><br />
           <span class="comment-date"><?= $comment['comment_date_fr'] ?></span></span></p>
           <?= nl2br($comment['comment']) ?>
-          <ul class="admin-content">
-            <li><a href="index.php?action=report&amp;id_post=<?= $post['id'];?>&amp;id=<?= $comment['id']; ?>">Signaler</a></li>
-          </ul>
+          <?php
+          if (isset($_SESSION['id']) && isset($_SESSION['pseudo'])) {
+            ?>
+            <ul class="admin-content">
+              <li><a href="index.php?action=report&amp;id_post=<?= $post['id'];?>&amp;id=<?= $comment['id']; ?>">Signaler</a></li>
+            </ul>
+            <?php
+          }
+          ?>
         </aside>
       <?php
       }
@@ -90,7 +87,7 @@
 
   </section>
 
-</div>
+</main>
 
 <?php $content = ob_get_clean() ?>
 

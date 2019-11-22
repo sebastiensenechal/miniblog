@@ -3,21 +3,7 @@
 <?php ob_start(); ?>
 
 <header id="header">
-  <?php
-  if (empty($page))
-  {
-    $page = 'nav';
-    $page = trim('view/' . $page.'.php');
-    if (file_exists($page))
-    {
-      include($page);
-    }
-    else
-    {
-      echo "Page inexistante !";
-    }
-  }
-  ?>
+  <?php include('view/nav.php'); ?>
 
   <h1><a href="index.php?action=indexView" title="Accueil de John Doe">John Doe</a></h1>
 
@@ -31,7 +17,7 @@
   </figure>
 </header>
 
-<div id="layout-connexion">
+<main id="layout-connexion">
   <section>
     <header>
       <h2>Vous avez un compte</h2>
@@ -85,8 +71,8 @@
       </fieldset>
       <fieldset>
         <?php
-          if (isset($_COOKIE['message'])) {
-            echo '<p class="validate">' . $_COOKIE['message'] . '</p>';
+          if (isset($_COOKIE['message_subscription'])) {
+            echo '<p class="validate">' . $_COOKIE['message_subscription'] . '</p>';
           }
         ?>
         <input type="submit" name="subscription" value="Envoyer" />
@@ -94,7 +80,7 @@
     </form>
 
   </section>
-</div>
+</main>
 
 <?php $content = ob_get_clean() ?>
 

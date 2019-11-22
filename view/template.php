@@ -9,11 +9,8 @@
     <title><?= htmlspecialchars($title) ?></title>
   </head>
   <body>
-    <div id="grid">
 
-      <?= $content ?>
-
-    </div>
+    <?= $content ?>
 
     <footer>
       <ul>

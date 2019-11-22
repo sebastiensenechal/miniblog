@@ -38,7 +38,7 @@ class UserController {
     // Sinon, rediriger vers l'index avec la fonction Header('Location: ...')
     else
     {
-      setcookie('message', "Merci, vous pouvez désormais vous connecter.", time() + 10, null, null, false, true);
+      setcookie('message_subscription', "Merci, vous pouvez désormais vous connecter.", time() + 10, null, null, false, true);
 
       header('Location: ./index.php?action=login');
     }
