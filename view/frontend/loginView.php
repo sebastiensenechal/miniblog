@@ -6,13 +6,14 @@
   <?php include('view/nav.php'); ?>
 
   <h1><a href="index.php?action=indexView" title="Accueil de John Doe">John Doe</a></h1>
+  <h2>Page de connexion</h2>
 
   <?php include('view/navigation.php'); ?>
 
   <figure id="logo">
     <img src="././public/img/logo-gris.svg" alt="">
     <figcaption>
-      <h1>Page de connexion</h1>
+      <p>John Doe © Sébastien Sénéchal</p>
     </figcaption>
   </figure>
 </header>

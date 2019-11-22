@@ -129,11 +129,14 @@ section {
 {
   padding: 2em 0;
 }
+.news ul {
+  padding-left: 1em;
+  line-height: 2em;
+}
 
 #post-comments {
   border-top: 1px dashed #ccc;
-  margin-top: 4em;
-  padding-top: 2em;
+  margin-top: 0;
   margin-bottom: 4em;
 }
 .content-comment {
@@ -169,7 +172,7 @@ label.hidden {
 input, textarea {
   width: 100%;
   margin-top: 0;
-  padding: 1em 0;
+  padding: .5em 0 .5em .5em;
   font-size: 1em;
   background: rgba(234, 232, 232, 0.1);
   border:0;
@@ -367,6 +370,8 @@ figcaption {
   justify-content: space-around;
   align-content: space-around;
   align-items: flex-start;
+  height: 100vh;
+  overflow-y: scroll;
 }
 #layout-connexion section {
   width: 50%;
@@ -498,9 +503,20 @@ footer ul li {
   }
   h1, h1 a {
     line-height: 1.2em;
+    font-size: 1.3em;
+  }
+  h2 {
+    font-size: 1.2em;
+  }
+  h3 {
+    font-size: 1.1em;
+    line-height: 2em;
   }
   p, address {
     font-size: .9em;
+  }
+  .big-chars {
+    font-size: 1.2em;
   }
   #main_header {
     width: 100%;
@@ -576,9 +592,9 @@ footer ul li {
     padding-left: 0;
     border-bottom: 1px solid #ccc;
   }
-  .news {padding: 2em 0;}
+  .news {padding: 1em 0;}
   #list-news {
-    width: 80%;
+    width: 85%;
   }
   #layout-post {
     overflow: auto;
@@ -586,7 +602,15 @@ footer ul li {
     width: 100%;
   }
   #layout-post section#content-news, #dashbord-grid > section, #dashbord-grid section#content-news, section#content-comments {
-    width: 80%;
+    width: 85%;
+  }
+  #post-comments {
+    margin-top: 2em;
+    margin-bottom: 2em;
+  }
+  #layout-connexion {
+    height: auto;
+    overflow-y: auto;
   }
   figure#logo {
     display: none;
@@ -614,7 +638,8 @@ footer ul li {
   }
   #layout-connexion section {
     width: 80%;
-    padding: 0 1em;
+    padding: 0;
+    margin: 1em;
   }
   footer {
     position: inherit;
@@ -623,6 +648,12 @@ footer ul li {
   footer ul {
     margin: 0 auto;
     padding-left: 0;
+  }
+  form {
+    padding: 0;
+  }
+  fieldset {
+    font-size: 80%;
   }
   /* ******************
   ****  Backoffice ****
@@ -639,9 +670,6 @@ footer ul li {
     width: 100%;
     height: auto;
     overflow: inherit;
-  }
-  form {
-    padding: .1em;
   }
 }
 
@@ -724,6 +752,10 @@ footer ul li {
   #layout-post section#content-news, #dashbord-grid > section, #dashbord-grid section#content-news, section#content-comments {
     width: 80%;
   }
+  #layout-connexion {
+    height: auto;
+    overflow-y: auto;
+  }
   figure#logo {
     display: none;
     /* width: 100%;
@@ -768,6 +800,12 @@ footer ul li {
     margin: 0 auto;
     padding-left: 0;
   }
+  form {
+    padding: .1em;
+  }
+  input, textarea {
+    padding: .5em 0 .5em .5em;
+  }
   /* ******************
   ****  Backoffice ****
   ********************/
@@ -785,9 +823,6 @@ footer ul li {
     height: auto;
     overflow: inherit;
   }
-  form {
-    padding: .1em;
-  }
 }
 
 @media only screen and (min-width: 960px) and (max-width: 1279px) {
@@ -804,29 +839,24 @@ footer ul li {
     width: 80%;
   }
 }
-@media only screen (min-width: 1280px) and (max-width: 1919px) {
+
+/* Responsive écran HD */
+@media only screen and (min-width: 1919px) {
   body {
-    font-size: 28px;
-    line-height: 34px;
+    font-size: 2em;
   }
-  #nav {
-    font-size: 1em;
-  }
-  #bouton_navigation {
-    height: 26.5vh;
+  figure#logo img, figure#photo img {
+    width: 100%;
   }
 }
 
-@media only screen (min-width: 1920px) and (max-width: 2560px) {
+/* Responsive 4K */
+@media only screen and (min-width: 2559px) {
   body {
-    font-size: 30px;
-    line-height: 34px;
+    font-size: 2.5em;
   }
   #nav {
-    font-size: 1em;
-  }
-  #bouton_navigation {
-    height: 26.5vh;
+    font-size: .9em;
   }
 }
 
