@@ -39,6 +39,10 @@
           <input type="email" id="email" name="email" placeholder="* Email : email@domain.com" required />
         </fieldset>
         <fieldset>
+          <label for="content" class="hidden"><abbr title="Champs obligatoire">*</abbr> Votre message</label><br />
+          <textarea id="content" name="content"></textarea>
+        </fieldset>
+        <fieldset>
           <label for="agreement">
             <abbr title="Champs obligatoire">*</abbr> J'accepte le traitement de mes données conformément à la politique de <a href="index.php?action=rgpd" title="Page du RGPD">données personnelles</a>.
             <input type="checkbox" name="agreement" value="true" id="agreement" required />
