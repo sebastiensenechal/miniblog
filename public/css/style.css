@@ -79,6 +79,9 @@ h3
     line-height: 2.4em;
     margin-bottom:0px;
 }
+#layout-post header h2, #layout header h2 {
+  font-family: 'Consolas', 'Courier New', monospace;; color: #555;text-transform:uppercase;font-weight:800;font-size: 1.5em; line-height: 1.5em;
+}
 h2 span, h3 span, h4 span, p span {color:#777;}
 article h2 {margin-top:3em;}
 .big-chars {
@@ -113,14 +116,14 @@ section {
   width:80%;
   margin: 1em auto;
 }
-#layout-post section#content-news, #dashbord-grid > section, #dashbord-grid section#content-news, section#content-comments, section#content {
+#layout-post section#content-news, #dashbord-grid > section, #dashbord-grid section#content-news, section#content-comments, section#content, #layout section#content {
   width: 60%;
   margin: 1em auto;
 }
 #layout-post section {
   width:80%;
 }
-#layout-post header, #dashbord-grid header {
+#layout-post header, #dashbord-grid header, #layout header {
   border-bottom: 1px solid #ccc;
   padding-bottom: 2em;
   /* margin-bottom: 2em; */
@@ -339,7 +342,7 @@ figcaption {
   width: 50vw;
 }
 
-#layout-post {
+#layout-post, #layout {
   display: -ms-flexbox;
     display: -webkit-flex;
     display: flex;
@@ -596,12 +599,12 @@ footer ul li {
   #list-news {
     width: 85%;
   }
-  #layout-post {
+  #layout-post, #layout {
     overflow: auto;
     height: auto;
     width: 100%;
   }
-  #layout-post section#content-news, #dashbord-grid > section, #dashbord-grid section#content-news, section#content-comments {
+  #layout-post section#content-news, #dashbord-grid > section, #dashbord-grid section#content-news, section#content-comments, #layout section#content {
     width: 85%;
   }
   #post-comments {
@@ -621,7 +624,7 @@ footer ul li {
   figcaption {
     text-align: center;
   }
-  #layout-post header, #dashbord-grid header {
+  #layout-post header, #dashbord-grid header, #layout header {
     padding-bottom: 0;
     margin-bottom: 0;
   }
@@ -744,12 +747,12 @@ footer ul li {
   #list-news {
     width: 85%;
   }
-  #layout-post {
+  #layout-post, #layout {
     overflow: auto;
     height: auto;
     width: 100%;
   }
-  #layout-post section#content-news, #dashbord-grid > section, #dashbord-grid section#content-news, section#content-comments {
+  #layout-post section#content-news, #dashbord-grid > section, #dashbord-grid section#content-news, section#content-comments, #layout section#content {
     width: 80%;
   }
   #layout-connexion {
@@ -758,13 +761,6 @@ footer ul li {
   }
   figure#logo {
     display: none;
-    /* width: 100%;
-    background-attachment: fixed;
-    background-position: top;
-    background-repeat: no-repeat;
-    background-size: cover;
-    min-height: 500px;
-    background-image: url('https://sebastiensenechal.com/openclassroom/miniblog/public/img/montagnes-pyrenees.jpg'); */
   }
   figure#logo img {
     display: none;
@@ -772,7 +768,7 @@ footer ul li {
   figure#photo img {
     width: 40%;
   }
-  #layout-post header, #dashbord-grid header {
+  #layout-post header, #dashbord-grid header, #layout header {
     padding-bottom: 0;
     margin-bottom: 0;
   }
@@ -826,7 +822,7 @@ footer ul li {
 }
 
 @media only screen and (min-width: 960px) and (max-width: 1279px) {
-  #layout-post section#content-news, #dashbord-grid > section, #dashbord-grid section#content-news, section#content-comments, section#content {
+  #layout-post section#content-news, #dashbord-grid > section, #dashbord-grid section#content-news, section#content-comments, section#content, #layout section#content {
     width: 70%;
   }
   #main_navigation_backend {

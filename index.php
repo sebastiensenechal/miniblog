@@ -261,25 +261,26 @@ try // Test (Exception)
           $PostController->indexView();
         }
 
-        // Liste articles
         elseif ($action == 'listPosts')
         {
           $PostController->listPosts();
         }
 
-        // Biographie
+        elseif ($action == 'contact')
+        {
+          $UserController->contactView();
+        }
+
         elseif ($action == 'authorView')
         {
           $UserController->authorView();
         }
 
-        // Mentions légales
         elseif ($action == 'legal')
         {
           $UserController->legalView();
         }
 
-        // RGPD
         elseif ($action == 'rgpd')
         {
           $UserController->rgpdView();
@@ -396,19 +397,21 @@ try // Test (Exception)
         }
       }
 
-      // Biographie
+      elseif ($action == 'contact')
+      {
+        $UserController->contactView();
+      }
+
       elseif ($action == 'authorView')
       {
         $UserController->authorView();
       }
 
-      // Mentions légales
       elseif ($action == 'legal')
       {
         $UserController->legalView();
       }
 
-      // RGPD
       elseif ($action == 'rgpd')
       {
         $UserController->rgpdView();

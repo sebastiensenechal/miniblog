@@ -18,10 +18,10 @@
 <main id="layout-post">
   <section id="content-news">
     <header>
-      <h1>
+      <h2>
           <?= htmlspecialchars($post['title']) ?><br />
           <span><?= $post['creation_date_fr'] ?></span>
-      </h1>
+      </h2>
     </header>
 
     <article class="news">

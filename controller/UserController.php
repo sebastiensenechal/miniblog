@@ -50,6 +50,12 @@ class UserController {
     require($authorView . '.php');
   }
 
+  public function contactView()
+  {
+    $contactView = 'view/frontend/contactView';
+    require($contactView . '.php');
+  }
+
   public function legalView()
   {
     $legalView = 'view/frontend/legalView';

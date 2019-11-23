@@ -22,9 +22,9 @@
 <main id="layout-post">
   <section>
     <header>
-      <h1>
+      <h2>
           Liste des articles
-      </h1>
+      </h2>
     </header>
 
     <div id="posts-grid">

@@ -21,10 +21,10 @@
 <main id="layout-post">
   <section id="content-news">
     <header>
-      <h1>
+      <h2>
           Mentions légales<br />
           <span>Novembre 2019</span>
-      </h1>
+      </h2>
     </header>
 
     <article class="news">
