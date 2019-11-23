@@ -180,25 +180,6 @@ try // Test (Exception)
          }
        }
 
-        // // Liste des chapitres
-        // elseif ($action == 'listPosts')
-        // {
-        //   $PostController->listPosts();
-        // }
-        //
-        // // Affiche le chapitre avec ses commentaires
-        // elseif ($action == 'post')
-        // {
-        //   if (isset($id) && $id > 0)
-        //   {
-        //     $PostController->post();
-        //   }
-        //   else
-        //   {
-        //     throw new Exception('Aucun identifiant de chapitre envoyé !');
-        //   }
-        // }
-
         // Ajoute un commentaire dans le chapitre selectionné
         elseif ($action == 'addComment')
         {
@@ -281,25 +262,25 @@ try // Test (Exception)
         }
 
         // Liste articles
-        if ($action == 'listPosts')
+        elseif ($action == 'listPosts')
         {
           $PostController->listPosts();
         }
 
         // Biographie
-        if ($action == 'authorView')
+        elseif ($action == 'authorView')
         {
           $UserController->authorView();
         }
 
         // Mentions légales
-        if ($action == 'legal')
+        elseif ($action == 'legal')
         {
           $UserController->legalView();
         }
 
         // RGPD
-        if ($action == 'rgpd')
+        elseif ($action == 'rgpd')
         {
           $UserController->rgpdView();
         }
@@ -387,7 +368,7 @@ try // Test (Exception)
   // Visiteur non authentifié
   else
   {
-    if (isset($action) && !empty($action))
+    if (!empty($action))
     {
       // Accueil Visiteur
       if ($action == 'indexView')
@@ -396,7 +377,7 @@ try // Test (Exception)
       }
 
       // Liste articles
-      if ($action == 'listPosts')
+      elseif ($action == 'listPosts')
       {
         $PostController->listPosts();
       }
@@ -416,19 +397,19 @@ try // Test (Exception)
       }
 
       // Biographie
-      if ($action == 'authorView')
+      elseif ($action == 'authorView')
       {
         $UserController->authorView();
       }
 
       // Mentions légales
-      if ($action == 'legal')
+      elseif ($action == 'legal')
       {
         $UserController->legalView();
       }
 
       // RGPD
-      if ($action == 'rgpd')
+      elseif ($action == 'rgpd')
       {
         $UserController->rgpdView();
       }
@@ -522,7 +503,6 @@ try // Test (Exception)
 
 catch(Exception $e)  // Catch récupère le message d'erreur qu'on lui transmet et l'affiche
 {
-  echo 'Erreur : ' . $e->getMessage();
-  // $errorMessage = $e->getMessage();
-  // require('view/errorView.php');
+  $errorMessage = $e->getMessage();
+  require('view/errorView.php');
 }
