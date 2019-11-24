@@ -114,18 +114,19 @@ class PostController {
     // Affiche l'index en front
     public function indexView()
     {
-      $postManager = new PostManager(); // Création d'un objet (namespace "\SebastienSenechal\Miniblog\Model\")
-      $posts = $postManager->getPosts(); // Appel d'une fonction de cet objet
+      $postManager = new PostManager();
+      $posts = $postManager->getPosts();
 
       $indexView = './view/frontend/indexView';
       require($indexView . '.php');
     }
 
+
     // Affiche la liste des articles
     public function listPosts()
     {
-      $postManager = new PostManager(); // Création d'un objet (namespace "\SebastienSenechal\Miniblog\Model\")
-      $posts = $postManager->getPosts(); // Appel d'une fonction de cet objet
+      $postManager = new PostManager();
+      $posts = $postManager->getPosts();
 
       $listPostsView = './view/frontend/listPostsView';
       require($listPostsView . '.php');
