@@ -39,8 +39,8 @@
           <input type="email" id="email" name="email" placeholder="* Email : email@domain.com" required />
         </fieldset>
         <fieldset>
-          <label for="content" class="hidden"><abbr title="Champs obligatoire">*</abbr> Votre message</label><br />
-          <textarea id="content" name="content"></textarea>
+          <label for="message" class="hidden"><abbr title="Champs obligatoire">*</abbr> Votre message</label><br />
+          <textarea id="message" name="message"></textarea>
         </fieldset>
         <fieldset>
           <label for="agreement">
