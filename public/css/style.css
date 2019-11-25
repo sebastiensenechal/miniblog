@@ -8,10 +8,15 @@
  2. Typography
  3. Structure / Layout
  4. Navigation
- 5. Composents
+ 5. Composent
  6. Form
  7. Backoffice
  8. Responsive
+ --- Mobile (max-width 479px)
+ --- Tablet / Small displays (min-width: 480px) and (max-width: 959px)
+ --- Medium / Large displays (min-width: 1919px)
+ --- HD 4K displays (min-width: 2559px)
+ --- Print
  ******************** */
 
 
@@ -68,8 +73,6 @@ body {
 .material-icons.md-24 { font-size: 24px; }
 .material-icons.md-36 { font-size: 36px; }
 .material-icons.md-48 { font-size: 48px; }
-/* Rules for using icons as black on a light background. */
-.material-icons.md-light { color: rgba(255, 255, 255, 0.54); }
 
 
 p, address {font-size:1em;line-height:1.6em;font-weight:400; color:#666;}
@@ -81,11 +84,14 @@ em {font-style: italic;}
 h2, h3, h4 {font-family: 'Spectral', Georgia, serif; color: #555;}
 h1 {font-family: 'Consolas', 'Courier New', monospace; text-transform:uppercase;font-weight:800; color: #555;}
 h1, h1 a { font-size: 1.5em; line-height: 1.5em;}
-h1 span, h2 span, h3 span { font-size : 60%;}
+h1 span, h2 span { font-size : 60%;}
+h3 span { font-size : 70%;}
 h2 {font-weight:700; font-size: 1.4em; line-height: 2.4em; margin-bottom:0px;}
-h3 {font-weight:700; font-size:1.2em;}
-h2 span, h3 span, h4 span, p span {color:#777;}
-article h2 {margin-top:3em;}
+h3, h3 a {font-weight:700; font-size:1.2em;}
+h3 a, .news h3 a {font-weight:700; font-size:1em; line-height: 1em; font-family: 'Spectral', Georgia, serif; color: #555; text-decoration: none;}
+h2 span, h4 span, p span {color:#777;}
+h3 span, h3 a span {color:#555;}
+article h2 {margin-top:3em; line-height: 1.5em;}
 #layout-post header h2, #layout header h2 {
   font-family: 'Consolas', 'Courier New', monospace;; color: #555;text-transform:uppercase;font-weight:800;font-size: 1.5em; line-height: 1.5em;
 }
@@ -139,7 +145,6 @@ section {
  padding-left: 1em;
  line-height: 2em;
 }
-
 #post-comments {
  border-top: 1px dashed #ccc;
  margin-top: 0;
@@ -172,7 +177,6 @@ section {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  /* background:#FBDEB9; */
   color:#444;
   background: rgb(247,238,227);
   background: linear-gradient(0deg, rgba(247,238,227,1) 0%, rgba(251,222,185,1) 9%, rgba(244,200,145,1) 86%, rgba(251,222,185,1) 100%);
@@ -262,7 +266,6 @@ footer {
 
 
 
-
 /* ********************
 
  Navigation
@@ -333,7 +336,6 @@ img {
   padding-left: 0;
   text-align: center;
 }
-
 .meta-content:first-child {
   border-left: 4px solid #fbdeb9;
   padding-left: 10px;
@@ -442,15 +444,15 @@ input[type="submit"] {
   color:#666;
 }
 #dashbord-grid {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    align-content: stretch;
-    align-items: stretch;
-    width: 75%;
-    height: 100vh;
-    overflow-y: scroll;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-content: stretch;
+  align-items: stretch;
+  width: 75%;
+  height: 100vh;
+  overflow-y: scroll;
 }
 #backend_navigation {
   width: 70%;
@@ -471,8 +473,8 @@ input[type="submit"] {
   font-size: 1.4em;
 }
 #backend_navigation ul .submenu {
-    font-size: .7em;
-    padding-left: 1.2em;
+  font-size: .7em;
+  padding-left: 1.2em;
 }
 .admin-content {
   list-style: none;
@@ -501,7 +503,6 @@ input[type="submit"] {
   text-transform: lowercase;
   margin: .5em 0;
 }
-
 #header_dashbord {
   min-height: 20vh;
   padding: 1em 0 1em 0;
@@ -670,6 +671,15 @@ input[type="submit"] {
   }
   fieldset {
     font-size: 80%;
+    width: 100%;
+    overflow-x: hidden;
+    display:block;
+  }
+  textarea {
+    width: auto;
+  }
+  .tox .tox-menubar {
+    flex-wrap: wrap;
   }
   /* ******************
   ****  Backoffice ****
@@ -849,7 +859,7 @@ input[type="submit"] {
   }
 }
 
-/* Responsive écran HD */
+
 @media only screen and (min-width: 1919px) {
   body {
     font-size: 2em;
@@ -859,7 +869,7 @@ input[type="submit"] {
   }
 }
 
-/* Responsive 4K */
+
 @media only screen and (min-width: 2559px) {
   body {
     font-size: 2.5em;
@@ -870,5 +880,59 @@ input[type="submit"] {
 }
 
 @media print {
-  /* print style sheets go here */
+  body {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    flex-direction: column;
+    font-size:.8em;
+    line-height: 1em;
+  }
+  article h2 {margin-top: 1em;}
+  #main_navigation, #nav, footer, form, figure#logo, figure#photo, figure#image_home {
+    display:none;
+  }
+  #main_header {
+    width: 100%;
+    height: 100%;
+    justify-content: stretch;
+  }
+  #home-grid {
+    width: 100%;
+    height: auto;
+    overflow: auto;
+    margin-top: 3em;
+  }
+  #header_content {
+    padding-left: 2.5em;
+  }
+  #header {
+    width: 100%;
+    height: 100%;
+    padding-left: 0;
+    border-bottom: 1px solid #ccc;
+  }
+  #list-news {
+    width: 85%;
+  }
+  #layout-post, #layout {
+    overflow: auto;
+    height: auto;
+    width: 100%;
+  }
+  #layout-post section#content-news, #dashbord-grid > section, #dashbord-grid section#content-news, section#content-comments, #layout section#content {
+    width: 80%;
+  }
+  #layout-connexion {
+    height: auto;
+    overflow-y: auto;
+  }
+  #layout-post header, #dashbord-grid header, #layout header {
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+  .news {padding: 2em 0;}
+  #posts-grid .news {
+    width: 100%;
+    margin: 0 1em 1em 0;
+  }
 }

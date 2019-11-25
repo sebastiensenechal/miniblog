@@ -9,7 +9,7 @@
   <section id="content-news">
     <header id="header_dashbord">
       <h1>Tableau de bord</h1>
-      <p>Bienvenu <?= $_SESSION['pseudo']; ?></p>
+      <p>Bienvenu <?= htmlspecialchars($_SESSION['pseudo']); ?></p>
     </header>
 
     <h2>Derniers articles : </h2>
@@ -20,14 +20,14 @@
       {
       ?>
           <article class="news">
-              <h3>
+              <h3><a href="index.php?action=adminPost&amp;id=<?= htmlspecialchars($data['id']) ?>" title="Lire la suite">
                   <?= htmlspecialchars($data['title']); ?><br />
-                  <span><?= $data['creation_date_fr']; ?></span>
-              </h3>
+                  <span><?= htmlspecialchars($data['creation_date_fr']); ?></span>
+              </a></h3>
 
               <?= nl2br($data['excerpt']); ?>
 
-              <p><a href="index.php?action=adminPost&amp;id=<?= $data['id'] ?>">Lire la suite</a></p>
+              <p><a href="index.php?action=adminPost&amp;id=<?= htmlspecialchars($data['id']) ?>">Lire la suite</a></p>
           </article>
       <?php
       }
@@ -40,7 +40,7 @@
           ?>
           <aside class="content-comment">
             <p><span class="meta-content"><?= htmlspecialchars($data['author']); ?><br />
-            <?= $data['comment_date_fr']; ?></span></p>
+            <?= htmlspecialchars($data['comment_date_fr']); ?></span></p>
             <?= $data['comment']; ?>
           </aside>
           <?php

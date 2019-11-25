@@ -20,8 +20,11 @@
     <header>
       <h2>
           <?= htmlspecialchars($post['title']) ?><br />
-          <span><?= $post['creation_date_fr'] ?></span>
+          <span><?= htmlspecialchars($post['creation_date_fr']) ?></span>
       </h2>
+      <ul class="admin-link">
+        <li><a href="index.php?action=listPosts">Retour aux articles</a></li>
+      </ul>
     </header>
 
     <article class="news">
@@ -37,7 +40,7 @@
         include('view/commentForm.php');
 
         if (isset($_COOKIE['message_report'])) {
-          echo '<p class="validate">' . $_COOKIE['message_report'] . '</p>';
+          echo '<p class="validate">' . htmlspecialchars($_COOKIE['message_report']) . '</p>';
         }
 
       } else {
@@ -51,13 +54,13 @@
       ?>
         <aside class="content-comment">
           <p><span class="meta-content"><?= htmlspecialchars($comment['author']) ?><br />
-          <span class="comment-date"><?= $comment['comment_date_fr'] ?></span></span></p>
+          <span class="comment-date"><?= htmlspecialchars($comment['comment_date_fr']) ?></span></span></p>
           <?= nl2br($comment['comment']) ?>
           <?php
           if (isset($_SESSION['id']) && isset($_SESSION['pseudo'])) {
             ?>
             <ul class="admin-content">
-              <li><a href="index.php?action=report&amp;id_post=<?= $post['id'];?>&amp;id=<?= $comment['id']; ?>">Signaler</a></li>
+              <li><a href="index.php?action=report&amp;id_post=<?= htmlspecialchars($post['id']);?>&amp;id=<?= htmlspecialchars($comment['id']); ?>">Signaler</a></li>
             </ul>
             <?php
           }
@@ -76,9 +79,11 @@
         <?php
         while ($data = $lastPosts->fetch())
         {
-        ?>
-          <li><a href="index.php?action=post&amp;id=<?= $data['id'] ?>"><?= htmlspecialchars($data['title']) ?></a></li>
-        <?php
+          if (!empty($data)) {
+            ?>
+              <li><a href="index.php?action=post&amp;id=<?= htmlspecialchars($data['id']) ?>"><?= htmlspecialchars($data['title']) ?></a></li>
+            <?php
+          }
         }
         $lastPosts->closeCursor();
         ?>

@@ -8,7 +8,6 @@ require_once('./model/CommentManager.php');
 
 class PostController {
 
-  // Liste des articles
   public function adminListPosts()
   {
       $postManager = new PostManager();
@@ -33,7 +32,6 @@ class PostController {
 
 
 
-  // Vue d'un nouvel article
   public function adminNewPost()
   {
     $newPostView = './view/backend/newPostView';
@@ -42,7 +40,6 @@ class PostController {
 
 
 
-  // Ajouter un article
   public function addPost($author, $title, $content, $excerpt)
   {
     $postManager = new PostManager();
@@ -53,7 +50,6 @@ class PostController {
   }
 
 
-  // Page de mise à jour, d'édition d'article
   public function adminUpdatePost()
   {
     $postManager = new PostManager();
@@ -65,7 +61,6 @@ class PostController {
   }
 
 
-  // Mettre à jour / Editer un article
   public function updatePost($id, $author, $title, $content, $excerpt)
   {
     $postManager = new PostManager();
@@ -82,69 +77,65 @@ class PostController {
     }
   }
 
-    // Supprimer un article
+
   public function deletePost($id)
+  {
+    $postManager = new PostManager();
+    $commentManager = new CommentManager();
+
+    $deletePost = $postManager->deletePost($id);
+    $deleteComments = $commentManager->deleteComments($id);
+    if($deletePost === false)
     {
-      $postManager = new PostManager();
-      $commentManager = new CommentManager();
-
-      $deletePost = $postManager->deletePost($id);
-      $deleteComments = $commentManager->deleteComments($id);
-      if($deletePost === false)
-      {
-          throw new Exception('Impossible de supprimer le chapitre' );
-      }
-      elseif ($deleteComments === false)
-      {
-          throw new Exception('Impossible de supprimer les commentaire du chapitre' );
-      }
-      else
-      {
-          header('Location: ./index.php?action=adminListPosts');
-      }
+        throw new Exception('Impossible de supprimer le chapitre' );
     }
-
-
-
-
-
-
-
-    // ************* FRONTEND
-    // Affiche l'index en front
-    public function indexView()
+    elseif ($deleteComments === false)
     {
-      $postManager = new PostManager();
-      $posts = $postManager->getPosts();
-
-      $indexView = './view/frontend/indexView';
-      require($indexView . '.php');
+        throw new Exception('Impossible de supprimer les commentaire du chapitre' );
     }
-
-
-    // Affiche la liste des articles
-    public function listPosts()
+    else
     {
-      $postManager = new PostManager();
-      $posts = $postManager->getPosts();
-
-      $listPostsView = './view/frontend/listPostsView';
-      require($listPostsView . '.php');
+        header('Location: ./index.php?action=adminListPosts');
     }
+  }
 
 
-    // Affiche un billet avec ses commentaires
-    public function post()
-    {
-      $postManager = new PostManager();
-      $commentManager = new CommentManager();
 
-      $post = $postManager->getPost($_GET['id']);
-      $lastPosts = $postManager->getLastPost();
-      $comments = $commentManager->getComments($_GET['id']);
 
-      $postsView = './view/frontend/postView';
-      require($postsView . '.php');
-    }
+
+  // ************* FRONTEND ************
+
+  public function indexView()
+  {
+    $postManager = new PostManager();
+    $lastPosts = $postManager->getLastPost();
+
+    $indexView = './view/frontend/indexView';
+    require($indexView . '.php');
+  }
+
+
+  public function listPosts()
+  {
+    $postManager = new PostManager();
+    $posts = $postManager->getPosts();
+
+    $listPostsView = './view/frontend/listPostsView';
+    require($listPostsView . '.php');
+  }
+
+
+  public function post()
+  {
+    $postManager = new PostManager();
+    $commentManager = new CommentManager();
+
+    $post = $postManager->getPost($_GET['id']);
+    $lastPosts = $postManager->getLastPost();
+    $comments = $commentManager->getComments($_GET['id']);
+
+    $postsView = './view/frontend/postView';
+    require($postsView . '.php');
+  }
 
 }

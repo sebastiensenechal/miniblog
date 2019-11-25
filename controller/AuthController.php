@@ -10,7 +10,7 @@ class AuthController {
   public function login()
   {
     // l'accès à la page de connexion génère un token dans un champs hidden du formulaire
-    // Génération du tooken aléatoire
+    // Génération du token aléatoire
     $token = bin2hex(random_bytes(32));
     // Créer une session CSRF
     $_SESSION['token'] = $token;
@@ -18,7 +18,6 @@ class AuthController {
     $loginView = 'view/frontend/loginView';
     require($loginView . '.php');
   }
-
 
 
 

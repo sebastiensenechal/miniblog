@@ -1,5 +1,5 @@
 <?php
-namespace SebastienSenechal\Miniblog\Model; // La classe sera dans ce namespace
+namespace SebastienSenechal\Miniblog\Model;
 
 use \SebastienSenechal\Miniblog\Model\Manager;
 $manager = "Manager";
@@ -11,11 +11,10 @@ class PostManager extends Manager
 
   public function getPosts()
   {
-    // Connexion à la base de données - $db est un objet PDO
     $db = $this->dbConnect();
 
-    // Récupérer les billets sur la base de données
-    $posts = $db->query('SELECT id, title, content, excerpt, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%i\') AS creation_date_fr FROM oc_posts ORDER BY creation_date DESC');
+    $posts = $db->prepare('SELECT id, title, content, excerpt, DATE_FORMAT(creation_date, \'%d.%m.%Y\') AS creation_date_fr FROM oc_posts ORDER BY creation_date DESC');
+    $posts->execute();
 
     return $posts;
   }
@@ -23,11 +22,9 @@ class PostManager extends Manager
 
   public function getPost($id)
   {
-    // Connexion à la base de données - $db est un objet PDO
     $db = $this->dbConnect();
 
-    // Récupérer un post en fonction de son ID avec une requête préparé
-    $req = $db->prepare('SELECT id, title, content, excerpt, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%i\') AS creation_date_fr FROM oc_posts WHERE id = ?');
+    $req = $db->prepare('SELECT id, title, content, excerpt, DATE_FORMAT(creation_date, \'%d.%m.%Y à %Hh%i\') AS creation_date_fr FROM oc_posts WHERE id = ?');
     $req->execute(array($id));
     $post = $req->fetch();
 
@@ -80,7 +77,8 @@ class PostManager extends Manager
   {
       $db = $this->dbConnect();
 
-      $posts = $db->query('SELECT id, title, content, excerpt, DATE_FORMAT(creation_date, \'%d/%m/%Y à %H:%i:%s\') AS creation_date_fr FROM oc_posts ORDER BY creation_date DESC LIMIT 0, 3');
+      $posts = $db->prepare('SELECT id, title, content, excerpt, DATE_FORMAT(creation_date, \'%d.%m.%Y\') AS creation_date_fr FROM oc_posts ORDER BY creation_date DESC LIMIT 0, 3');
+      $posts->execute();
 
       return $posts;
   }

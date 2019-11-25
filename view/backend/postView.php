@@ -10,11 +10,11 @@
     <header>
       <h1>
           <?= htmlspecialchars($post['title']) ?><br />
-          <span><?= $post['creation_date_fr'] ?></span>
+          <span><?= htmlspecialchars($post['creation_date_fr']) ?></span>
       </h1>
       <ul class="admin-link">
-        <li><a href="index.php?action=adminUpdatePost&amp;id=<?= $post['id']; ?>">Éditer</a></li>
-        <li><a href="index.php?action=deletePost&amp;id=<?= $post['id']; ?>">Supprimer</a></li>
+        <li><a href="index.php?action=adminUpdatePost&amp;id=<?= htmlspecialchars($post['id']); ?>">Éditer</a></li>
+        <li><a href="index.php?action=deletePost&amp;id=<?= htmlspecialchars($post['id']); ?>">Supprimer</a></li>
       </ul>
     </header>
 
@@ -32,12 +32,12 @@
         ?>
           <aside class="content-comment">
             <p><span class="meta-content"><?= htmlspecialchars($comment['author']) ?><br />
-            <span class="comment-date"><?= $comment['comment_date_fr'] ?></span></span></p>
+            <span class="comment-date"><?= htmlspecialchars($comment['comment_date_fr']) ?></span></span></p>
             <?= $comment['comment']; ?>
 
             <ul class="admin-content">
-              <li><a href="index.php?action=disable&amp;id=<?= $comment['id']; ?>">Désactiver</a></li>
-              <li><a href="index.php?action=deleteComment&amp;id=<?= $comment['id'];?>">Supprimer</a></li>
+              <li><a href="index.php?action=disable&amp;id=<?= htmlspecialchars($comment['id']); ?>">Désactiver</a></li>
+              <li><a href="index.php?action=deleteComment&amp;id=<?= htmlspecialchars($comment['id']);?>">Supprimer</a></li>
             </ul>
           </aside>
         <?php

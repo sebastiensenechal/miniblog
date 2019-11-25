@@ -10,7 +10,6 @@ class UserManager extends Manager
 {
   public function getUser($pseudo)
   {
-    // Instructions
     $db = $this->dbConnect();
     $req = $db->prepare('SELECT id, pseudo, pass, role FROM oc_members WHERE pseudo = ?');
     $req->execute(array($pseudo));
@@ -22,7 +21,6 @@ class UserManager extends Manager
 
   public function createUser($pseudo, $password_hash, $email)
   {
-    // Instructions
     $db = $this->dbConnect();
     $req = $db->prepare('INSERT INTO oc_members(pseudo, pass, email, subscription_date) VALUES(?, ?, ?, NOW())');
     $registerUser = $req->execute(array($pseudo, $password_hash, $email));

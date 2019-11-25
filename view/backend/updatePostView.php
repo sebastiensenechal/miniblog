@@ -10,7 +10,7 @@
     <header>
       <h1>Modifier :
           <?= htmlspecialchars($post['title']); ?><br />
-          <span><?= $post['creation_date_fr']; ?></span>
+          <span><?= htmlspecialchars($post['creation_date_fr']); ?></span>
       </h1>
       <ul class="admin-link">
         <li><a href="index.php?action=adminListPosts" title="Voir tous les articles">Retour aux articles</a></li>
@@ -18,7 +18,7 @@
     </header>
 
     <article class="news">
-      <form action="index.php?action=updatePost&amp;id=<?= $post['id'] ?>" method="post">
+      <form action="index.php?action=updatePost&amp;id=<?= htmlspecialchars($post['id']) ?>" method="post">
         <fieldset>
           <label for="author">Auteur</label><br>
           <input type="text" name="author" id="author" value="<?php

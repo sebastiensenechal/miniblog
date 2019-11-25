@@ -30,7 +30,7 @@
     <article class="news">
 
       <p><strong>Je vous informe que vos données peuvent faire l’objet d’un traitement, notamment dans le cadre du suivi de fréquentation. Lorsque certaines informations sont obligatoires pour accéder à des fonctionnalités spécifiques, ce caractère obligatoire est indiqué au moment de la collecte de la saisie des données.<br />
-      On ne collecte que le strict minimum et les adresses IP sont cryptées et anonymisées par Google Analytics.</strong></p>
+      On ne collecte que le strict minimum et les adresses IP sont cryptées et anonymisées par Matomo.</strong></p>
 
       <h2>Données enregistrées</h2>
       <p>Des données à caractère personnel sont susceptibles d’être collectées par John Doe.</p>

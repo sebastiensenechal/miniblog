@@ -73,7 +73,7 @@
       <fieldset>
         <?php
           if (isset($_COOKIE['message_subscription'])) {
-            echo '<p class="validate">' . $_COOKIE['message_subscription'] . '</p>';
+            echo '<p class="validate">' . htmlspecialchars($_COOKIE['message_subscription']) . '</p>';
           }
         ?>
         <input type="submit" name="subscription" value="Envoyer" />

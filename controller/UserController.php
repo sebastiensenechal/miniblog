@@ -9,7 +9,6 @@ require_once('./model/UserManager.php');
 
 class UserController {
 
-  // Tableau de bord
   public function dashbord()
   {
     $postManager = new PostManager();

@@ -23,7 +23,7 @@
 
       <?php
         if (isset($errorMessage)) {
-          echo $errorMessage;
+          echo htmlspecialchars($errorMessage);
         }
       ?>
 

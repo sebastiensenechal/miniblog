@@ -10,7 +10,6 @@
   <?php include('view/navigation.php'); ?>
 
   <figure id="photo">
-    <!-- <img src="././public/img/logo-gris.svg" alt=""> -->
     <img src="././public/img/montagnes-pyrenees-480.jpg" alt="Montagne dans les Pyrénées">
     <figcaption>
       <p>© Sébastien Sénéchal</p>
@@ -33,10 +32,10 @@
       {
       ?>
           <article class="news">
-              <h3>
+              <h3><a href="index.php?action=post&amp;id=<?= htmlspecialchars($data['id']) ?>" title="Lire la suite">
                   <?= htmlspecialchars($data['title']) ?><br />
-                  <span><?= $data['creation_date_fr'] ?></span>
-              </h3>
+                  <span><?= htmlspecialchars($data['creation_date_fr']) ?></span>
+              </a></h3>
 
               <?= nl2br($data['excerpt']); ?>
 

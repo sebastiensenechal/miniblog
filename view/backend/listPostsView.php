@@ -24,15 +24,15 @@
           <article class="news">
               <h2>
                   <?= htmlspecialchars($data['title']) ?><br />
-                  <span><?= $data['creation_date_fr'] ?></span>
+                  <span><?= htmlspecialchars($data['creation_date_fr']) ?></span>
               </h2>
 
               <?= nl2br($data['excerpt']); ?>
 
               <ul class="admin-content">
-                <li><a href="index.php?action=adminUpdatePost&amp;id=<?= $data['id']; ?>">Éditer</a></li>
-                <li><a href="index.php?action=deletePost&amp;id=<?= $data['id']; ?>">Supprimer</a></li>
-                <li><a href="index.php?action=adminPost&amp;id=<?= $data['id']; ?>">Lire la suite</a></li>
+                <li><a href="index.php?action=adminUpdatePost&amp;id=<?= htmlspecialchars($data['id']); ?>">Éditer</a></li>
+                <li><a href="index.php?action=deletePost&amp;id=<?= htmlspecialchars($data['id']); ?>">Supprimer</a></li>
+                <li><a href="index.php?action=adminPost&amp;id=<?= htmlspecialchars($data['id']); ?>">Lire la suite</a></li>
               </ul>
           </article>
       <?php

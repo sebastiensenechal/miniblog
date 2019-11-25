@@ -27,26 +27,26 @@
   <section id="list-news">
     <header class="content_header">
       <h2 class="big-chars" style="color: #000;">John Doe <span>est un écrivain français installé à Paris.<br />
-        Il écris des nouvelles et des essais depuis bientôt de 10 ans.</span></h2>
+        Il écris des nouvelles et des essais depuis bientôt 10 ans.</span></h2>
     </header>
 
     <?php
-    while ($data = $posts->fetch())
+    while ($data = $lastPosts->fetch())
     {
     ?>
         <article class="news">
-            <h3>
+            <h3><a href="index.php?action=post&amp;id=<?= htmlspecialchars($data['id']) ?>" title="Lire la suite">
                 <?= htmlspecialchars($data['title']) ?><br />
-                <span><?= $data['creation_date_fr'] ?></span>
-            </h3>
+                <span><?= htmlspecialchars($data['creation_date_fr']) ?></span>
+            </a></h3>
 
             <?= nl2br($data['excerpt']); ?>
 
-            <p><a href="index.php?action=post&amp;id=<?= $data['id'] ?>">Lire la suite</a></p>
+            <p><a href="index.php?action=post&amp;id=<?= htmlspecialchars($data['id']) ?>">Lire la suite</a></p>
         </article>
     <?php
     }
-    $posts->closeCursor();
+    $lastPosts->closeCursor();
     ?>
 
   </section>

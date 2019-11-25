@@ -8,7 +8,6 @@ require_once('./model/CommentManager.php');
 
 class CommentsController {
 
-  // Liste des commentaires
   public function adminListComments()
   {
       $commentManager = new CommentManager();
@@ -19,7 +18,6 @@ class CommentsController {
 
 
 
-  // Page des commentaires en attentes d'approbation
   public function adminCommentsReport()
   {
     $commentManager = new CommentManager();
@@ -30,7 +28,6 @@ class CommentsController {
 
 
 
-  // Page des commentaires en attentes d'approbation
   public function adminCommentsStandby()
   {
     $commentManager = new CommentManager();
@@ -41,7 +38,6 @@ class CommentsController {
 
 
 
-  // Supprimer un commentaire
   public function deleteComment($id)
   {
     $commentManager = new CommentManager();
@@ -85,7 +81,7 @@ class CommentsController {
   }
 
 
-  // Désactiver un commentaire
+
   public function disableComment()
   {
     $commentManager = new CommentManager();
@@ -99,8 +95,6 @@ class CommentsController {
   // **************** FRONTEND ****************
 
 
-
-  // Ajout d'un commentaire dans la base
   public function addComment($postId, $author, $comment)
   {
     $commentManager = new CommentManager();
@@ -120,7 +114,6 @@ class CommentsController {
   }
 
 
-  // Signaler un commentaire
   public function reportingComment()
   {
     $postManager = new PostManager();
