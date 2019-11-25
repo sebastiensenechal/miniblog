@@ -678,9 +678,6 @@ input[type="submit"] {
   textarea {
     width: auto;
   }
-  .tox .tox-menubar {
-    flex-wrap: wrap;
-  }
   /* ******************
   ****  Backoffice ****
   ********************/
@@ -867,6 +864,9 @@ input[type="submit"] {
   figure#logo img, figure#photo img {
     width: 100%;
   }
+  #header_content img {
+    width: 150px;
+  }
 }
 
 
@@ -876,6 +876,9 @@ input[type="submit"] {
   }
   #nav {
     font-size: .9em;
+  }
+  #header_content img {
+    width: 170px;
   }
 }
 

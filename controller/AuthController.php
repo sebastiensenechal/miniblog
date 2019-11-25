@@ -39,7 +39,6 @@ class AuthController {
      else
      {
        //On vérifie que tous les jetons sont là
-
        if (isset($_SESSION['token']) AND isset($_POST['token']) AND !empty($_SESSION['token']) AND !empty($_POST['token']))
        {
          if ($_SESSION['token'] == $_POST['token'])
