@@ -30,7 +30,7 @@ try // Test (Exception)
   // Administrateur
   if(isset($_SESSION['id']) && isset($_SESSION['pseudo']) && !empty($_SESSION['role'] == 0))
   {
-    if (!empty($action))
+    if (!empty(htmlspecialchars($action)))
     {
       if(isset($cookieTicket) == isset($_SESSION['ticket'])) // Vérification du ticket pour sécuriser la session
       {
@@ -246,7 +246,7 @@ try // Test (Exception)
   // Utilisateur authentifié
   if(isset($_SESSION['id']) && isset($_SESSION['pseudo']) && !empty($_SESSION['role'] == 1))
   {
-    if (!empty($action))
+    if (!empty(htmlspecialchars($action)))
     {
       if(isset($cookieTicket) == isset($_SESSION['ticket'])) // Vérification du ticket pour sécuriser la session
       {
@@ -369,7 +369,7 @@ try // Test (Exception)
   // Visiteur non authentifié
   else
   {
-    if (!empty($action))
+    if (!empty(htmlspecialchars($action)))
     {
       // Accueil Visiteur
       if ($action == 'indexView')
