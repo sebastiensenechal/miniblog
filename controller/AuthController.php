@@ -3,16 +3,13 @@ use \SebastienSenechal\Miniblog\Model\UserManager;
 
 require_once('./model/UserManager.php');
 
-
 class AuthController {
-
 
   public function login()
   {
-    // l'accès à la page de connexion génère un token dans un champs hidden du formulaire
-    // Génération du token aléatoire
+    // l'accès à la page de connexion génère un token
+    // dans un champs hidden du formulaire et la session
     $token = bin2hex(random_bytes(32));
-    // Créer une session CSRF
     $_SESSION['token'] = $token;
 
     $loginView = 'view/frontend/loginView';
@@ -23,22 +20,18 @@ class AuthController {
 
   public function logUser($pseudo, $pass, $token)
   {
-    // Vérifier la présence des informations demandées
-    // Créer une instance de la classe User Manager
     $userManager = new UserManager();
 
     $user = $userManager->getUser($pseudo);
     $proper_pass = password_verify($_POST['pass'], $user['pass']);
 
+    // Si le user est bon et le mot de passe aussi, démarrer la session et créer cookies
      if(!$user || !$proper_pass)
      {
        throw new Exception('Mauvais pseudo ou mot de passe');
      }
-     // -- Si le user est bon et le mot de passe aussi, démarrer la session. Session ID, pseudo et pass.
-     // -- Créer les cookies coorespondant
      else
      {
-       //On vérifie que tous les jetons sont là
        if (isset($_SESSION['token']) AND isset($_POST['token']) AND !empty($_SESSION['token']) AND !empty($_POST['token']))
        {
          if ($_SESSION['token'] == $_POST['token'])

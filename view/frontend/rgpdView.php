@@ -1,18 +1,18 @@
-<?php $title = 'Qui est John Doe' ?>
+<?php $title = 'Jean Forteroche | RGPD' ?>
 
 <?php ob_start(); ?>
 
 <header id="header">
   <?php include('view/nav.php'); ?>
 
-  <h1><a href="index.php?action=indexView" title="Accueil de John Doe">John Doe</a></h1>
+  <h1><a href="index.php?action=indexView" title="Accueil de Jean Forteroche">Jean Forteroche</a></h1>
 
   <?php include('view/navigation.php'); ?>
 
   <figure id="photo">
     <img src="././public/img/logo-gris.svg" alt="">
     <figcaption>
-      <p>John Doe © Sébastien Sénéchal</p>
+      <p>Jean Forteroche © Sébastien Sénéchal</p>
     </figcaption>
   </figure>
 

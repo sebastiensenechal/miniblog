@@ -1,4 +1,4 @@
-<?php $title = 'John Doe' ?>
+<?php $title = 'Jean Forteroche' ?>
 
 <?php ob_start(); ?>
 
@@ -10,8 +10,8 @@
 
     <div id="container">
       <img src="././public/img/logo-gris.svg" alt="">
-      <h1><a href="index.php" title="Accueil de John Doe">John Doe</a><br />
-      <span>Essayiste - Auteur - Ecrivain</span></h1>
+      <h1><a href="index.php" title="Accueil de Jean Forteroche">Jean Forteroche</a><br />
+      <span>Billet simple pour l'Alaska</span></h1>
     </div>
   </div>
 
@@ -26,7 +26,7 @@
 <main id="home-grid">
   <section id="list-news">
     <header class="content_header">
-      <h2 class="big-chars" style="color: #000;">John Doe <span>est un écrivain français installé à Paris.<br />
+      <h2 class="big-chars" style="color: #000;">Jean Forteroche <span>est un écrivain français installé à Paris.<br />
         Il écris des nouvelles et des essais depuis bientôt 10 ans.</span></h2>
     </header>
 

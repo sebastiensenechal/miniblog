@@ -59,10 +59,7 @@ class CommentManager extends Manager
   {
     $db = $this->dbConnect();
 
-    $comment = str_replace('<script', '&lt;script', $comment);
-    $comment = str_replace('</script', '&lt;/script', $comment);
-    $comment = str_replace('<?', '&lt;?', $comment);
-    $comment = str_replace('?>', '>&gt;', $comment);
+    $db->quote($comment);
 
     $comments = $db->prepare('INSERT INTO oc_comments(post_id, author, comment, comment_date) VALUES(?, ?, ?, NOW())');
     $affectedLines = $comments->execute(array($postId, $author, $comment));

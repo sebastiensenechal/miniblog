@@ -29,16 +29,13 @@ class UserController {
     $userManager = new UserManager();
     // Faire appel à une fonction de création d'utilisateur. Paramètres : (pseudo, email, password hash).
     $registerUser = $userManager->createUser($pseudo, $password_hash, $email);
-    // Si l'inscription est refusé "false", jeter Exception
     if($registerUser === false)
     {
       throw new Exception('Impossible d\'inscrire le nouvel utilisateur');
     }
-    // Sinon, rediriger vers l'index avec la fonction Header('Location: ...')
     else
     {
       setcookie('message_subscription', "Merci, vous pouvez désormais vous connecter.", time() + 10, null, null, false, true);
-
       header('Location: ./index.php?action=login');
     }
   }

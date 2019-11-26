@@ -5,7 +5,7 @@ if (isset($_SESSION['id']))
   <header id="main_navigation_backend">
 
     <nav id="backend_navigation">
-      <h1><a href="index.php?action=indexView" title="Retour au site">John Doe</a></h1>
+      <h1><a href="index.php?action=indexView" title="Retour au site">Jean Forteroche</a></h1>
       <ul>
         <li><a href="index.php?action=dashbord">Tableau de bord</a></li>
         <li><a href="index.php?action=adminListPosts" title="Tous les articles">Articles</a></li>

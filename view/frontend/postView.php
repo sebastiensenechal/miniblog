@@ -1,16 +1,16 @@
-<?php $title = 'John Doe | ' . htmlspecialchars($post['title']) ?>
+<?php $title = 'Jean Forteroche | ' . htmlspecialchars($post['title']) ?>
 
 <?php ob_start(); ?>
 
 <header id="header">
   <?php include('view/nav.php'); ?>
 
-  <h1><a href="index.php?action=indexView" title="Accueil de John Doe">John Doe</a></h1>
+  <h1><a href="index.php?action=indexView" title="Accueil de Jean Forteroche">Jean Forteroche</a></h1>
 
   <?php include('view/navigation.php'); ?>
 
   <figure id="logo">
-    <img src="././public/img/logo-gris.svg" alt="Logo de l'écrivain John Doe">
+    <img src="././public/img/logo-gris.svg" alt="Logo de l'écrivain Jean Forteroche">
   </figure>
 
 </header>

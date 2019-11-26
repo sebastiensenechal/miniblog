@@ -1,11 +1,11 @@
-<?php $title = 'Liste des articles' ?>
+<?php $title = 'Jean Forteroche | Liste des articles' ?>
 
 <?php ob_start(); ?>
 
 <header id="header">
   <?php include('view/nav.php'); ?>
 
-  <h1><a href="index.php?action=indexView" title="Accueil de John Doe">John Doe</a></h1>
+  <h1><a href="index.php?action=indexView" title="Accueil de Jean Forteroche">Jean Forteroche</a></h1>
 
   <?php include('view/navigation.php'); ?>
 

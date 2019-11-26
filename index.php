@@ -447,16 +447,12 @@ try // Test (Exception)
       {
         if (!empty($_POST['pseudo']) && !empty($_POST['pass']) && !empty($_POST['pass_confirm']) && !empty($_POST['email']))
         {
-          // Sécurité
           $pseudo = htmlspecialchars($_POST['pseudo']);
           $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
 
-          // Hachage du mot de passe
           $password_hash = password_hash($_POST['pass'], PASSWORD_DEFAULT);
-          // On vérifie la Regex pour l'adresse email
           if (filter_var($email, FILTER_VALIDATE_EMAIL))
           {
-            // On vérifie que les 2 mots de passe sont identiques.
             if ($_POST['pass'] == $_POST['pass_confirm'])
             {
               $UserController->registerUser($pseudo, $password_hash, $email);

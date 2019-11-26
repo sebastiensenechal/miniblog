@@ -37,10 +37,8 @@ class PostManager extends Manager
   {
     $db = $this->dbConnect();
 
-    $content = str_replace('<script', '&lt;script', $content);
-    $content = str_replace('</script', '&lt;/script', $content);
-    $content = str_replace('<?', '&lt;?', $content);
-    $content = str_replace('?>', '>&gt;', $content);
+    $db->quote($content);
+    $db->quote($excerpt);
 
     $post = $db->prepare('INSERT INTO oc_posts(author, title, content, excerpt, creation_date) VALUES(:author, :title, :content, :excerpt, NOW())');
     $createPost = $post->execute(array(
@@ -58,6 +56,9 @@ class PostManager extends Manager
   public function updatePost($id_post, $author, $title, $content, $excerpt)
   {
     $db = $this->dbConnect();
+
+    $db->quote($content);
+    $db->quote($excerpt);
 
     $post = $db->prepare('UPDATE oc_posts SET author= :author, title= :title, content= :content, excerpt= :excerpt, creation_date= NOW() WHERE id= :id_post');
     $updatePost = $post->execute(array(

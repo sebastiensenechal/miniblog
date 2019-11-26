@@ -76,7 +76,7 @@ em {font-style: italic;}
 
 h2, h3, h4 {font-family: 'Spectral', Georgia, serif; color: #555;}
 h1 {font-family: 'Consolas', 'Courier New', monospace; text-transform:uppercase;font-weight:800; color: #555;}
-h1, h1 a { font-size: 1.5em; line-height: 1.5em;}
+h1, h1 a { font-size: 1.4em; line-height: 1.5em;}
 h1 span, h2 span { font-size : 60%;}
 h3 span { font-size : 70%;}
 h2 {font-weight:700; font-size: 1.4em; line-height: 2.4em; margin-bottom:0px;}
