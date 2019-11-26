@@ -1,5 +1,7 @@
 @charset "utf-8";
 
+@import url('https://fonts.googleapis.com/css?family=Spectral:500,700,800&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Material+Icons');
 
 /* ********************
  SOMMAIRE
@@ -28,11 +30,7 @@
  ******************** */
 *, *:before, *:after {
     outline: none;
-    -webkit-box-sizing: inherit;
-       -moz-box-sizing: inherit;
-            box-sizing: inherit;
-    -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
+    box-sizing: inherit;
 }
 html {
     width: 100vw;
@@ -47,7 +45,7 @@ body {
   color: #444;
   font-size: 20px;
   line-height: 30px;
-  scroll-behavior: smooth; /* Un peu de douceur dans ce monde de brute */
+  scroll-behavior: smooth; /* Un peu de douceur dans ce monde de brutes */
   overflow:hidden;
   font-family: 'Nunito Sans', Verdana, sans-serif;
 
@@ -65,15 +63,10 @@ body {
  Typography
 
  ******************** */
-@import url('https://fonts.googleapis.com/css?family=Spectral:500,700,800&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Material+Icons');
-/* Rules for sizing the icon. */
-
 .material-icons.md-18 { font-size: 18px; }
 .material-icons.md-24 { font-size: 24px; }
 .material-icons.md-36 { font-size: 36px; }
 .material-icons.md-48 { font-size: 48px; }
-
 
 p, address {font-size:1em;line-height:1.6em;font-weight:400; color:#666;}
 a {font-size:1em; line-height:1.6em;font-weight:400; color:#555;text-decoration: underline;}
@@ -206,23 +199,11 @@ section {
   width: 70%;
 }
 #layout-post, #layout {
-  display: -ms-flexbox;
-  display: -webkit-flex;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
-  -webkit-flex-wrap: nowrap;
-  -ms-flex-wrap: nowrap;
   flex-wrap: nowrap;
-  -webkit-justify-content: flex-start;
-  -ms-flex-pack: start;
   justify-content: flex-start;
-  -webkit-align-content: stretch;
-  -ms-flex-line-pack: stretch;
   align-content: stretch;
-  -webkit-align-items: stretch;
-  -ms-flex-align: stretch;
   align-items: stretch;
   overflow-y: scroll;
   height: 100vh;
@@ -424,7 +405,6 @@ fieldset abbr {
 }
 .hidden {
   position: absolute;
-  clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
   clip: rect(1px, 1px, 1px, 1px);
   height: 1px;
   overflow: hidden;
