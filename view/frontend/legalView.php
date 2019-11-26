@@ -25,6 +25,12 @@
           Mentions légales<br />
           <span>Novembre 2019</span>
       </h2>
+      <nav aria-label="Breadcrumb" class="breadcrumb">
+        <ul>
+            <li><a href="index.php?action=indexView" title="Retour à l'accueil">Accueil</a></li>
+            <li><span aria-current="page">Mentions légales</span></li>
+        </ul>
+      </nav>
     </header>
 
     <article class="news">

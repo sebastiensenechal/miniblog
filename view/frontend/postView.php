@@ -22,9 +22,13 @@
           <?= htmlspecialchars($post['title']) ?><br />
           <span><?= htmlspecialchars($post['creation_date_fr']) ?></span>
       </h2>
-      <ul class="admin-link">
-        <li><a href="index.php?action=listPosts">Retour aux articles</a></li>
-      </ul>
+      <nav aria-label="Breadcrumb" class="breadcrumb">
+        <ul>
+            <li><a href="index.php?action=indexView" title="Retour à l'accueil">Accueil</a></li>
+            <li><a href="index.php?action=listPosts" title="Liste des articles">Articles</a></li>
+            <li class="hidden"><span aria-current="page"><?= htmlspecialchars($post['title']) ?></span></li>
+        </ul>
+      </nav>
     </header>
 
     <article class="news">

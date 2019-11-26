@@ -6,7 +6,7 @@
   <?php include('view/nav.php'); ?>
 
   <h1><a href="index.php?action=indexView" title="Accueil de John Doe">John Doe</a></h1>
-  <h2>Page de connexion</h2>
+  <h2>Identifiez-vous</h2>
 
   <?php include('view/navigation.php'); ?>
 

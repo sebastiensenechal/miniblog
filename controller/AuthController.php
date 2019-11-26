@@ -77,14 +77,13 @@ class AuthController {
 
   public function ticket()
   {
-    $cookie_name = "ticket";
+    $cookieTicket = "ticket";
     // On génère quelque chose d'aléatoire
     $ticket = session_id().microtime().rand(0,99999999);
     // on hash pour avoir quelque chose de propre qui aura toujours la même forme
     $ticket = hash('sha512', $ticket);
 
-    // On enregistre des deux cotés
-    setcookie($cookie_name, $ticket, time() + (60 * 20)); // Expire au bout de 20 min
+    setcookie($cookieTicket, $ticket, time() + (60 * 20)); // Expire au bout de 20 min
     $_SESSION['ticket'] = $ticket;
   }
 
@@ -100,9 +99,9 @@ class AuthController {
     setcookie('id', '');
     setcookie('pseudo', '');
     setcookie('ticket', '');
-    setcookie('message', '');
-    setcookie('message_report', '');
-    setcookie('message_subscription', '');
+    setcookie('message');
+    setcookie('message_report');
+    setcookie('message_subscription');
 
     unset($_SESSION['token']);
     unset($_SESSION['ticket']);

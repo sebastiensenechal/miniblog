@@ -22,6 +22,13 @@
   <section id="content">
     <header>
       <h2>Contactez-nous</h2>
+
+      <nav aria-label="Breadcrumb" class="breadcrumb">
+        <ul>
+            <li><a href="index.php?action=indexView" title="Retour à l'accueil">Accueil</a></li>
+            <li><span aria-current="page">Contact</span></li>
+        </ul>
+      </nav>
     </header>
 
     <article>

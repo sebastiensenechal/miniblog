@@ -180,45 +180,45 @@ try // Test (Exception)
          }
        }
 
-        // Ajoute un commentaire dans le chapitre selectionné
-        elseif ($action == 'addComment')
+      // Ajoute un commentaire dans le chapitre selectionné
+      elseif ($action == 'addComment')
+      {
+        if (isset($id) && $id > 0)
         {
-          if (isset($id) && $id > 0)
+          if (!empty($author) && !empty($comment))
           {
-              if (!empty($author) && !empty($comment))
-              {
-                $CommentsController->addComment($id, $author, $comment);
-              }
-              else
-              {
-                  throw new Exception('Tous les champs doivent être remplis !');
-              }
+            $CommentsController->addComment($id, $author, $comment);
           }
           else
           {
-              throw new Exception('Aucun identifiant de chapitre envoyé !');
+            throw new Exception('Tous les champs doivent être remplis !');
           }
         }
+        else
+        {
+          throw new Exception('Aucun identifiant de chapitre envoyé !');
+        }
+      }
 
 
         // Signaler un commentaire
         elseif ($action == 'report')
         {
-            if (isset($id_post) && $id_post > 0)
+          if (isset($id_post) && $id_post > 0)
+          {
+            if (isset($id) && $id > 0)
             {
-                if (isset($id) && $id > 0)
-                {
-                    $CommentsController->reportingComment();
-                }
-                else
-                {
-                    throw new Exception('Aucun identifiant de commentaire envoyé pour pouvoir le signaler!');
-                }
+              $CommentsController->reportingComment();
             }
             else
             {
-                throw new Exception('Aucun identifiant d\'article envoyé pour revenir sur la page précédente!');
+              throw new Exception('Aucun identifiant de commentaire envoyé pour pouvoir le signaler!');
             }
+          }
+          else
+          {
+            throw new Exception('Aucun identifiant d\'article envoyé pour revenir sur la page précédente!');
+          }
         }
 
         // Deconnexion
@@ -325,21 +325,21 @@ try // Test (Exception)
         // Signaler un commentaire
         elseif ($action == 'report')
         {
-            if (isset($id_post) && $id_post > 0)
+          if (isset($id_post) && $id_post > 0)
+          {
+            if (isset($id) && $id > 0)
             {
-                if (isset($id) && $id > 0)
-                {
-                    $CommentsController->reportingComment();
-                }
-                else
-                {
-                    throw new Exception('Aucun identifiant de commentaire envoyé pour pouvoir le signaler!');
-                }
+              $CommentsController->reportingComment();
             }
             else
             {
-                throw new Exception('Aucun identifiant d\'article envoyé pour revenir sur la page précédente!');
+              throw new Exception('Aucun identifiant de commentaire envoyé pour pouvoir le signaler!');
             }
+          }
+          else
+          {
+            throw new Exception('Aucun identifiant d\'article envoyé pour revenir sur la page précédente!');
+          }
         }
 
         // Déconnexion
@@ -420,26 +420,26 @@ try // Test (Exception)
       // Signaler un commentaire
       elseif ($action == 'report')
       {
-          if (isset($id_post) && $id_post > 0)
+        if (isset($id_post) && $id_post > 0)
+        {
+          if (isset($id) && $id > 0)
           {
-              if (isset($id) && $id > 0)
-              {
-                  $CommentsController->reportingComment();
-              }
-              else
-              {
-                  throw new Exception('Aucun identifiant de commentaire envoyé pour pouvoir le signaler!');
-              }
+            $CommentsController->reportingComment();
           }
           else
           {
-              throw new Exception('Aucun identifiant d\'article envoyé pour revenir sur la page précédente!');
+            throw new Exception('Aucun identifiant de commentaire envoyé pour pouvoir le signaler!');
           }
+        }
+        else
+        {
+          throw new Exception('Aucun identifiant d\'article envoyé pour revenir sur la page précédente!');
+        }
       }
 
       // Page de connexion
       elseif ($action == 'login') {
-          $AuthController->login();
+        $AuthController->login();
       }
 
       // Inscription d'un utilisateur

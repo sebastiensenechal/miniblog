@@ -24,6 +24,13 @@
       <h2>
           Liste des articles
       </h2>
+
+      <nav aria-label="Breadcrumb" class="breadcrumb">
+        <ul>
+            <li><a href="index.php?action=indexView" title="Retour à l'accueil">Accueil</a></li>
+            <li><span aria-current="page">Articles</span></li>
+        </ul>
+      </nav>
     </header>
 
     <div id="posts-grid">
