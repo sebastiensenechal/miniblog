@@ -10,11 +10,11 @@ class PostController {
 
   public function adminListPosts()
   {
-      $postManager = new PostManager();
-      $posts = $postManager->getPosts();
+    $postManager = new PostManager();
+    $posts = $postManager->getPosts();
 
-      $listPostsView = './view/backend/listPostsView';
-      require($listPostsView . '.php');
+    $listPostsView = './view/backend/listPostsView';
+    require($listPostsView . '.php');
   }
 
 
@@ -69,11 +69,11 @@ class PostController {
 
     if ($updatePost === false)
     {
-        throw new Exception('Impossible de mettre à jour l\'article' );
+      throw new Exception('Impossible de mettre à jour l\'article' );
     }
     else
     {
-        header('Location: ./index.php?action=adminListPosts');
+      header('Location: ./index.php?action=adminListPosts');
     }
   }
 
@@ -87,15 +87,15 @@ class PostController {
     $deleteComments = $commentManager->deleteComments($id);
     if($deletePost === false)
     {
-        throw new Exception('Impossible de supprimer le chapitre' );
+      throw new Exception('Impossible de supprimer le chapitre' );
     }
     elseif ($deleteComments === false)
     {
-        throw new Exception('Impossible de supprimer les commentaire du chapitre' );
+      throw new Exception('Impossible de supprimer les commentaire' );
     }
     else
     {
-        header('Location: ./index.php?action=adminListPosts');
+      header('Location: ./index.php?action=adminListPosts');
     }
   }
 

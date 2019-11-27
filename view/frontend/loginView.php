@@ -57,8 +57,8 @@
         <input type="email" id="email" name="email" placeholder="* Email : email@domain.com" required />
       </fieldset>
       <fieldset>
-        <label for="pass" class="hidden"><abbr title="Champs obligatoire">*</abbr> Mot de passe</label>
-        <input type="password" id="pass" name="pass" placeholder="* Mot de passe" required />
+        <label for="pass" class="hidden"><abbr title="Champs obligatoire">*</abbr> Mot de passe (6 caractères min.)</label>
+        <input type="password" id="pass" name="pass" placeholder="* Mot de passe (6 caractères min.)" pattern=".{6,}" required />
       </fieldset>
       <fieldset>
         <label for="pass_confirm" class="hidden"><abbr title="Champs obligatoire">*</abbr> Confirmez le mot de passe</label>

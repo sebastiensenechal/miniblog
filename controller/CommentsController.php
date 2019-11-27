@@ -10,10 +10,10 @@ class CommentsController {
 
   public function adminListComments()
   {
-      $commentManager = new CommentManager();
-      $comments = $commentManager->getAllComments();
-      $listCommentsView = 'view/backend/listCommentsView';
-      require($listCommentsView . '.php');
+    $commentManager = new CommentManager();
+    $comments = $commentManager->getAllComments();
+    $listCommentsView = 'view/backend/listCommentsView';
+    require($listCommentsView . '.php');
   }
 
 
@@ -44,11 +44,11 @@ class CommentsController {
     $deleteComment = $commentManager->deleteComment($id);
     if($deleteComment === false)
     {
-        throw new Exception('Impossible de supprimer le commentaire' );
+      throw new Exception('Impossible de supprimer le commentaire' );
     }
     else
     {
-        header('Location: ./index.php?action=adminListComments');
+      header('Location: ./index.php?action=adminListComments');
     }
   }
 
@@ -61,9 +61,6 @@ class CommentsController {
 
     $post = $postManager->getPost($_GET['id']);
     $reportComment = $commentManager->approvedReportComment($_GET['id']);
-
-    setcookie('message_report', '');
-    unset($_COOKIE['message_report']);
 
     header('Location: ./index.php?action=adminCommentsReport');
   }

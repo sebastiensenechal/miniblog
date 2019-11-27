@@ -7,8 +7,6 @@ class AuthController {
 
   public function login()
   {
-    // l'accès à la page de connexion génère un token
-    // dans un champs hidden du formulaire et la session
     $token = bin2hex(random_bytes(32));
     $_SESSION['token'] = $token;
 
@@ -84,17 +82,16 @@ class AuthController {
   public function logoutUser()
   {
     session_start();
-
-    // Suppression des variables de session et de la session
-    $_SESSION = array();
+    
     session_destroy();
-    // Suppression des cookies de connexion automatique
+    $_SESSION = array();
+
     setcookie('id', '');
     setcookie('pseudo', '');
     setcookie('ticket', '');
-    setcookie('message');
-    setcookie('message_report');
-    setcookie('message_subscription');
+    setcookie('message', '');
+    setcookie('message_report', '');
+    setcookie('message_subscription', '');
 
     unset($_SESSION['token']);
     unset($_SESSION['ticket']);

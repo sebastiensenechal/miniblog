@@ -64,7 +64,11 @@
           if (isset($_SESSION['id']) && isset($_SESSION['pseudo'])) {
             ?>
             <ul class="admin-content">
-              <li><a href="index.php?action=report&amp;id_post=<?= htmlspecialchars($post['id']);?>&amp;id=<?= htmlspecialchars($comment['id']); ?>">Signaler</a></li>
+              <li>
+                <a href="index.php?action=report&amp;id_post=<?= htmlspecialchars($post['id']);?>&amp;id=<?= htmlspecialchars($comment['id']); ?>">
+                  Signaler
+                </a>
+              </li>
             </ul>
             <?php
           }

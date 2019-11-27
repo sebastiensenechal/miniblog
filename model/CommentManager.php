@@ -92,31 +92,31 @@ class CommentManager extends Manager
 
   public function disableComment($id_comment)
   {
-      $db = $this->dbConnect();
+    $db = $this->dbConnect();
 
-      $comments = $db->prepare('UPDATE oc_comments SET standby = 1 WHERE id= ?');
-      $disable = $comments->execute(array($id_comment));
+    $comments = $db->prepare('UPDATE oc_comments SET standby = 1 WHERE id= ?');
+    $disable = $comments->execute(array($id_comment));
 
-      return $disable;
+    return $disable;
   }
 
 
   public function deleteComment($id)
   {
-      $db = $this->dbConnect();
+    $db = $this->dbConnect();
 
-      $comment = $db->prepare('DELETE FROM oc_comments WHERE id= ?');
-      $deleteComment = $comment->execute(array($id));
-      return $deleteComment;
+    $comment = $db->prepare('DELETE FROM oc_comments WHERE id= ?');
+    $deleteComment = $comment->execute(array($id));
+    return $deleteComment;
   }
 
 
   public function deleteComments($id_post)
   {
-      $db = $this->dbConnect();
-      $comments = $db->prepare('DELETE FROM oc_comments WHERE post_id= ?');
-      $deleteComments = $comments->execute(array($id_post));
-      return $deleteComments;
+    $db = $this->dbConnect();
+    $comments = $db->prepare('DELETE FROM oc_comments WHERE post_id= ?');
+    $deleteComments = $comments->execute(array($id_post));
+    return $deleteComments;
   }
 
 
@@ -132,12 +132,12 @@ class CommentManager extends Manager
 
   public function reportComment($id_comment)
   {
-      $db = $this->dbConnect();
+    $db = $this->dbConnect();
 
-      $comments = $db->prepare('UPDATE oc_comments SET reporting = 1 WHERE id= ?');
-      $report = $comments->execute(array($id_comment));
+    $comments = $db->prepare('UPDATE oc_comments SET reporting = 1 WHERE id= ?');
+    $report = $comments->execute(array($id_comment));
 
-      return $report;
+    return $report;
   }
 
 }

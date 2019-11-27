@@ -295,7 +295,6 @@ try // Test (Exception)
           }
           else
           {
-            // "throw new Exception" arrête le bloc "try" et amène directement l'ordinateur au bloc "catch"
             throw new Exception('Erreur : aucun identifiant de billet envoyé.');
           }
         }
@@ -450,21 +449,28 @@ try // Test (Exception)
           $pseudo = htmlspecialchars($_POST['pseudo']);
           $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
 
-          $password_hash = password_hash($_POST['pass'], PASSWORD_DEFAULT);
-          if (filter_var($email, FILTER_VALIDATE_EMAIL))
+          if (strlen($_POST['pass']) < 6)
           {
-            if ($_POST['pass'] == $_POST['pass_confirm'])
-            {
-              $UserController->registerUser($pseudo, $password_hash, $email);
-            }
-            else
-            {
-              throw new Exception('Les 2 mots de passe ne sont pas identiques, recommencez !');
-            }
+            throw new Exception('Votre mot de passe doit comporter 6 caractères au minimum.');
           }
           else
           {
-            throw new Exception('L\'adresse email ' . $email . ' n\'est pas valide, recommencez !');
+            if (filter_var($email, FILTER_VALIDATE_EMAIL))
+            {
+              if ($_POST['pass'] == $_POST['pass_confirm'])
+              {
+                $password_hash = password_hash($_POST['pass'], PASSWORD_DEFAULT);
+                $UserController->registerUser($pseudo, $password_hash, $email);
+              }
+              else
+              {
+                throw new Exception('Les deux mots de passe ne sont pas identiques, recommencez !');
+              }
+            }
+            else
+            {
+              throw new Exception('L\'adresse email ' . $email . ' n\'est pas valide, recommencez !');
+            }
           }
         }
         else

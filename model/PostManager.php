@@ -8,7 +8,6 @@ require_once $manager . '.php';
 
 class PostManager extends Manager
 {
-
   public function getPosts()
   {
     $db = $this->dbConnect();
@@ -76,12 +75,12 @@ class PostManager extends Manager
 
   public function getLastPost()
   {
-      $db = $this->dbConnect();
+    $db = $this->dbConnect();
 
-      $posts = $db->prepare('SELECT id, title, content, excerpt, DATE_FORMAT(creation_date, \'%d.%m.%Y\') AS creation_date_fr FROM oc_posts ORDER BY creation_date DESC LIMIT 0, 3');
-      $posts->execute();
+    $posts = $db->prepare('SELECT id, title, content, excerpt, DATE_FORMAT(creation_date, \'%d.%m.%Y\') AS creation_date_fr FROM oc_posts ORDER BY creation_date DESC LIMIT 0, 3');
+    $posts->execute();
 
-      return $posts;
+    return $posts;
   }
 
 
