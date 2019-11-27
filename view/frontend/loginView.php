@@ -1,4 +1,4 @@
-<?php $title = 'Jean Forteroche | Inscription / Connexion' ?>
+<?php $title = 'Inscription / Connexion' ?>
 
 <?php ob_start(); ?>
 

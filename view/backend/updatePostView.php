@@ -1,4 +1,4 @@
-<?php $title = $post['title']; ?>
+<?php $title = 'Modifier "' . htmlspecialchars($post['title']) . '" | Backoffice'; ?>
 
 <?php ob_start(); ?>
 

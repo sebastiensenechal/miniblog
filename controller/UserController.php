@@ -23,7 +23,7 @@ class UserController {
 
 
 
-  function registerUser($pseudo, $password_hash, $email)
+  public function registerUser($pseudo, $password_hash, $email)
   {
     // Instancier la classe User Manager
     $userManager = new UserManager();

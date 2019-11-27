@@ -1,4 +1,4 @@
-<?php $title = 'Jean Forteroche | Liste des articles' ?>
+<?php $title = 'Liste des articles' ?>
 
 <?php ob_start(); ?>
 

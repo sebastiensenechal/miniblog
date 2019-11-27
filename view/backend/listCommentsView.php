@@ -1,4 +1,4 @@
-<?php $title = 'Listes des commentaires'; ?>
+<?php $title = 'Listes des commentaires | Backoffice'; ?>
 
 <?php ob_start(); ?>
 

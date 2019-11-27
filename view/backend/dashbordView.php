@@ -1,4 +1,4 @@
-<?php $title = 'Tableau de bord'; ?>
+<?php $title = 'Tableau de bord | Backoffice'; ?>
 
 <?php ob_start(); ?>
 

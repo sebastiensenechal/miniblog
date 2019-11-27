@@ -1,4 +1,4 @@
-<?php $title = 'Jean Forteroche | Contact' ?>
+<?php $title = 'Contact' ?>
 
 <?php ob_start(); ?>
 
@@ -12,7 +12,7 @@
   <figure id="logo">
     <img src="././public/img/logo-gris.svg" alt="">
     <figcaption>
-      <p>JJean Forteroche © Sébastien Sénéchal</p>
+      <p>Jean Forteroche © Sébastien Sénéchal</p>
     </figcaption>
   </figure>
 </header>

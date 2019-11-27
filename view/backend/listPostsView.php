@@ -1,4 +1,4 @@
-<?php $title = 'Liste des articles'; ?>
+<?php $title = 'Liste des articles | Backoffice'; ?>
 
 <?php ob_start(); ?>
 

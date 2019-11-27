@@ -1,4 +1,4 @@
-<?php $title = 'Ajout d\'un article'; ?>
+<?php $title = 'Ajout d\'un article | Backoffice'; ?>
 
 <?php ob_start(); ?>
 
@@ -48,7 +48,7 @@
     </article>
 
   </section>
-  
+
 </main>
 
 <?php $content = ob_get_clean() ?>

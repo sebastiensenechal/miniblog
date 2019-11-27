@@ -1,4 +1,4 @@
-<?php $title = 'Jean Forteroche | ' . htmlspecialchars($post['title']) ?>
+<?php $title = htmlspecialchars($post['title']) ?>
 
 <?php ob_start(); ?>
 

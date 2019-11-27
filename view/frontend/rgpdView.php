@@ -1,4 +1,4 @@
-<?php $title = 'Jean Forteroche | RGPD' ?>
+<?php $title = 'RGPD' ?>
 
 <?php ob_start(); ?>
 

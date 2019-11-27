@@ -1,4 +1,4 @@
-<?php $title = 'Commentaires en attente'; ?>
+<?php $title = 'Commentaires en attente | Backoffice'; ?>
 
 <?php ob_start(); ?>
 
