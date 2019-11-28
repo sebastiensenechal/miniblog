@@ -33,7 +33,7 @@
 
     <article class="news">
 
-      <?= nl2br($post['content']) ?>
+      <?= $post['content'] ?>
 
       <div id="post-comments">
 
