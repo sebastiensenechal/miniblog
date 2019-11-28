@@ -117,6 +117,9 @@ footer ul li, footer p, footer a {
  Structure / Layout
 
  ******************** */
+main {
+  display: block;
+}
 section {
  width:80%;
  margin: 1em auto;
@@ -312,6 +315,7 @@ footer {
 img {
   max-width: 100%;
   height: auto;
+  border-style: none;
 }
 .list-center {
   list-style: none;
@@ -400,6 +404,11 @@ fieldset {
   padding-left: 0;
   padding-right: 0;
 }
+abbr[title] {
+  border-bottom: none;
+  text-decoration: underline;
+  text-decoration: underline dotted;
+}
 fieldset abbr {
   color: #f78686;
 }
@@ -409,6 +418,18 @@ fieldset abbr {
   height: 1px;
   overflow: hidden;
   width: 1px;
+}
+input, textarea {
+  font-family: inherit;
+  font-size: 100%;
+  line-height: 1.15;
+  margin: 0;
+}
+input {
+  overflow: visible;
+}
+textarea {
+  overflow: auto;
 }
 input, textarea {
   width: 100%;
@@ -431,7 +452,9 @@ input[type="submit"] {
   background: #252525;
   color: #ccc;
 }
-
+[hidden] {
+  display: none;
+}
 
 
 /* *************************************************************
@@ -523,7 +546,7 @@ input[type="submit"] {
   }
   h1, h1 a {
     line-height: 1.2em;
-    font-size: 1.3em;
+    font-size: 1.2em;
   }
   h2 {
     font-size: 1.2em;
