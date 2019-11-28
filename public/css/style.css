@@ -849,6 +849,14 @@ input[type="submit"] {
 }
 
 @media only screen and (min-width: 960px) and (max-width: 1279px) {
+  h1, h1 a {font-size: 1.3em;}
+  p, address {
+    font-size: .9em;
+  }
+  #posts-grid .news {
+    margin: 0 2em 1em 0;
+  }
+  #header {padding-left: .5em;}
   #layout-post section#content-news, #dashbord-grid > section, #dashbord-grid section#content-news, section#content-comments, section#content, #layout section#content {
     width: 70%;
   }
@@ -866,20 +874,20 @@ input[type="submit"] {
 
 @media only screen and (min-width: 1919px) {
   body {
-    font-size: 2em;
+    font-size: 1.4em;
   }
   figure#logo img, figure#photo img {
-    width: 100%;
+    width: 70%;
   }
   #header_content img {
-    width: 150px;
+    width: 100px;
   }
 }
 
 
 @media only screen and (min-width: 2559px) {
   body {
-    font-size: 2.5em;
+    font-size: 2em;
   }
   #nav {
     font-size: .9em;
