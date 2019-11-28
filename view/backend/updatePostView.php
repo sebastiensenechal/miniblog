@@ -2,7 +2,7 @@
 
 <?php ob_start(); ?>
 
-<?php include('view/nav_backend.php'); ?>
+<?php include('view/navBackend.php'); ?>
 
 <main id="dashbord-grid">
 
