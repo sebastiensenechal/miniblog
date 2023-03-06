@@ -1,2 +1,2 @@
 # miniblog
-Un projet de mini blog très simple, dans un cadre de formation chez Openclassrooms.
+Création d'un blog fromscratch en PHP et MySQL, dans le cadre d'une formation.
